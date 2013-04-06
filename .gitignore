@@ -1,0 +1,6 @@
+*.user
+*.suo
+*.g.*
+Debug
+Release
+*/TestResults/*
