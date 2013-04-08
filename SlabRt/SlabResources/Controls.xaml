@@ -1,0 +1,72 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="using:SlabRt.Controls">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///SlabResources/StandardLayout.xaml"/>
+        <ResourceDictionary Source="ms-appx:///SlabResources/StandardStyles.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <ControlTemplate x:Key="HeaderedContentTemplate" TargetType="c:HeaderedContent">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock 
+                Grid.Row="0"
+                HorizontalAlignment="Left" 
+                Style="{StaticResource SubheaderTextStyle}"
+                Margin="0 0 0 20"
+                FontSize="36"
+                Text="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}"/>
+
+            <ContentPresenter 
+                Grid.Row="1" 
+                VerticalAlignment="Top"
+                Margin="{StaticResource BottomMostControlMargin}"
+                Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="HeaderedContentStyle" TargetType="c:HeaderedContent">
+        <Setter Property="Template" Value="{StaticResource HeaderedContentTemplate}"/>
+    </Style>
+    <Style TargetType="c:HeaderedContent" BasedOn="{StaticResource HeaderedContentStyle}">
+    </Style>
+    
+    <ControlTemplate x:Key="LabelledContentTemplate" TargetType="c:LabelledContent">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock 
+                Grid.Column="0"
+                HorizontalAlignment="Left" 
+                Style="{Binding LabelTextStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                Margin="{StaticResource LeftMostControlMargin}"
+                Width="{Binding LabelWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                Text="{Binding LabelText, RelativeSource={RelativeSource TemplatedParent}}"/>
+
+            <ContentPresenter 
+                Grid.Column="1" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="{StaticResource RightMostControlMargin}"
+                Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="LabelledContentStyle" TargetType="c:LabelledContent">
+        <Setter Property="Template" Value="{StaticResource LabelledContentTemplate}"/>
+        <Setter Property="LabelWidth" Value="{StaticResource FiveUnits}" />
+        <Setter Property="LabelTextStyle" Value="{StaticResource BasicTextStyle}" />
+    </Style>
+    <Style TargetType="c:LabelledContent" BasedOn="{StaticResource LabelledContentStyle}">
+    </Style>
+
+</ResourceDictionary>
