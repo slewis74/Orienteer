@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Slab</id>
+        <version>1.0.0</version>
+        <authors>Shannon Lewis</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Slab framework for Windows 8</description>
+    </metadata>
+    <files>
+        <file src="SlabRT\Bin\Debug\SlabResources\Controls.xaml" target="content\win8\SlabResources\Controls.xaml" />
+        <file src="SlabRT\Bin\Debug\SlabResources\Converters.xaml" target="content\win8\SlabResources\Converters.xaml" />
+        <file src="SlabRT\Bin\Debug\SlabResources\StandardLayout.xaml" target="content\win8\SlabResources\StandardLayout.xaml" />
+        <file src="SlabRT\Bin\Debug\SlabResources\StandardStyles.xaml" target="content\win8\SlabResources\StandardStyles.xaml" />
+        <file src="SlabRT\Host\HostView.xaml" target="content\win8\SlabResources\HostView.xaml" />
+        <file src="SlabRT\Host\HostView.xaml.cs" target="content\win8\SlabResources\HostView.xaml.cs" />
+        <file src="Slab\Bin\Debug\Slab.dll" target="lib\win8\Slab.dll" />
+        <file src="SlabRT\Bin\Debug\SlabRt.dll" target="lib\win8\SlabRt.dll" />
+        <file src="SlabRT\Bin\Debug\WinRtBehaviors.dll" target="lib\win8\WinRtBehaviors.dll" />
+        <file src="Slab\Bin\Debug\Slab.dll" target="lib\portable-win+net40+wp8\Slab.dll" />
+    </files>
+</package>
