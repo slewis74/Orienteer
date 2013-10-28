@@ -18,5 +18,6 @@
         <file src="SlabRT\Bin\Debug\SlabRt.dll" target="lib\win8\SlabRt.dll" />
         <file src="SlabRT\Bin\Debug\WinRtBehaviors.dll" target="lib\win8\WinRtBehaviors.dll" />
         <file src="Slab\Bin\Debug\Slab.dll" target="lib\portable-win+net40+wp8\Slab.dll" />
+        <file src="App.xaml.install.xdt" target="content\win8\App.xaml.install.xdt" />
     </files>
 </package>
