@@ -2,30 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 
 namespace SlabRt.Pages
 {
     public class ViewLocator : IViewLocator
     {
-        private Dictionary<ViewModelTypeOrientationKey, Type> _cache;
+        private readonly Dictionary<ViewModelTypeOrientationKey, Type> _cache;
 
         public ViewLocator()
         {
             _cache = new Dictionary<ViewModelTypeOrientationKey, Type>();
         }
 
-        public FrameworkElement Resolve(object viewModel, ApplicationViewState applicationViewState)
+        public FrameworkElement Resolve(object viewModel, PageLayout pageLayout)
         {
-            var view = (FrameworkElement)Activator.CreateInstance(DetermineViewType(viewModel.GetType(), applicationViewState));
+            var view = (FrameworkElement)Activator.CreateInstance(DetermineViewType(viewModel.GetType(), pageLayout));
             view.DataContext = viewModel;
             return view;
         }
 
-        private Type DetermineViewType(Type viewModelType, ApplicationViewState applicationViewState)
+        private Type DetermineViewType(Type viewModelType, PageLayout pageLayout)
         {
-            var key = new ViewModelTypeOrientationKey(viewModelType, applicationViewState);
+            var key = new ViewModelTypeOrientationKey(viewModelType, pageLayout);
 
             if (_cache.ContainsKey(key))
                 return _cache[key];
@@ -38,18 +37,15 @@ namespace SlabRt.Pages
                 .Where(t => t.Namespace == viewModelType.Namespace)
                 .ToArray();
 
-            switch (applicationViewState)
+            switch (pageLayout)
             {
-                case ApplicationViewState.Filled:
-                    viewTypeName = ConvertLogicalTypeToViewTypeName(logicalTypeName, "Filled");
+                case PageLayout.Narrow:
+                    viewTypeName = ConvertLogicalTypeToViewTypeName(logicalTypeName, "Narrow");
                     break;
-                case ApplicationViewState.Snapped:
-                    viewTypeName = ConvertLogicalTypeToViewTypeName(logicalTypeName, "Snapped");
-                    break;
-                case ApplicationViewState.FullScreenPortrait:
+                case PageLayout.Portrait:
                     viewTypeName = ConvertLogicalTypeToViewTypeName(logicalTypeName, "Portrait");
                     break;
-                case ApplicationViewState.FullScreenLandscape:
+                case PageLayout.Landscape:
                 default:
                     viewTypeName = ConvertLogicalTypeToViewTypeName(logicalTypeName, "Landscape");
                     break;
@@ -60,12 +56,7 @@ namespace SlabRt.Pages
 
             if (viewTypes.Any() == false)
             {
-                if (applicationViewState == ApplicationViewState.Filled)
-                {
-                    // Can't find a Filled View, so try to fall back to the Lanscape view
-                    return DetermineViewType(viewModelType, ApplicationViewState.FullScreenLandscape);
-                }
-                if (applicationViewState == ApplicationViewState.FullScreenLandscape)
+                if (pageLayout == PageLayout.Landscape)
                 {
                     // Can't find a Landscape View, so try to fall back to the view without any orientation specifier
                     viewTypes = exportedTypesInSameNamespace.Where(t => t.Name == logicalTypeName + "View").ToArray();
@@ -93,14 +84,14 @@ namespace SlabRt.Pages
 
         public class ViewModelTypeOrientationKey
         {
-            public ViewModelTypeOrientationKey(Type viewModelType, ApplicationViewState applicationViewState)
+            public ViewModelTypeOrientationKey(Type viewModelType, PageLayout pageLayout)
             {
                 ViewModelType = viewModelType;
-                ApplicationViewState = applicationViewState;
+                PageLayout = pageLayout;
             }
 
             public Type ViewModelType { get; set; }
-            public ApplicationViewState ApplicationViewState { get; set; }
+            public PageLayout PageLayout { get; set; }
 
             public override bool Equals(object obj)
             {
@@ -108,11 +99,11 @@ namespace SlabRt.Pages
                 if (otherKey == null)
                     return false;
                 return otherKey.ViewModelType == ViewModelType &&
-                       otherKey.ApplicationViewState == ApplicationViewState;
+                       otherKey.PageLayout == PageLayout;
             }
             public override int GetHashCode()
             {
-                return ViewModelType.GetHashCode() + ApplicationViewState.GetHashCode();
+                return ViewModelType.GetHashCode() + PageLayout.GetHashCode();
             }
         }
     }

@@ -5,6 +5,6 @@ namespace SlabRt.Pages
 {
     public interface IViewLocator
     {
-        FrameworkElement Resolve(object viewModel, ApplicationViewState applicationViewState);
+        FrameworkElement Resolve(object viewModel, PageLayout pageLayout);
     }
 }

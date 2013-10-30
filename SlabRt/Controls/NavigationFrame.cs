@@ -11,7 +11,6 @@ using SlabRt.Data.Navigation;
 using SlabRt.Pages;
 using SlabRt.Requests;
 using Windows.UI.ApplicationSettings;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -226,7 +225,7 @@ namespace SlabRt.Controls
 
         private FrameworkElement NavigateToViewModel(object viewModel)
         {
-            ViewLocator.Resolve(viewModel, ApplicationView.Value);
+            ViewLocator.Resolve(viewModel, PageLayoutProvider.DetermineVisualState());
 
             var contentSwitchingPage = new ContentSwitchingPage
                                            {

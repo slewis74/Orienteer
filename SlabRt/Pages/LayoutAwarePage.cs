@@ -19,6 +19,15 @@ namespace SlabRt.Pages
 
             Unloaded += StopLayoutUpdates;
         }
+
+        public static readonly DependencyProperty NarrowWidthProperty =
+            DependencyProperty.Register("NarrowWidth", typeof (int), typeof (LayoutAwarePage), new PropertyMetadata(500));
+
+        public int NarrowWidth
+        {
+            get { return (int) GetValue(NarrowWidthProperty); }
+            set { SetValue(NarrowWidthProperty, value); }
+        }
        
         public void StartLayoutUpdates(object sender, RoutedEventArgs e)
         {
@@ -33,12 +42,12 @@ namespace SlabRt.Pages
             _layoutAwareControls.Add(control);
 
             // Set the initial visual state of the control
-            VisualStateManager.GoToState(control, DetermineVisualState(ApplicationView.Value), false);
+            VisualStateManager.GoToState(control, DetermineVisualState(), false);
         }
 
         private void WindowSizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
-            InvalidateVisualState();
+            InvalidatePageLayout();
         }
 
         public void StopLayoutUpdates(object sender, RoutedEventArgs e)
@@ -54,20 +63,19 @@ namespace SlabRt.Pages
             }
         }
 
-        protected virtual string DetermineVisualState(ApplicationViewState viewState)
+        protected virtual string DetermineVisualState()
         {
-            return viewState.ToString();
+            return PageLayoutProvider.DetermineVisualState(NarrowWidth).ToString();
         }
 
-        public void InvalidateVisualState()
+        public void InvalidatePageLayout()
         {
-            if (_layoutAwareControls != null)
+            if (_layoutAwareControls == null) return;
+            
+            var visualState = DetermineVisualState();
+            foreach (var layoutAwareControl in _layoutAwareControls)
             {
-                string visualState = DetermineVisualState(ApplicationView.Value);
-                foreach (var layoutAwareControl in _layoutAwareControls)
-                {
-                    VisualStateManager.GoToState(layoutAwareControl, visualState, false);
-                }
+                VisualStateManager.GoToState(layoutAwareControl, visualState, false);
             }
         }
     }

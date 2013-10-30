@@ -43,11 +43,8 @@ namespace SlabRt.Pages.Navigation
                 _settingsPopup.IsOpen = false;
             }
 
-            // If the app is not snapped, then the back button shows the Settings pane again.
-            if (Windows.UI.ViewManagement.ApplicationView.Value != Windows.UI.ViewManagement.ApplicationViewState.Snapped)
-            {
-                SettingsPane.Show();
-            }
+            // the back button shows the Settings pane again.
+            SettingsPane.Show();
         }
 
         private void DoPopup(ISettingsPageActionResult settingsResult)

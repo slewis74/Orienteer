@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Slab.Pages;
 using Windows.UI.Core;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -10,13 +9,13 @@ namespace SlabRt.Pages
 {
     public class ContentSwitchingPage : UserControl
     {
-        private readonly Dictionary<ApplicationViewState, FrameworkElement> _viewCache;
+        private readonly Dictionary<PageLayout, FrameworkElement> _viewCache;
 
         public ContentSwitchingPage()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled) return;
 
-            _viewCache = new Dictionary<ApplicationViewState, FrameworkElement>();
+            _viewCache = new Dictionary<PageLayout, FrameworkElement>();
 
             Loaded += StartLayoutUpdates;
 
@@ -24,6 +23,15 @@ namespace SlabRt.Pages
         }
 
         public IViewLocator ViewLocator { get; set; }
+
+        public static readonly DependencyProperty NarrowWidthProperty =
+            DependencyProperty.Register("NarrowWidth", typeof(int), typeof(ContentSwitchingPage), new PropertyMetadata(500));
+
+        public int NarrowWidth
+        {
+            get { return (int)GetValue(NarrowWidthProperty); }
+            set { SetValue(NarrowWidthProperty, value); }
+        }
 
         public static readonly DependencyProperty PageCommandsPanelProperty =
             DependencyProperty.Register("PageCommandsPanel", typeof(Panel), typeof(ContentSwitchingPage), new PropertyMetadata(default(Panel)));
@@ -49,14 +57,15 @@ namespace SlabRt.Pages
         {
             var pageViewModel = DataContext;
             if (pageViewModel == null) return;
-
+            
             FrameworkElement frameworkElement;
-            if (_viewCache.ContainsKey(ApplicationView.Value))
-                frameworkElement = _viewCache[ApplicationView.Value];
+            var pageLayout = PageLayoutProvider.DetermineVisualState(NarrowWidth);
+            if (_viewCache.ContainsKey(pageLayout))
+                frameworkElement = _viewCache[pageLayout];
             else
             {
-                frameworkElement = ViewLocator.Resolve(pageViewModel, ApplicationView.Value);
-                _viewCache.Add(ApplicationView.Value, frameworkElement);
+                frameworkElement = ViewLocator.Resolve(pageViewModel, pageLayout);
+                _viewCache.Add(pageLayout, frameworkElement);
             }
 
             Content = frameworkElement;
