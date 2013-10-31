@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace SlabRt.Controls
 {
@@ -12,6 +13,15 @@ namespace SlabRt.Controls
         {
             get { return (string)GetValue(HeaderProperty); }
             set { SetValue(HeaderProperty, value); }
+        }
+
+        public static readonly DependencyProperty HeaderForegroundProperty =
+            DependencyProperty.Register("HeaderForeground", typeof (Brush), typeof (HeaderedContent), new PropertyMetadata(default(Brush)));
+
+        public Brush HeaderForeground
+        {
+            get { return (Brush) GetValue(HeaderForegroundProperty); }
+            set { SetValue(HeaderForegroundProperty, value); }
         }
     }
 }

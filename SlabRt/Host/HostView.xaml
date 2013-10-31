@@ -46,8 +46,7 @@
     </Page.BottomAppBar>
 
     <Grid 
-        Style="{StaticResource LayoutRootStyle}"
-        Background="{StaticResource ThemeBackground}">
+        Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource ApplicationHeaderHeight}"/>
             <RowDefinition Height="*"/>

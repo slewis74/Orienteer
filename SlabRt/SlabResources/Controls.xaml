@@ -21,6 +21,7 @@
                 Style="{StaticResource SubheaderTextStyle}"
                 Margin="0 0 0 20"
                 FontSize="36"
+                Foreground="{Binding HeaderForeground, RelativeSource={RelativeSource TemplatedParent}}"
                 Text="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}"/>
 
             <ContentPresenter 
