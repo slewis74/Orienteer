@@ -5,7 +5,7 @@
         <version>1.0.0</version>
         <authors>Shannon Lewis</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Slab framework for Windows 8</description>
+        <description>Slab framework for Windows 8.1 and Windows Phone 8</description>
     </metadata>
     <files>
         <file src="SlabRT\Bin\Debug\SlabResources\Controls.xaml" target="content\win8\SlabResources\Controls.xaml" />

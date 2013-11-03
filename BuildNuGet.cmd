@@ -1,1 +1,1 @@
-/Nuget/nuget pack Slab.1.0.0.nuspec	-OutputDirectory NuGetOutput
+/Nuget/nuget pack Slab.nuspec -OutputDirectory NuGetOutput
