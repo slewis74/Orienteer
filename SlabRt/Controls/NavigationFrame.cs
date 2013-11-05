@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Slab.Messages;
 using Slab.Pages;
 using Slab.Pages.Navigation;
@@ -149,7 +150,7 @@ namespace SlabRt.Controls
             frame.RestoreNavigationStack();
         }
 
-        public void RestoreNavigationStack()
+        public async void RestoreNavigationStack()
         {
             if (NavigationStackStorage == null ||
                 string.IsNullOrWhiteSpace(DefaultRoute) ||
@@ -176,7 +177,7 @@ namespace SlabRt.Controls
                 navigationFrameStackItem = _navigationStack.Peek();
             }
 
-            CheckItemContent(navigationFrameStackItem);
+            await CheckItemContent(navigationFrameStackItem);
             Content = navigationFrameStackItem.Content;
 
             SetCanGoBack();
@@ -262,7 +263,7 @@ namespace SlabRt.Controls
             }
         }
 
-        public void GoBack()
+        public async void GoBack()
         {
             if (CanGoBack == false)
                 return;
@@ -271,7 +272,7 @@ namespace SlabRt.Controls
             _navigationStack.Pop();
             
             var item = _navigationStack.Peek();
-            CheckItemContent(item);
+            await CheckItemContent(item);
             Content = item.Content;
             SetCanGoBack();
 
@@ -297,10 +298,10 @@ namespace SlabRt.Controls
             }
         }
 
-        private async void CheckItemContent(NavigationFrameStackItem item)
+        private async Task<bool> CheckItemContent(NavigationFrameStackItem item)
         {
             if (item.Content != null) 
-                return;
+                return false;
 
             var controllerResult = await ControllerInvoker.CallAsync(item.Route);
             if (controllerResult.Result is IPageActionResult)
@@ -313,6 +314,8 @@ namespace SlabRt.Controls
                 item.Content = view;
                 UpdateCurrentPageTitle(item.Content);
             }
+
+            return true;
         }
 
         private class NavigationFrameStackItem
