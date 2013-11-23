@@ -90,15 +90,6 @@ namespace SlabRt.Controls
             set { SetValue(NavigationStackStorageProperty, value); }
         }
 
-        public static readonly DependencyProperty DefaultRouteProperty =
-            DependencyProperty.Register("DefaultRoute", typeof (string), typeof (NavigationFrame), new PropertyMetadata(default(string), TryToRestoreNavigationStack));
-
-        public string DefaultRoute
-        {
-            get { return (string) GetValue(DefaultRouteProperty); }
-            set { SetValue(DefaultRouteProperty, value); }
-        }
-
         public static readonly DependencyProperty ControllerInvokerProperty =
             DependencyProperty.Register("ControllerInvoker", typeof(object), typeof(NavigationFrame), new PropertyMetadata(default(IControllerInvoker), TryToRestoreNavigationStack));
 
@@ -153,7 +144,6 @@ namespace SlabRt.Controls
         public async void RestoreNavigationStack()
         {
             if (NavigationStackStorage == null ||
-                string.IsNullOrWhiteSpace(DefaultRoute) ||
                 ControllerInvoker == null ||
                 PageCommandsPanel == null)
             {
@@ -162,21 +152,13 @@ namespace SlabRt.Controls
 
             var routes = NavigationStackStorage.RetrieveRoutes();
 
-            NavigationFrameStackItem navigationFrameStackItem;
-            if (routes == null || routes.Any() == false)
+            foreach (var route in routes)
             {
-                navigationFrameStackItem = new NavigationFrameStackItem(DefaultRoute, null);
-                _navigationStack.Push(navigationFrameStackItem);
+                _navigationStack.Push(new NavigationFrameStackItem(route, null));
             }
-            else
-            {
-                foreach (var route in routes)
-                {
-                    _navigationStack.Push(new NavigationFrameStackItem(route, null));
-                }
-                navigationFrameStackItem = _navigationStack.Peek();
-            }
-
+            
+            var navigationFrameStackItem = _navigationStack.Peek();
+            
             await CheckItemContent(navigationFrameStackItem);
             Content = navigationFrameStackItem.Content;
 

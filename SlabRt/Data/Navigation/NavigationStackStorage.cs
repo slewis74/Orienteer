@@ -7,8 +7,20 @@ namespace SlabRt.Data.Navigation
 {
     public class NavigationStackStorage : INavigationStackStorage
     {
+        public NavigationStackStorage(string defaultRoute, bool alwaysStartFromDefaultRoute)
+        {
+            DefaultRoute = defaultRoute;
+            AlwaysStartFromDefaultRoute = alwaysStartFromDefaultRoute;
+        }
+
+        public string DefaultRoute { get; private set; }
+        public bool AlwaysStartFromDefaultRoute { get; set; }
+
         public void StoreRoutes(string[] routes)
         {
+            if (AlwaysStartFromDefaultRoute)
+                return;
+
             ApplicationData.Current.LocalSettings.DeleteContainer("Navigation");
             var navContainer = ApplicationData.Current.LocalSettings.CreateContainer("Navigation", ApplicationDataCreateDisposition.Always);
 
@@ -24,8 +36,8 @@ namespace SlabRt.Data.Navigation
 
         public string[] RetrieveRoutes()
         {
-            if (ApplicationData.Current.LocalSettings.Containers.ContainsKey("Navigation") == false)
-                return null;
+            if (AlwaysStartFromDefaultRoute || ApplicationData.Current.LocalSettings.Containers.ContainsKey("Navigation") == false)
+                return new [] { DefaultRoute };
 
             var navContainer = ApplicationData.Current.LocalSettings.CreateContainer("Navigation", ApplicationDataCreateDisposition.Always);
 

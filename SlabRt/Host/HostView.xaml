@@ -46,7 +46,8 @@
     </Page.BottomAppBar>
 
     <Grid 
-        Style="{StaticResource LayoutRootStyle}">
+        Style="{StaticResource LayoutRootStyle}"
+        Background="{StaticResource ThemeBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource ApplicationHeaderHeight}"/>
             <RowDefinition Height="*"/>
@@ -81,7 +82,6 @@
             PageCommandsPanel="{Binding ElementName=PageCommands}"
             ViewLocator="{Binding ViewLocator}"
             NavigationStackStorage="{Binding NavigationStackStorage}"
-            DefaultRoute="{Binding DefaultRoute}"
             ControllerInvoker="{Binding ControllerInvoker}"
             PresentationBus="{Binding PresentationBus}"/>
     </Grid>
