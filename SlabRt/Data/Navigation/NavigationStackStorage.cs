@@ -7,6 +7,8 @@ namespace SlabRt.Data.Navigation
 {
     public class NavigationStackStorage : INavigationStackStorage
     {
+        private string _deepLinkRoute;
+
         public NavigationStackStorage(string defaultRoute, bool alwaysStartFromDefaultRoute)
         {
             DefaultRoute = defaultRoute;
@@ -14,7 +16,7 @@ namespace SlabRt.Data.Navigation
         }
 
         public string DefaultRoute { get; private set; }
-        public bool AlwaysStartFromDefaultRoute { get; set; }
+        public bool AlwaysStartFromDefaultRoute { get; private set; }
 
         public void StoreRoutes(string[] routes)
         {
@@ -34,10 +36,26 @@ namespace SlabRt.Data.Navigation
             }
         }
 
+        public void LaunchingDeepLink(string route)
+        {
+            _deepLinkRoute = route;
+        }
+
         public string[] RetrieveRoutes()
         {
-            if (AlwaysStartFromDefaultRoute || ApplicationData.Current.LocalSettings.Containers.ContainsKey("Navigation") == false)
-                return new [] { DefaultRoute };
+            if (AlwaysStartFromDefaultRoute ||
+                ApplicationData.Current.LocalSettings.Containers.ContainsKey("Navigation") == false)
+            {
+                if (string.IsNullOrWhiteSpace(_deepLinkRoute))
+                    return new [] { DefaultRoute };
+                else
+                    return new[] { DefaultRoute, _deepLinkRoute };
+            }
+
+            if (string.IsNullOrWhiteSpace(_deepLinkRoute) == false)
+            {
+                return new[] { DefaultRoute, _deepLinkRoute };
+            }
 
             var navContainer = ApplicationData.Current.LocalSettings.CreateContainer("Navigation", ApplicationDataCreateDisposition.Always);
 
