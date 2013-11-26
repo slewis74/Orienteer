@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows.Input;
+using Slab.Data;
 
 namespace Slab.ViewModels
 {
-	public abstract class Command : ICommand
+	public abstract class Command : BindableBase, ICommand
 	{
 		public event EventHandler CanExecuteChanged;
 

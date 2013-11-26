@@ -4,6 +4,7 @@
     xmlns:c="using:SlabRt.Controls">
     
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///SlabResources/Converters.xaml"/>
         <ResourceDictionary Source="ms-appx:///SlabResources/StandardLayout.xaml"/>
         <ResourceDictionary Source="ms-appx:///SlabResources/StandardStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
@@ -68,6 +69,26 @@
         <Setter Property="LabelTextStyle" Value="{StaticResource BasicTextStyle}" />
     </Style>
     <Style TargetType="c:LabelledContent" BasedOn="{StaticResource LabelledContentStyle}">
+    </Style>
+
+    <ControlTemplate x:Key="TogglePinButtonTemplate" TargetType="c:TogglePinButton">
+        <Grid>
+            <Button 
+                Style="{StaticResource PinAppBarButtonStyle}"
+                Visibility="{Binding Command.IsNotAlreadyPinned, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Command="{Binding Command, RelativeSource={RelativeSource TemplatedParent}}"
+                CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}"/>
+            <Button 
+                Style="{StaticResource UnpinAppBarButtonStyle}"
+                Visibility="{Binding Command.IsAlreadyPinned, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Command="{Binding Command, RelativeSource={RelativeSource TemplatedParent}}"
+                CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}"/>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="TogglePinButtonStyle" TargetType="c:TogglePinButton">
+        <Setter Property="Template" Value="{StaticResource TogglePinButtonTemplate}"/>
+    </Style>
+    <Style TargetType="c:TogglePinButton" BasedOn="{StaticResource TogglePinButtonStyle}">
     </Style>
 
 </ResourceDictionary>

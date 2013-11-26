@@ -105,6 +105,7 @@
     <Compile Include="Controls\HeaderedContent.cs" />
     <Compile Include="Controls\LabelledContent.cs" />
     <Compile Include="Controls\NavigationFrame.cs" />
+    <Compile Include="Controls\TogglePinButton.cs" />
     <Compile Include="Data\Navigation\INavigationStackStorage.cs" />
     <Compile Include="Data\Navigation\NavigationStackStorage.cs" />
     <Compile Include="Host\HostViewModel.cs" />
@@ -132,7 +133,9 @@
     <Compile Include="Pages\ViewLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\DisplaySettingsRequest.cs" />
+    <Compile Include="ViewModels\Positioning.cs" />
     <Compile Include="ViewModels\SearchViewModelBase.cs" />
+    <Compile Include="ViewModels\TogglePinCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="SlabResources\Controls.xaml">
