@@ -91,4 +91,29 @@
     <Style TargetType="c:TogglePinButton" BasedOn="{StaticResource TogglePinButtonStyle}">
     </Style>
 
+    
+    <ControlTemplate x:Key="PageHeaderTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button 
+                Command="{Binding Back}"
+                Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock 
+                Grid.Column="1" 
+                Text="{Binding CurrentPageTitle, RelativeSource={RelativeSource TemplatedParent}}" 
+                Style="{StaticResource PageHeaderTextStyle}"/>
+
+            <ContentPresenter 
+                Grid.Column="2"
+                Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="PageHeaderStyle" TargetType="c:PageHeader">
+        <Setter Property="Template" Value="{StaticResource PageHeaderTemplate}"/>
+    </Style>
+    <Style TargetType="c:PageHeader" BasedOn="{StaticResource PageHeaderStyle}"/>
 </ResourceDictionary>

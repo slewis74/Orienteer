@@ -5,10 +5,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ms-appx:///SlabResources/StandardLayout.xaml" xdt:Transform="Insert"/>
-                <ResourceDictionary Source="ms-appx:///SlabResources/StandardStyles.xaml" xdt:Transform="Insert"/>
-                <ResourceDictionary Source="ms-appx:///SlabResources/Converters.xaml" xdt:Transform="Insert"/>
-                <ResourceDictionary Source="ms-appx:///SlabResources/Controls.xaml" xdt:Transform="Insert"/>
+                <ResourceDictionary Source="ms-appx:///SlabResources/SlabResources.xaml" xdt:Transform="Insert"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

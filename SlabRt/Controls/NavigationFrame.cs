@@ -165,11 +165,11 @@ namespace SlabRt.Controls
             SetCanGoBack();
         }
 
-        public void Handle(GoBackRequest request)
+        public async void Handle(GoBackRequest request)
         {
             if (CanGoBack)
             {
-                GoBack();
+                await GoBack();
             }
             request.IsHandled = true;
         }
@@ -245,7 +245,7 @@ namespace SlabRt.Controls
             }
         }
 
-        public async void GoBack()
+        public async Task GoBack()
         {
             if (CanGoBack == false)
                 return;
@@ -269,6 +269,7 @@ namespace SlabRt.Controls
         private void SetCanGoBack()
         {
             CanGoBack = _navigationStack.Count() > 1;
+            PresentationBus.Publish(new CanGoBackChanged(CanGoBack));
         }
 
         private void UpdateCurrentPageTitle(FrameworkElement newContent)

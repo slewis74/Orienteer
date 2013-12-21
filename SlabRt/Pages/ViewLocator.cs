@@ -56,11 +56,9 @@ namespace SlabRt.Pages
 
             if (viewTypes.Any() == false)
             {
-                if (pageLayout == PageLayout.Landscape)
-                {
-                    // Can't find a Landscape View, so try to fall back to the view without any orientation specifier
-                    viewTypes = exportedTypesInSameNamespace.Where(t => t.Name == logicalTypeName + "View").ToArray();
-                }
+                // Can't find an orientation specific View, so try to fall back to the view 
+                // without any orientation specifier
+                viewTypes = exportedTypesInSameNamespace.Where(t => t.Name == logicalTypeName + "View").ToArray();
 
                 if (viewTypes.Any() == false)
                 {

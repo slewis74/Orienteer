@@ -57,20 +57,11 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
-        <Grid
-			Grid.Row="0" Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding CanGoBack, ElementName=NavFrame}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding CurrentPageTitle, ElementName=NavFrame}" Style="{StaticResource PageHeaderTextStyle}"/>
-
-            <ContentPresenter 
-                Grid.Column="3"
-                Content="{Binding HeaderContent, ElementName=root}"/>
-        </Grid>
+        <c:PageHeader
+			    Grid.Row="0" Grid.Column="0"
+          Back="{Binding Back}"
+          CurrentPageTitle="{Binding CurrentPageTitle, ElementName=NavFrame}"
+          Content="{Binding HeaderContent, ElementName=root}"/>
 
         <ContentPresenter 
             Grid.Row="1" Grid.Column="0"
@@ -78,7 +69,7 @@
 
         <c:NavigationFrame
             x:Name="NavFrame"
-			Grid.Row="1" Grid.Column="0"
+			      Grid.Row="1" Grid.Column="0"
             PageCommandsPanel="{Binding ElementName=PageCommands}"
             ViewLocator="{Binding ViewLocator}"
             NavigationStackStorage="{Binding NavigationStackStorage}"

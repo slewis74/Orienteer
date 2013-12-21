@@ -102,9 +102,12 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\GoBackCommand.cs" />
+    <Compile Include="Commands\GoHomeCommand.cs" />
     <Compile Include="Controls\HeaderedContent.cs" />
     <Compile Include="Controls\LabelledContent.cs" />
     <Compile Include="Controls\NavigationFrame.cs" />
+    <Compile Include="Controls\PageHeader.cs" />
     <Compile Include="Controls\TogglePinButton.cs" />
     <Compile Include="Data\Navigation\INavigationStackStorage.cs" />
     <Compile Include="Data\Navigation\NavigationStackStorage.cs" />
@@ -132,6 +135,8 @@
     <Compile Include="Pages\SuspensionManager.cs" />
     <Compile Include="Pages\ViewLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\CanGoBackRequest.cs" />
+    <Compile Include="Requests\CanGoBackChanged.cs" />
     <Compile Include="Requests\DisplaySettingsRequest.cs" />
     <Compile Include="ViewModels\Positioning.cs" />
     <Compile Include="ViewModels\SearchViewModelBase.cs" />
@@ -145,6 +150,11 @@
     <Page Include="SlabResources\Converters.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SlabResources\SlabResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="SlabResources\StandardLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
