@@ -15,7 +15,7 @@ namespace SlabRt.Commands
 
         public override void Execute(object parameter)
         {
-            _presentationBus.Publish(new GoHomeRequest());
+            _presentationBus.PublishAsync(new GoHomeRequest());
         }
     }
 }

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Data\AsyncObservableCollection.cs" />
     <Compile Include="Data\BindableBase.cs" />
+    <Compile Include="Data\DispatchesToOriginalThreadBase.cs" />
     <Compile Include="Data\GroupedData.cs" />
     <Compile Include="Messages\GoBackRequest.cs" />
     <Compile Include="Messages\GoHomeRequest.cs" />

@@ -42,7 +42,7 @@ namespace SlabRt.Controls
 
             var viewType = Content.GetType();
             var request = new DisplaySettingsRequest(viewType, args.Request);
-            PresentationBus.Publish(request);
+            PresentationBus.PublishAsync(request);
         }
 
         public static readonly DependencyProperty TargetNameProperty =
@@ -269,7 +269,7 @@ namespace SlabRt.Controls
         private void SetCanGoBack()
         {
             CanGoBack = _navigationStack.Count() > 1;
-            PresentationBus.Publish(new CanGoBackChanged(CanGoBack));
+            PresentationBus.PublishAsync(new CanGoBackChanged(CanGoBack));
         }
 
         private void UpdateCurrentPageTitle(FrameworkElement newContent)

@@ -27,13 +27,13 @@ namespace SlabRt.Commands
         private bool? RequestCanGoBackState()
         {
             var request = new CanGoBackRequest();
-            _presentationBus.Publish(request);
+            _presentationBus.PublishAsync(request);
             return request.CanGoBack;
         }
 
         public override void Execute(object parameter)
         {
-            _presentationBus.Publish(new GoBackRequest());
+            _presentationBus.PublishAsync(new GoBackRequest());
         }
 
         public void Handle(CanGoBackChanged presentationEvent)

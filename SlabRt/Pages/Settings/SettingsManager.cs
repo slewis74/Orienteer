@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Slab.Data;
 using Slab.Pages;
 using Slab.Pages.Navigation;
@@ -30,6 +31,11 @@ namespace SlabRt.Pages.Settings
         {
             AddSetting(typeof(GlobalSettings), id, label, action);
         }
+        public void Add<TController>(object id, string label, Expression<Func<TController, Task<ActionResult>>> action)
+            where TController : IController
+        {
+            AddSetting(typeof(GlobalSettings), id, label, action);
+        }
 
         public void Add<TView, TController>(object id, string label, Expression<Func<TController, ActionResult>> action)
             where TController : IController
@@ -42,6 +48,20 @@ namespace SlabRt.Pages.Settings
             object id, 
             string label, 
             Expression<Func<TController, ActionResult>> action) 
+            where TController : IController
+        {
+            var setting = _settings
+                .GetSettingsForScope(scope)
+                .GetSettingsForId(id);
+
+            setting.Label = label;
+            setting.Action = () => _navigator.Navigate(action);
+        }
+        private void AddSetting<TController>(
+            Type scope, 
+            object id, 
+            string label, 
+            Expression<Func<TController, Task<ActionResult>>> action) 
             where TController : IController
         {
             var setting = _settings

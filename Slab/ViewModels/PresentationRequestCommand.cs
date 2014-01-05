@@ -14,7 +14,7 @@ namespace Slab.ViewModels
 
         public override void Execute(object parameter)
         {
-            _presentationBus.Publish(new T());
+            _presentationBus.PublishAsync(new T());
         }
     }
 }

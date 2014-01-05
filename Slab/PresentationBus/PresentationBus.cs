@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Slab.PresentationBus
 {
@@ -18,6 +19,10 @@ namespace Slab.PresentationBus
         }
 
         public void Subscribe<T>(IHandlePresentationEvent<T> handler) where T : IPresentationEvent
+        {
+            Subscribe(typeof (T), handler);
+        }
+        public void Subscribe<T>(IHandlePresentationEventAsync<T> handler) where T : IPresentationEvent
         {
             Subscribe(typeof (T), handler);
         }
@@ -62,12 +67,13 @@ namespace Slab.PresentationBus
             }
         }
 
-        public void Publish<T>(T presentationEvent) where T : IPresentationEvent
+        public async Task PublishAsync<T>(T presentationEvent) where T : IPresentationEvent
         {
             var type = presentationEvent.GetType();
-            if (_subscribersByEventType.ContainsKey(type))
+            var typeInfo = type.GetTypeInfo();
+            foreach (var subscribedType in _subscribersByEventType.Keys.Where(t => t.GetTypeInfo().IsAssignableFrom(typeInfo)).ToArray())
             {
-                _subscribersByEventType[type].PublishEvent(presentationEvent);
+                await _subscribersByEventType[subscribedType].PublishEvent(presentationEvent);
             }
         }
 
@@ -111,6 +117,10 @@ namespace Slab.PresentationBus
             {
                 AddSubscriber((object)instance);
             }
+            public void AddSubscriber<T>(IHandlePresentationEventAsync<T> instance) where T : IPresentationEvent
+            {
+                AddSubscriber((object)instance);
+            }
             public void AddSubscriber(object instance)
             {
                 if (_subscribers.Any(s => s.Target == instance))
@@ -132,7 +142,7 @@ namespace Slab.PresentationBus
                 }
             }
 
-            public bool PublishEvent<T>(T presentationEvent) where T : IPresentationEvent
+            public async Task<bool> PublishEvent<T>(T presentationEvent) where T : IPresentationEvent
             {
                 var anySubscribersStillListening = false;
                 var presentationRequest = presentationEvent as IPresentationRequest;
@@ -141,7 +151,13 @@ namespace Slab.PresentationBus
                 {
                     if (presentationRequest == null || presentationRequest.IsHandled == false)
                     {
-                        ((IHandlePresentationEvent<T>)subscriber.Target).Handle(presentationEvent);
+                        var syncHandler = subscriber.Target as IHandlePresentationEvent<T>;
+                        if (syncHandler != null)
+                            syncHandler.Handle(presentationEvent);
+                        
+                        var asyncHandler = subscriber.Target as IHandlePresentationEventAsync<T>;
+                        if (asyncHandler != null)
+                            await asyncHandler.HandleAsync(presentationEvent);
                     }
                     anySubscribersStillListening = true;
                 }

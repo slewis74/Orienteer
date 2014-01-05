@@ -8,19 +8,16 @@ using System.Threading;
 
 namespace Slab.Data
 {
-    public abstract class BindableBase : INotifyPropertyChanged
+    public abstract class BindableBase : DispatchesToOriginalThreadBase, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-        protected readonly SynchronizationContext SynchronizationContext = SynchronizationContext.Current;
 
         protected BindableBase()
         {
         }
 
-        protected BindableBase(SynchronizationContext synchronizationContext)
+        protected BindableBase(SynchronizationContext synchronizationContext) : base(synchronizationContext)
         {
-            SynchronizationContext = synchronizationContext;
         }
 
         protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
@@ -74,18 +71,6 @@ namespace Slab.Data
                         PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
                     }
                 });
-        }
-
-        protected void DispatchCall(SendOrPostCallback call)
-        {
-            if (SynchronizationContext.Current != SynchronizationContext)
-            {
-                SynchronizationContext.Post(call, null);
-            }
-            else
-            {
-                call(null);
-            }
         }
     }
 }

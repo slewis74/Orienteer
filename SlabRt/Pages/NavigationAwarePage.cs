@@ -77,7 +77,7 @@ namespace SlabRt.Pages
             if (viewModel == null)
                 return;
 
-            viewModel.PresentationBus.Publish(new GoHomeRequest());
+            viewModel.PresentationBus.PublishAsync(new GoHomeRequest());
         }
 
         public virtual void GoBack(object sender, RoutedEventArgs e)
@@ -86,7 +86,7 @@ namespace SlabRt.Pages
             if (viewModel == null)
                 return;
 
-            viewModel.PresentationBus.Publish(new GoBackRequest());
+            viewModel.PresentationBus.PublishAsync(new GoBackRequest());
         }
 
         /// <summary>

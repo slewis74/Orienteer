@@ -49,7 +49,7 @@ namespace Slab.Pages.Navigation
             var pageResult = result as IPageActionResult;
             if (pageResult != null)
             {
-                _presentationBus.Publish(new PageNavigationRequest(route,
+                _presentationBus.PublishAsync(new PageNavigationRequest(route,
                                                                    new PageNavigationRequestEventArgs(pageResult.PageType,
                                                                                                       pageResult.Parameter)));
                 return;
@@ -58,7 +58,7 @@ namespace Slab.Pages.Navigation
             var viewModelResult = result as IViewModelActionResult;
             if (viewModelResult != null)
             {
-                _presentationBus.Publish(new ViewModelNavigationRequest(route,
+                _presentationBus.PublishAsync(new ViewModelNavigationRequest(route,
                                                                         new ViewModelNavigationRequestEventArgs(
                                                                             viewModelResult.ViewModelInstance)));
             }
