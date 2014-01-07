@@ -128,10 +128,8 @@
     <Compile Include="Pages\PageLayout.cs" />
     <Compile Include="Pages\SetterValueBindingHelper.cs" />
     <Compile Include="Pages\Settings\ISettingsManager.cs" />
-    <Compile Include="Pages\Settings\SettingsBackCommand.cs" />
     <Compile Include="Pages\Settings\SettingsManager.cs" />
     <Compile Include="Pages\Settings\SettingsPopupView.cs" />
-    <Compile Include="Pages\Settings\SettingsPopupViewModel.cs" />
     <Compile Include="Pages\SuspensionManager.cs" />
     <Compile Include="Pages\ViewLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
