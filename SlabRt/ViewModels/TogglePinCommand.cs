@@ -50,17 +50,22 @@ namespace SlabRt.ViewModels
                     ActivationArguments,
                     TileMediumImageUri,
                     TileSize.Default);
+                secondaryTile.VisualElements.ShowNameOnSquare150x150Logo = true;
 
                 if (TileSmallImageUri != null)
                     secondaryTile.SmallLogo = TileSmallImageUri;
                 if (TileWideImageUri != null)
+                {
                     secondaryTile.WideLogo = TileWideImageUri;
+                    secondaryTile.VisualElements.ShowNameOnWide310x150Logo = true;
+                }
                 if (TileLargeImageUri != null)
                 {
                     // You'll get an exception from Windows if you specify a large logo without also specifying a wide one.
                     if (TileWideImageUri == null)
                         throw new InvalidOperationException("To support a large tile you must also support a wide tile");
                     secondaryTile.VisualElements.Square310x310Logo = TileLargeImageUri;
+                    secondaryTile.VisualElements.ShowNameOnSquare310x310Logo = true;
                 }
                 
                 if (LockScreenBadgeLogoUri != null)
