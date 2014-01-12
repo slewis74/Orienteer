@@ -10,7 +10,15 @@ namespace SlabRt.ViewModels
     {
         public abstract string AppbarTileId { get; }
         public abstract string TileTitle { get; }
-        public abstract Uri TileImageUri { get; }
+        
+        public abstract Uri TileMediumImageUri { get; }
+        public virtual Uri TileSmallImageUri { get { return null; } }
+        public virtual Uri TileWideImageUri { get { return null; } }
+        public virtual Uri TileLargeImageUri { get { return null; } }
+
+        public virtual Uri LockScreenBadgeLogoUri { get { return null; } }
+        public virtual bool LockScreenDisplayBadgeAndTileText { get { return false; } }
+        
         public abstract string ActivationArguments { get; }
 
         public bool IsAlreadyPinned { get { return SecondaryTile.Exists(AppbarTileId); } }
@@ -40,8 +48,26 @@ namespace SlabRt.ViewModels
                 var secondaryTile = new SecondaryTile(AppbarTileId,
                     TileTitle,
                     ActivationArguments,
-                    TileImageUri,
+                    TileMediumImageUri,
                     TileSize.Default);
+
+                if (TileSmallImageUri != null)
+                    secondaryTile.SmallLogo = TileSmallImageUri;
+                if (TileWideImageUri != null)
+                    secondaryTile.WideLogo = TileWideImageUri;
+                if (TileLargeImageUri != null)
+                {
+                    // You'll get an exception from Windows if you specify a large logo without also specifying a wide one.
+                    if (TileWideImageUri == null)
+                        throw new InvalidOperationException("To support a large tile you must also support a wide tile");
+                    secondaryTile.VisualElements.Square310x310Logo = TileLargeImageUri;
+                }
+                
+                if (LockScreenBadgeLogoUri != null)
+                {
+                    secondaryTile.LockScreenBadgeLogo = LockScreenBadgeLogoUri;
+                    secondaryTile.LockScreenDisplayBadgeAndTileText = LockScreenDisplayBadgeAndTileText;
+                }
 
                 bool isPinned = await secondaryTile.RequestCreateForSelectionAsync(parameter.GetElementRect(), Windows.UI.Popups.Placement.Above);
 
