@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Windows.Input;
 using Slab.Data;
-using WinRtBehaviors;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Win8nl.Behaviors;
 
 namespace SlabRt.Pages
 {
@@ -83,7 +83,7 @@ namespace SlabRt.Pages
             _floatingElement.HorizontalAlignment = HorizontalAlignment.Left;
             _floatingElement.VerticalAlignment = VerticalAlignment.Top;
             
-            _floatingElement.DataContext = DataContext;
+            _floatingElement.DataContext = AssociatedObject.DataContext;
             _floatingElement.RenderTransform = _translate;
             _loadedHasBeenHandled = false;
             _floatingElement.Loaded += FloatingElementLoaded;

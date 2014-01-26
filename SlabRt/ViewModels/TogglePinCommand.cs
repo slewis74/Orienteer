@@ -53,10 +53,10 @@ namespace SlabRt.ViewModels
                 secondaryTile.VisualElements.ShowNameOnSquare150x150Logo = true;
 
                 if (TileSmallImageUri != null)
-                    secondaryTile.SmallLogo = TileSmallImageUri;
+                    secondaryTile.VisualElements.Square30x30Logo = TileSmallImageUri;
                 if (TileWideImageUri != null)
                 {
-                    secondaryTile.WideLogo = TileWideImageUri;
+                    secondaryTile.VisualElements.Wide310x150Logo = TileWideImageUri;
                     secondaryTile.VisualElements.ShowNameOnWide310x150Logo = true;
                 }
                 if (TileLargeImageUri != null)
