@@ -49,7 +49,6 @@
     <Compile Include="Pages\IControllerFactory.cs" />
     <Compile Include="Pages\IControllerInvoker.cs" />
     <Compile Include="Pages\IControllerLocator.cs" />
-    <Compile Include="Pages\IHaveBottomAppBar.cs" />
     <Compile Include="Pages\Navigation\ActionResult.cs" />
     <Compile Include="Pages\Navigation\DataActionResult.cs" />
     <Compile Include="Pages\Navigation\INavigator.cs" />

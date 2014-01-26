@@ -117,6 +117,8 @@
     <Compile Include="Pages\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Pages\Converters\InverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Pages\DragDropBehaviour.cs" />
+    <Compile Include="Pages\IHaveBottomAppBar.cs" />
+    <Compile Include="Pages\IShare.cs" />
     <Compile Include="Pages\IViewLocator.cs" />
     <Compile Include="Pages\LayoutAwarePage.cs" />
     <Compile Include="Pages\Location.cs" />

@@ -6,6 +6,11 @@
         <authors>Shannon Lewis</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Slab framework for Windows 8.1 and Windows Phone 8</description>
+        <dependencies>
+            <group targetFramework="Windows8.0">
+                <dependency id="Win8nl" version="1.0.9" />
+            </group>
+        </dependencies>
     </metadata>
     <files>
         <file src="SlabRT\SlabResources\Controls.xaml" target="content\win8\SlabResources\Controls.xaml" />
@@ -17,7 +22,6 @@
         <file src="SlabRT\Host\HostView.xaml.cs" target="content\win8\SlabResources\HostView.xaml.cs" />
         <file src="Slab\Bin\Debug\Slab.dll" target="lib\win8\Slab.dll" />
         <file src="SlabRT\Bin\Debug\SlabRt.dll" target="lib\win8\SlabRt.dll" />
-        <file src="SlabRT\Bin\Debug\WinRtBehaviors.dll" target="lib\win8\WinRtBehaviors.dll" />
         <file src="Slab\Bin\Debug\Slab.dll" target="lib\portable-win+net40+wp8\Slab.dll" />
         <!--<file src="App.xaml.install.xdt" target="content\win8\App.xaml.install.xdt" />-->
     </files>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 using Slab.Messages;
 using Slab.Pages;
 using Slab.Pages.Navigation;
@@ -160,9 +161,8 @@ namespace SlabRt.Controls
             var navigationFrameStackItem = _navigationStack.Peek();
             
             await CheckItemContent(navigationFrameStackItem);
-            Content = navigationFrameStackItem.Content;
 
-            SetCanGoBack();
+            SwitchContent(navigationFrameStackItem.Content);
         }
 
         public async void Handle(GoBackRequest request)
@@ -234,9 +234,8 @@ namespace SlabRt.Controls
 
             _navigationStack.Push(new NavigationFrameStackItem(route, newContent));
 
-            Content = newContent;
-            SetCanGoBack();
-
+            SwitchContent(newContent);
+            
             UpdateCurrentPageTitle(newContent);
 
             if (NavigationStackStorage != null)
@@ -255,14 +254,49 @@ namespace SlabRt.Controls
             
             var item = _navigationStack.Peek();
             await CheckItemContent(item);
-            Content = item.Content;
-            SetCanGoBack();
+            SwitchContent(item.Content);
 
             UpdateCurrentPageTitle(item.Content);
 
             if (NavigationStackStorage != null)
             {
                 NavigationStackStorage.StoreRoutes(_navigationStack.Select(i => i.Route).ToArray());
+            }
+        }
+
+        private void SwitchContent(FrameworkElement content)
+        {
+            var dataTransferManager = DataTransferManager.GetForCurrentView();
+            if (Content != null)
+            {
+                dataTransferManager.DataRequested -= DataTransferManagerOnDataRequested;
+            }
+
+            Content = content;
+            SetCanGoBack();
+
+            if (Content != null)
+            {
+                dataTransferManager.DataRequested += DataTransferManagerOnDataRequested;
+            }
+        }
+
+        private void DataTransferManagerOnDataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            var currentPage = Content as FrameworkElement;
+            if (currentPage == null) return;
+
+            var viewModel = currentPage.DataContext as IShare;
+            if (viewModel == null) return;
+
+            if (viewModel.GetShareContent(args.Request))
+            {
+                // Out of the datapackage properties, the title is required. If the scenario completed successfully, we need
+                // to make sure the title is valid since the sample scenario gets the title from the user.
+                if (String.IsNullOrEmpty(args.Request.Data.Properties.Title))
+                {
+                    args.Request.FailWithDisplayText("Title is required, share cannot continue.");
+                }
             }
         }
 
