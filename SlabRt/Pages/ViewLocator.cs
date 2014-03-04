@@ -9,10 +9,20 @@ namespace SlabRt.Pages
     public class ViewLocator : IViewLocator
     {
         private readonly Dictionary<ViewModelTypeOrientationKey, Type> _cache;
+        private Assembly _assembly;
+        private string _baseViewModelNamespace;
+        private string _baseViewNamespace;
 
         public ViewLocator()
         {
             _cache = new Dictionary<ViewModelTypeOrientationKey, Type>();
+        }
+
+        public void Configure(Assembly assembly, string baseViewModelNamespace, string baseViewNamespace)
+        {
+            _assembly = assembly;
+            _baseViewModelNamespace = baseViewModelNamespace;
+            _baseViewNamespace = baseViewNamespace;
         }
 
         public FrameworkElement Resolve(object viewModel, PageLayout pageLayout)
@@ -33,8 +43,8 @@ namespace SlabRt.Pages
             var logicalTypeName = vmTypeName.Replace("ViewModel", string.Empty);
             string viewTypeName;
 
-            var exportedTypesInSameNamespace = viewModelType.GetTypeInfo().Assembly.ExportedTypes
-                .Where(t => t.Namespace == viewModelType.Namespace)
+            var exportedTypesInSameNamespace = _assembly.ExportedTypes
+                .Where(t => t.Namespace == viewModelType.Namespace.Replace(_baseViewModelNamespace, _baseViewNamespace))
                 .ToArray();
 
             switch (pageLayout)
