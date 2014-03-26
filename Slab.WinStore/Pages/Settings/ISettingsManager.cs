@@ -6,7 +6,7 @@ using Slab.Pages;
 using Slab.Pages.Navigation;
 using Slab.PresentationBus;
 
-namespace SlabRt.Pages.Settings
+namespace Slab.WinStore.Pages.Settings
 {
     public interface ISettingsManager : IHandlePresentationEvents
     {

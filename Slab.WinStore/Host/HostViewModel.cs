@@ -2,12 +2,12 @@
 using Slab.Data;
 using Slab.Pages;
 using Slab.PresentationBus;
+using Slab.WinStore.Commands;
+using Slab.WinStore.Data.Navigation;
+using Slab.WinStore.Pages.Navigation;
 using Slab.Xaml;
-using SlabRt.Commands;
-using SlabRt.Data.Navigation;
-using SlabRt.Pages.Navigation;
 
-namespace SlabRt.Host
+namespace Slab.WinStore.Host
 {
     public class HostViewModel : BindableBase
     {

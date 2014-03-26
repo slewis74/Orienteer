@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
     public class TapCommandBehaviour : AttachedBehavior
     {

@@ -1,14 +1,13 @@
 ﻿using System;
-using Slab.Messages;
-using Slab.Pages;
-using SlabRt.Host;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Slab.Messages;
+using Slab.WinStore.Host;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
     public class NavigationAwarePage : Page
     {

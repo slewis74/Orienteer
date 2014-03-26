@@ -1,6 +1,6 @@
 ﻿using Slab.PresentationBus;
 
-namespace SlabRt.Requests
+namespace Slab.WinStore.Requests
 {
     public class CanGoBackRequest : PresentationRequest
     {

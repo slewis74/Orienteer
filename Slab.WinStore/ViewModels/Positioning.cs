@@ -1,7 +1,7 @@
 ﻿using Windows.Foundation;
 using Windows.UI.Xaml;
 
-namespace SlabRt.ViewModels
+namespace Slab.WinStore.ViewModels
 {
     public static class Positioning
     {

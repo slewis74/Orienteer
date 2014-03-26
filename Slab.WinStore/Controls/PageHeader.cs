@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace SlabRt.Controls
+namespace Slab.WinStore.Controls
 {
     public class PageHeader : ContentControl
     {

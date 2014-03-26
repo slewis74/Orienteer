@@ -1,7 +1,7 @@
 ﻿using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
     public enum PageLayout
     {

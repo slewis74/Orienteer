@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Windows.UI.ApplicationSettings;
 using Slab.Data;
 using Slab.Pages;
 using Slab.Pages.Navigation;
 using Slab.PresentationBus;
-using SlabRt.Requests;
-using Windows.UI.ApplicationSettings;
+using Slab.WinStore.Requests;
 
-namespace SlabRt.Pages.Settings
+namespace Slab.WinStore.Pages.Settings
 {
     public class SettingsManager : 
         BindableBase, 

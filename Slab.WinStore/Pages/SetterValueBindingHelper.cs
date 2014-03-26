@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Markup;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
     /// <summary>
     /// http://tozon.info/blog/post/2012/09/01/Variable-sized-grid-items-in-Windows-8-apps.aspx

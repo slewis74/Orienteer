@@ -2,7 +2,7 @@
 using Slab.PresentationBus;
 using Slab.Xaml.ViewModels;
 
-namespace SlabRt.Commands
+namespace Slab.WinStore.Commands
 {
     public class GoHomeCommand : Command
     {

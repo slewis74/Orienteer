@@ -2,7 +2,7 @@
 using Slab.Pages.Navigation;
 using Slab.Xaml.ViewModels;
 
-namespace SlabRt.ViewModels
+namespace Slab.WinStore.ViewModels
 {
     public abstract class SearchViewModelBase<TResult> : CanRequestNavigationBase, ISearchViewModelBase
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.Storage;
 
-namespace SlabRt.Data.Navigation
+namespace Slab.WinStore.Data.Navigation
 {
     public class NavigationStackStorage : INavigationStackStorage
     {

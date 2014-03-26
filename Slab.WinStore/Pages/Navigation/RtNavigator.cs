@@ -1,11 +1,11 @@
 ﻿using System;
+using Windows.UI.ApplicationSettings;
+using Windows.UI.Xaml.Controls;
 using Slab.Pages;
 using Slab.Pages.Navigation;
 using Slab.PresentationBus;
-using Windows.UI.ApplicationSettings;
-using Windows.UI.Xaml.Controls;
 
-namespace SlabRt.Pages.Navigation
+namespace Slab.WinStore.Pages.Navigation
 {
     public class RtNavigator : Navigator, IRtNavigator
     {

@@ -1,6 +1,6 @@
 ﻿using Windows.ApplicationModel.DataTransfer;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
     public interface IShare
     {

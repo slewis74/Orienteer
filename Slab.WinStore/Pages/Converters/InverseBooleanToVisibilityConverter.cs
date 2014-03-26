@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace SlabRt.Pages.Converters
+namespace Slab.WinStore.Pages.Converters
 {
     /// <summary>
     /// Value converter that translates false to <see cref="Visibility.Visible"/> and true to

@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace SlabRt.Pages.Converters
+namespace Slab.WinStore.Pages.Converters
 {
     /// <summary>
     /// Value converter that translates true to false and vice versa.

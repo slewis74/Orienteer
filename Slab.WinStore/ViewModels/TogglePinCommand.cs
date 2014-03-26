@@ -4,7 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Slab.Xaml.ViewModels;
 
-namespace SlabRt.ViewModels
+namespace Slab.WinStore.ViewModels
 {
     public abstract class TogglePinCommand : Command<FrameworkElement>
     {

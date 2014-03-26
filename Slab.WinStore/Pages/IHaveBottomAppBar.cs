@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
 	public interface IHaveBottomAppBar
 	{

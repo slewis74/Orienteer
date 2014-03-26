@@ -10,8 +10,8 @@
 
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-    xmlns:settings="using:SlabRt.Pages.Settings">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:settings="using:Slab.WinStore.Pages.Settings">
     
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Resources/Theme.xaml"/>

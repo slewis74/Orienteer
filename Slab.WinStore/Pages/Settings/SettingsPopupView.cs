@@ -3,7 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace SlabRt.Pages.Settings
+namespace Slab.WinStore.Pages.Settings
 {
     public class SettingsPopupView : ContentControl
     {

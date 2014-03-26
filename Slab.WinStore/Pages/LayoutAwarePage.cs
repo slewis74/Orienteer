@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Windows.UI.Core;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
     [Windows.Foundation.Metadata.WebHostHidden]
     public class LayoutAwarePage : NavigationAwarePage

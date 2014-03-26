@@ -1,9 +1,9 @@
 ﻿using Slab.Messages;
 using Slab.PresentationBus;
+using Slab.WinStore.Requests;
 using Slab.Xaml.ViewModels;
-using SlabRt.Requests;
 
-namespace SlabRt.Commands
+namespace Slab.WinStore.Commands
 {
     public class GoBackCommand : 
         Command,

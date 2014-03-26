@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Slab.Pages;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Slab.Xaml;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
     public class ContentSwitchingPage : UserControl
     {

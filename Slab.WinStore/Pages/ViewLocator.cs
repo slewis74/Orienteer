@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Slab.Xaml;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
     public class ViewLocator : ViewLocatorBase<FrameworkElement>
     {

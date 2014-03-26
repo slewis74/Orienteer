@@ -1,4 +1,4 @@
-﻿namespace SlabRt.Data.Navigation
+﻿namespace Slab.WinStore.Data.Navigation
 {
     public interface INavigationStackStorage
     {

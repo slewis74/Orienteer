@@ -1,8 +1,8 @@
 ﻿using System;
-using Slab.PresentationBus;
 using Windows.UI.ApplicationSettings;
+using Slab.PresentationBus;
 
-namespace SlabRt.Requests
+namespace Slab.WinStore.Requests
 {
     public class DisplaySettingsRequest : PresentationRequest<Type>
     {

@@ -1,6 +1,6 @@
 using Windows.Foundation;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
     public class Location
     {

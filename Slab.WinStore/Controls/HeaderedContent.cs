@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace SlabRt.Controls
+namespace Slab.WinStore.Controls
 {
     public class HeaderedContent : ContentControl
     {
