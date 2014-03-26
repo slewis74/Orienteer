@@ -8,16 +8,22 @@
         <description>Slab framework for Windows 8.1 and Windows Phone 8</description>
     </metadata>
     <files>
-        <file src="SlabRT\SlabResources\Controls.xaml" target="content\win8\SlabResources\Controls.xaml" />
-        <file src="SlabRT\SlabResources\Converters.xaml" target="content\win8\SlabResources\Converters.xaml" />
-        <file src="SlabRT\SlabResources\StandardLayout.xaml" target="content\win8\SlabResources\StandardLayout.xaml" />
-        <file src="SlabRT\SlabResources\StandardStyles.xaml" target="content\win8\SlabResources\StandardStyles.xaml" />
-        <file src="SlabRT\SlabResources\SlabResources.xaml" target="content\win8\SlabResources\SlabResources.xaml" />
-        <file src="SlabRT\Host\HostView.xaml" target="content\win8\SlabResources\HostView.xaml" />
-        <file src="SlabRT\Host\HostView.xaml.cs" target="content\win8\SlabResources\HostView.xaml.cs" />
-        <file src="Slab\Bin\Release\Slab.dll" target="lib\win8\Slab.dll" />
-        <file src="SlabRT\Bin\Release\SlabRt.dll" target="lib\win8\SlabRt.dll" />
-        <file src="Slab\Bin\Release\Slab.dll" target="lib\portable-win+net40+wp8+MonoAndroid10+MonoTouch10\Slab.dll" />
+        <file src="Slab.WinStore\SlabResources\Controls.xaml" target="content\win8\SlabResources\Controls.xaml" />
+        <file src="Slab.WinStore\SlabResources\Converters.xaml" target="content\win8\SlabResources\Converters.xaml" />
+        <file src="Slab.WinStore\SlabResources\StandardLayout.xaml" target="content\win8\SlabResources\StandardLayout.xaml" />
+        <file src="Slab.WinStore\SlabResources\StandardStyles.xaml" target="content\win8\SlabResources\StandardStyles.xaml" />
+        <file src="Slab.WinStore\SlabResources\SlabResources.xaml" target="content\win8\SlabResources\SlabResources.xaml" />
+        <file src="Slab.WinStore\Host\HostView.xaml" target="content\win8\SlabResources\HostView.xaml" />
+        <file src="Slab.WinStore\Host\HostView.xaml.cs" target="content\win8\SlabResources\HostView.xaml.cs" />
+        <file src="Slab.WinStore\Bin\Debug\Slab.dll" target="lib\win8\Slab.dll" />
+        <file src="Slab.WinStore\Bin\Debug\Slab.Xaml.dll" target="lib\win8\SlabXaml.dll" />
+        <file src="Slab.WinStore\Bin\Debug\SlabRt.dll" target="lib\win8\SlabRt.dll" />
+        
+      <file src="Slab.WinPhone\Bin\Debug\Slab.dll" target="lib\wp8\Slab.dll" />
+      <file src="Slab.WinPhone\Bin\Debug\Slab.Xaml.dll" target="lib\wp8\SlabXaml.dll" />
+      <file src="Slab.WinPhone\Bin\Debug\Slab.WinPhone.dll" target="lib\wp8\SlabRt.dll" />
+
+        <file src="Slab\Bin\Debug\Slab.dll" target="lib\portable-win+net40+wp8+MonoAndroid10+MonoTouch10\Slab.dll" />
         <!--<file src="App.xaml.install.xdt" target="content\win8\App.xaml.install.xdt" />-->
     </files>
 </package>
