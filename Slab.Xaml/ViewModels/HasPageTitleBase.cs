@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using Slab.Data;
 
-namespace Slab.ViewModels
+namespace Slab.Xaml.ViewModels
 {
     public abstract class HasPageTitleBase : BindableBase
     {

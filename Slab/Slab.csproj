@@ -71,13 +71,6 @@
     <Compile Include="Requests\PageNavigationRequestEventArgs.cs" />
     <Compile Include="Requests\ViewModelNavigationRequest.cs" />
     <Compile Include="Requests\ViewModelNavigationRequestEventArgs.cs" />
-    <Compile Include="ViewModels\CanRequestNavigationBase.cs" />
-    <Compile Include="ViewModels\Command.cs" />
-    <Compile Include="ViewModels\HasPageTitleBase.cs" />
-    <Compile Include="ViewModels\ICanHandleNavigation.cs" />
-    <Compile Include="ViewModels\ISearchViewModelBase.cs" />
-    <Compile Include="ViewModels\NavigationCommand.cs" />
-    <Compile Include="ViewModels\PresentationRequestCommand.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

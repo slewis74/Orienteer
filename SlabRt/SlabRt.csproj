@@ -120,7 +120,6 @@
     <Compile Include="Pages\DragDropBehaviour.cs" />
     <Compile Include="Pages\IHaveBottomAppBar.cs" />
     <Compile Include="Pages\IShare.cs" />
-    <Compile Include="Pages\IViewLocator.cs" />
     <Compile Include="Pages\LayoutAwarePage.cs" />
     <Compile Include="Pages\Location.cs" />
     <Compile Include="Pages\NavigationAwarePage.cs" />
@@ -168,6 +167,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Slab.Xaml\Slab.Xaml.csproj">
+      <Project>{0bc0040e-1c82-4032-9a94-5e714451e647}</Project>
+      <Name>Slab.Xaml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Slab\Slab.csproj">
       <Project>{f14590d2-1e0b-44f2-b907-0909177536fe}</Project>
       <Name>Slab</Name>

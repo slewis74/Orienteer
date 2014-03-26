@@ -4,6 +4,7 @@ using Slab.Pages;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Slab.Xaml;
 
 namespace SlabRt.Pages
 {
@@ -22,7 +23,7 @@ namespace SlabRt.Pages
             Unloaded += StopLayoutUpdates;
         }
 
-        public IViewLocator ViewLocator { get; set; }
+        public IViewLocator<FrameworkElement> ViewLocator { get; set; }
 
         public static readonly DependencyProperty NarrowWidthProperty =
             DependencyProperty.Register("NarrowWidth", typeof(int), typeof(ContentSwitchingPage), new PropertyMetadata(500));
@@ -64,7 +65,7 @@ namespace SlabRt.Pages
                 frameworkElement = _viewCache[pageLayout];
             else
             {
-                frameworkElement = ViewLocator.Resolve(pageViewModel, pageLayout);
+                frameworkElement = ViewLocator.Resolve(pageViewModel);
                 _viewCache.Add(pageLayout, frameworkElement);
             }
 

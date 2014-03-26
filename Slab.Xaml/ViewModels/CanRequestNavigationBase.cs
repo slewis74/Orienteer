@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using Slab.Pages.Navigation;
 
-namespace Slab.ViewModels
+namespace Slab.Xaml.ViewModels
 {
     public abstract class CanRequestNavigationBase : HasPageTitleBase
     {

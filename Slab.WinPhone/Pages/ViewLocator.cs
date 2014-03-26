@@ -1,8 +1,8 @@
 ﻿using System;
-using Windows.UI.Xaml;
+using System.Windows;
 using Slab.Xaml;
 
-namespace SlabRt.Pages
+namespace Slab.WinPhone.Pages
 {
     public class ViewLocator : ViewLocatorBase<FrameworkElement>
     {

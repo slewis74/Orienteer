@@ -2,7 +2,7 @@
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Slab.ViewModels;
+using Slab.Xaml.ViewModels;
 
 namespace SlabRt.ViewModels
 {

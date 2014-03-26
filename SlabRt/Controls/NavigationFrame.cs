@@ -8,7 +8,8 @@ using Slab.Pages;
 using Slab.Pages.Navigation;
 using Slab.PresentationBus;
 using Slab.Requests;
-using Slab.ViewModels;
+using Slab.Xaml;
+using Slab.Xaml.ViewModels;
 using SlabRt.Data.Navigation;
 using SlabRt.Pages;
 using SlabRt.Requests;
@@ -56,11 +57,11 @@ namespace SlabRt.Controls
         }
 
         public static readonly DependencyProperty ViewLocatorProperty =
-            DependencyProperty.Register("ViewLocator", typeof (object), typeof (NavigationFrame), new PropertyMetadata(default(IViewLocator)));
+            DependencyProperty.Register("ViewLocator", typeof(object), typeof(NavigationFrame), new PropertyMetadata(default(IViewLocator<FrameworkElement>)));
 
-        public IViewLocator ViewLocator
+        public IViewLocator<FrameworkElement> ViewLocator
         {
-            get { return (IViewLocator)GetValue(ViewLocatorProperty); }
+            get { return (IViewLocator<FrameworkElement>)GetValue(ViewLocatorProperty); }
             set { SetValue(ViewLocatorProperty, value); }
         }
 
@@ -208,7 +209,7 @@ namespace SlabRt.Controls
 
         private FrameworkElement NavigateToViewModel(object viewModel)
         {
-            ViewLocator.Resolve(viewModel, PageLayoutProvider.DetermineVisualState());
+            ViewLocator.Resolve(viewModel);
 
             var contentSwitchingPage = new ContentSwitchingPage
                                            {

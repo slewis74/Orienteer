@@ -1,6 +1,6 @@
 ﻿using Slab.Messages;
 using Slab.PresentationBus;
-using Slab.ViewModels;
+using Slab.Xaml.ViewModels;
 
 namespace SlabRt.Commands
 {

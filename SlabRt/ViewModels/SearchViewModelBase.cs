@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using Slab.Pages.Navigation;
-using Slab.ViewModels;
+using Slab.Xaml.ViewModels;
 
 namespace SlabRt.ViewModels
 {

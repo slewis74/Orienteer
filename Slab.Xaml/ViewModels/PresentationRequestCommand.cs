@@ -1,6 +1,6 @@
 ﻿using Slab.PresentationBus;
 
-namespace Slab.ViewModels
+namespace Slab.Xaml.ViewModels
 {
     public class PresentationRequestCommand<T> : Command
         where T : IPresentationRequest, new()

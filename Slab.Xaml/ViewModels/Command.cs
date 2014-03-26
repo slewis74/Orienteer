@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Windows.Input;
 using Slab.Data;
 
-namespace Slab.ViewModels
+namespace Slab.Xaml.ViewModels
 {
 	public abstract class Command : BindableBase, ICommand
 	{
