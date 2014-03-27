@@ -20,7 +20,7 @@ namespace Slab.WinPhone
         private PhoneApplicationFrame _phoneApplicationFrame;
         private object _dataContext;
         private bool _redirecting;
-        private string _baseFeatureNamespace;
+        private readonly string _baseFeatureNamespace;
         private readonly Func<TDefaultViewModel> _defaultViewModelFactory;
 
         public PhoneApplicationFrameAdapter(
