@@ -1,5 +1,6 @@
-﻿using Slab.Messages;
-using Slab.PresentationBus;
+﻿using Slab.PresentationBus;
+using Slab.Requests;
+using Slab.WinStore.Events;
 using Slab.WinStore.Requests;
 using Slab.Xaml.ViewModels;
 

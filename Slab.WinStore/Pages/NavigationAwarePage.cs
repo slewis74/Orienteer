@@ -4,7 +4,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Slab.Messages;
+using Slab.Requests;
 using Slab.WinStore.Host;
 
 namespace Slab.WinStore.Pages

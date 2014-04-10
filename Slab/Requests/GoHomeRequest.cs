@@ -1,6 +1,6 @@
 ﻿using Slab.PresentationBus;
 
-namespace Slab.Messages
+namespace Slab.Requests
 {
     public class GoHomeRequest : PresentationRequest
     {

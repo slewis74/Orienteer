@@ -1,6 +1,6 @@
 ﻿using Slab.PresentationBus;
 
-namespace Slab.WinStore.Requests
+namespace Slab.WinStore.Events
 {
     public class CanGoBackChanged : PresentationEvent
     {

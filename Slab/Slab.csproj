@@ -37,8 +37,8 @@
     <Compile Include="Data\BindableBase.cs" />
     <Compile Include="Data\DispatchesToOriginalThreadBase.cs" />
     <Compile Include="Data\GroupedData.cs" />
-    <Compile Include="Messages\GoBackRequest.cs" />
-    <Compile Include="Messages\GoHomeRequest.cs" />
+    <Compile Include="Requests\GoBackRequest.cs" />
+    <Compile Include="Requests\GoHomeRequest.cs" />
     <Compile Include="Pages\Controller.cs" />
     <Compile Include="Pages\ControllerFactory.cs" />
     <Compile Include="Pages\ControllerInvoker.cs" />

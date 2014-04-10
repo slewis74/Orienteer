@@ -1,5 +1,5 @@
-﻿using Slab.Messages;
-using Slab.PresentationBus;
+﻿using Slab.PresentationBus;
+using Slab.Requests;
 using Slab.Xaml.ViewModels;
 
 namespace Slab.WinStore.Commands
