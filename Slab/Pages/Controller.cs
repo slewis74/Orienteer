@@ -1,6 +1,6 @@
 namespace Slab.Pages
 {
-    public class Controller : IController
+    public abstract class Controller : IController
     {
     }
 }
