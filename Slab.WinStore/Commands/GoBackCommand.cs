@@ -1,8 +1,8 @@
-﻿using Slab.PresentationBus;
-using Slab.Requests;
+﻿using Slab.Requests;
 using Slab.WinStore.Events;
 using Slab.WinStore.Requests;
 using Slab.Xaml.ViewModels;
+using Slew.PresentationBus;
 
 namespace Slab.WinStore.Commands
 {

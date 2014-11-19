@@ -3,7 +3,7 @@ using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml.Controls;
 using Slab.Pages;
 using Slab.Pages.Navigation;
-using Slab.PresentationBus;
+using Slew.PresentationBus;
 
 namespace Slab.WinStore.Pages.Navigation
 {

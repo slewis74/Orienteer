@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.UI.ApplicationSettings;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Slab.Pages;
+﻿using Slab.Pages;
 using Slab.Pages.Navigation;
-using Slab.PresentationBus;
 using Slab.Requests;
 using Slab.WinStore.Data.Navigation;
 using Slab.WinStore.Events;
@@ -16,6 +7,15 @@ using Slab.WinStore.Pages;
 using Slab.WinStore.Requests;
 using Slab.Xaml;
 using Slab.Xaml.ViewModels;
+using Slew.PresentationBus;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.ApplicationSettings;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Slab.WinStore.Controls
 {

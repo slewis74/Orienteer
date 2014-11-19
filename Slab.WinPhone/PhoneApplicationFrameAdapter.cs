@@ -5,9 +5,9 @@ using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Slab.Pages.Navigation;
-using Slab.PresentationBus;
 using Slab.Requests;
 using Slab.Xaml;
+using Slew.PresentationBus;
 
 namespace Slab.WinPhone
 {

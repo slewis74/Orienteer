@@ -7,8 +7,8 @@ using Windows.UI.ApplicationSettings;
 using Slab.Data;
 using Slab.Pages;
 using Slab.Pages.Navigation;
-using Slab.PresentationBus;
 using Slab.WinStore.Requests;
+using Slew.PresentationBus;
 
 namespace Slab.WinStore.Pages.Settings
 {

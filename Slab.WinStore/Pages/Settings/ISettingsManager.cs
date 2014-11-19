@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Slab.Pages;
 using Slab.Pages.Navigation;
-using Slab.PresentationBus;
+using Slew.PresentationBus;
 
 namespace Slab.WinStore.Pages.Settings
 {

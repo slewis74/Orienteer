@@ -4,3 +4,5 @@
 Debug
 Release
 */TestResults/*
+NuGetOutput/
+packages
