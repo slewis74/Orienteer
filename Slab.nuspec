@@ -6,11 +6,6 @@
         <authors>Shannon Lewis</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Slab framework for Windows 8.1 and Windows Phone 8</description>
-        <dependencies>
-            <group targetFramework="Windows8.0">
-                <dependency id="Win8nl" version="1.0.9" />
-            </group>
-        </dependencies>
     </metadata>
     <files>
         <file src="SlabRT\SlabResources\Controls.xaml" target="content\win8\SlabResources\Controls.xaml" />

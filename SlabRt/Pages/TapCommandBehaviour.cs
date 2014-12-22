@@ -1,12 +1,10 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
-using Win8nl.Behaviors;
 
 namespace SlabRt.Pages
 {
-    public class TapCommandBehaviour : Behavior<FrameworkElement>
+    public class TapCommandBehaviour : AttachedBehavior
     {
         public static readonly DependencyProperty CommandProperty =
             DependencyProperty.Register("Command", typeof (ICommand), typeof (TapCommandBehaviour), new PropertyMetadata(default(ICommand)));
@@ -28,13 +26,14 @@ namespace SlabRt.Pages
 
         protected override void OnAttached()
         {
-            AssociatedObject.Tapped += AssociatedObjectOnTapped;
             base.OnAttached();
+
+            AssociatedFrameworkElement.Tapped += AssociatedObjectOnTapped;
         }
 
         protected override void OnDetaching()
         {
-            AssociatedObject.Tapped -= AssociatedObjectOnTapped;
+            AssociatedFrameworkElement.Tapped -= AssociatedObjectOnTapped;
             base.OnDetaching();
         }
 

@@ -7,11 +7,10 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Win8nl.Behaviors;
 
 namespace SlabRt.Pages
 {
-    public class DragDropBehaviour : Behavior<FrameworkElement>
+    public class DragDropBehaviour : AttachedBehavior
     {
         private TranslateTransform _translate;
         private Point _originalPosition;
@@ -21,25 +20,27 @@ namespace SlabRt.Pages
 
         protected override void OnAttached()
         {
-            AssociatedObject.ManipulationMode = ManipulationModes.All;
-            AssociatedObject.ManipulationStarting += OnManipulationStarting;
-            AssociatedObject.ManipulationStarted += OnManipulationStarted;
-            AssociatedObject.ManipulationCompleted += OnManipulationCompleted;
-            AssociatedObject.ManipulationDelta += OnManipulationDelta;
-
-            AssociatedObject.ManipulationInertiaStarting += AssociatedObjectOnManipulationInertiaStarting;
-            
             base.OnAttached();
+
+            AssociatedFrameworkElement.ManipulationMode = ManipulationModes.All;
+            AssociatedFrameworkElement.ManipulationStarting += OnManipulationStarting;
+            AssociatedFrameworkElement.ManipulationStarted += OnManipulationStarted;
+            AssociatedFrameworkElement.ManipulationCompleted += OnManipulationCompleted;
+            AssociatedFrameworkElement.ManipulationDelta += OnManipulationDelta;
+
+            AssociatedFrameworkElement.ManipulationInertiaStarting += AssociatedObjectOnManipulationInertiaStarting;
         }
 
         protected override void OnDetaching()
         {
-            AssociatedObject.ManipulationStarting -= OnManipulationStarting;
-            AssociatedObject.ManipulationStarted -= OnManipulationStarted;
-            AssociatedObject.ManipulationCompleted -= OnManipulationCompleted;
-            AssociatedObject.ManipulationDelta -= OnManipulationDelta;
-            AssociatedObject.ManipulationInertiaStarting -= AssociatedObjectOnManipulationInertiaStarting;
+            AssociatedFrameworkElement.ManipulationStarting -= OnManipulationStarting;
+            AssociatedFrameworkElement.ManipulationStarted -= OnManipulationStarted;
+            AssociatedFrameworkElement.ManipulationCompleted -= OnManipulationCompleted;
+            AssociatedFrameworkElement.ManipulationDelta -= OnManipulationDelta;
+            AssociatedFrameworkElement.ManipulationInertiaStarting -= AssociatedObjectOnManipulationInertiaStarting;
+
             RemoveFloatingControl();
+
             base.OnDetaching();
         }
 
@@ -83,7 +84,7 @@ namespace SlabRt.Pages
             _floatingElement.HorizontalAlignment = HorizontalAlignment.Left;
             _floatingElement.VerticalAlignment = VerticalAlignment.Top;
             
-            _floatingElement.DataContext = AssociatedObject.DataContext;
+            _floatingElement.DataContext = ((FrameworkElement)AssociatedObject).DataContext;
             _floatingElement.RenderTransform = _translate;
             _loadedHasBeenHandled = false;
             _floatingElement.Loaded += FloatingElementLoaded;

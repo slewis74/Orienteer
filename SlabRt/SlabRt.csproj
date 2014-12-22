@@ -112,6 +112,7 @@
     <Compile Include="Data\Navigation\INavigationStackStorage.cs" />
     <Compile Include="Data\Navigation\NavigationStackStorage.cs" />
     <Compile Include="Host\HostViewModel.cs" />
+    <Compile Include="Pages\AttachedBehavior.cs" />
     <Compile Include="Pages\ContentSwitchingPage.cs" />
     <Compile Include="Pages\Converters\BooleanNegationConverter.cs" />
     <Compile Include="Pages\Converters\BooleanToVisibilityConverter.cs" />
@@ -173,45 +174,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight.Extras.Win8">
-      <HintPath>..\packages\Win8nl.1.0.9\lib\NetCore451\GalaSoft.MvvmLight.Extras.Win8.dll</HintPath>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Win8">
-      <HintPath>..\packages\Win8nl.1.0.9\lib\NetCore451\GalaSoft.MvvmLight.Win8.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\packages\Win8nl.1.0.9\lib\NetCore451\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xaml.Interactions">
-      <HintPath>..\packages\Win8nl.1.0.9\lib\NetCore451\Microsoft.Xaml.Interactions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xaml.Interactivity">
-      <HintPath>..\packages\Win8nl.1.0.9\lib\NetCore451\Microsoft.Xaml.Interactivity.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Core">
-      <HintPath>..\packages\Rx-Core.2.1.30214.0\lib\NetCore45\System.Reactive.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces">
-      <HintPath>..\packages\Rx-Interfaces.2.1.30214.0\lib\NetCore45\System.Reactive.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Linq">
-      <HintPath>..\packages\Rx-Linq.2.1.30214.0\lib\NetCore45\System.Reactive.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices">
-      <HintPath>..\packages\Rx-PlatformServices.2.1.30214.0\lib\NetCore45\System.Reactive.PlatformServices.dll</HintPath>
-    </Reference>
-    <Reference Include="Win8nl">
-      <HintPath>..\packages\Win8nl.1.0.9\lib\NetCore451\Win8nl.dll</HintPath>
-    </Reference>
-    <Reference Include="Win8nl.External">
-      <HintPath>..\packages\Win8nl.1.0.9\lib\NetCore451\Win8nl.External.dll</HintPath>
-    </Reference>
-    <Reference Include="Win8nl.Utilities">
-      <HintPath>..\packages\Win8nl.1.0.9\lib\NetCore451\Win8nl.Utilities.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
