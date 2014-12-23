@@ -15,9 +15,9 @@
         <file src="SlabRT\SlabResources\SlabResources.xaml" target="content\win8\SlabResources\SlabResources.xaml" />
         <file src="SlabRT\Host\HostView.xaml" target="content\win8\SlabResources\HostView.xaml" />
         <file src="SlabRT\Host\HostView.xaml.cs" target="content\win8\SlabResources\HostView.xaml.cs" />
-        <file src="Slab\Bin\Debug\Slab.dll" target="lib\win8\Slab.dll" />
-        <file src="SlabRT\Bin\Debug\SlabRt.dll" target="lib\win8\SlabRt.dll" />
-        <file src="Slab\Bin\Debug\Slab.dll" target="lib\portable-win+net40+wp8+MonoAndroid10+MonoTouch10\Slab.dll" />
+        <file src="Slab\Bin\Release\Slab.dll" target="lib\win8\Slab.dll" />
+        <file src="SlabRT\Bin\Release\SlabRt.dll" target="lib\win8\SlabRt.dll" />
+        <file src="Slab\Bin\Release\Slab.dll" target="lib\portable-win+net40+wp8+MonoAndroid10+MonoTouch10\Slab.dll" />
         <!--<file src="App.xaml.install.xdt" target="content\win8\App.xaml.install.xdt" />-->
     </files>
 </package>

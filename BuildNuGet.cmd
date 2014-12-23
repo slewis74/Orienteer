@@ -1,1 +1,0 @@
-packages\Nuget\nuget pack Slab.nuspec -OutputDirectory NuGetOutput

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slab", "Slab\Slab.csproj", "{F14590D2-1E0B-44F2-B907-0909177536FE}"
 EndProject
@@ -10,7 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{30871CD8-050F-45E3-8878-82D73E517AFB}"
 	ProjectSection(SolutionItems) = preProject
 		App.xaml.install.xdt = App.xaml.install.xdt
-		BuildNuGet.cmd = BuildNuGet.cmd
 		Slab.nuspec = Slab.nuspec
 	EndProjectSection
 EndProject
