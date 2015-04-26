@@ -83,13 +83,13 @@ namespace Slab.WinStore.Controls
             set { SetValue(CanGoBackProperty, value); }
         }
 
-        public static readonly DependencyProperty NavigationStackStorageProperty =
-            DependencyProperty.Register("NavigationStackStorage", typeof(object), typeof(NavigationFrame), new PropertyMetadata(default(INavigationStackStorage), TryToRestoreNavigationStack));
+        public static readonly DependencyProperty NavigationStackProperty =
+            DependencyProperty.Register("NavigationStack", typeof(object), typeof(NavigationFrame), new PropertyMetadata(default(INavigationStack), TryToRestoreNavigationStack));
 
-        public INavigationStackStorage NavigationStackStorage
+        public INavigationStack NavigationStack
         {
-            get { return (INavigationStackStorage)GetValue(NavigationStackStorageProperty); }
-            set { SetValue(NavigationStackStorageProperty, value); }
+            get { return (INavigationStack)GetValue(NavigationStackProperty); }
+            set { SetValue(NavigationStackProperty, value); }
         }
 
         public static readonly DependencyProperty ControllerInvokerProperty =
@@ -145,14 +145,14 @@ namespace Slab.WinStore.Controls
 
         public async void RestoreNavigationStack()
         {
-            if (NavigationStackStorage == null ||
+            if (NavigationStack == null ||
                 ControllerInvoker == null ||
                 PageCommandsPanel == null)
             {
                 return;
             }
 
-            var routes = NavigationStackStorage.RetrieveRoutes();
+            var routes = NavigationStack.RetrieveRoutes();
 
             foreach (var route in routes)
             {
@@ -239,9 +239,9 @@ namespace Slab.WinStore.Controls
             
             UpdateCurrentPageTitle(newContent);
 
-            if (NavigationStackStorage != null)
+            if (NavigationStack != null)
             {
-                NavigationStackStorage.StoreRoutes(_navigationStack.Select(i => i.Route).ToArray());
+                NavigationStack.StoreRoutes(_navigationStack.Select(i => i.Route).ToArray());
             }
         }
 
@@ -259,9 +259,9 @@ namespace Slab.WinStore.Controls
 
             UpdateCurrentPageTitle(item.Content);
 
-            if (NavigationStackStorage != null)
+            if (NavigationStack != null)
             {
-                NavigationStackStorage.StoreRoutes(_navigationStack.Select(i => i.Route).ToArray());
+                NavigationStack.StoreRoutes(_navigationStack.Select(i => i.Route).ToArray());
             }
         }
 

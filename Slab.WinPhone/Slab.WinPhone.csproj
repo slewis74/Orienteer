@@ -83,6 +83,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\Navigation\WinPhoneNavigationStackStorage.cs" />
     <Compile Include="IPhoneApplicationFrameAdapter.cs" />
     <Compile Include="Pages\ViewLocator.cs" />
     <Compile Include="PhoneApplicationFrameAdapter.cs" />

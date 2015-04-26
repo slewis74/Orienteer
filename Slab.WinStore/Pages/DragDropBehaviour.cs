@@ -6,8 +6,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Slab.Data;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
     public class DragDropBehaviour : AttachedBehavior
     {

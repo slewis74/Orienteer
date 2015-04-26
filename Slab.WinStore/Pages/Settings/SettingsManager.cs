@@ -69,7 +69,7 @@ namespace Slab.WinStore.Pages.Settings
                 .GetSettingsForId(id);
 
             setting.Label = label;
-            setting.Action = () => _navigator.Navigate(action);
+            setting.Action = () => _navigator.NavigateAsync(action);
         }
 
         public IEnumerable<SettingsViewConfig> GetGlobalSettings()

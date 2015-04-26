@@ -7,7 +7,7 @@ namespace Slab.Pages.Navigation
     public interface INavigator
     {
         void Navigate<TController>(Expression<Func<TController, ActionResult>> action) where TController : IController;
-        void Navigate<TController>(Expression<Func<TController, Task<ActionResult>>> action) where TController : IController;
+        Task NavigateAsync<TController>(Expression<Func<TController, Task<ActionResult>>> action) where TController : IController;
         
         DataActionResult<TData> GetData<TController, TData>(Expression<Func<TController, ActionResult>> action) 
             where TController : IController;
@@ -16,6 +16,6 @@ namespace Slab.Pages.Navigation
             Expression<Func<TController, Task<ActionResult>>> action)
             where TController : IController;
 
-        void Navigate(string route);
+        Task NavigateAsync(string route);
     }
 }

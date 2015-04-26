@@ -109,8 +109,7 @@
     <Compile Include="Controls\NavigationFrame.cs" />
     <Compile Include="Controls\PageHeader.cs" />
     <Compile Include="Controls\TogglePinButton.cs" />
-    <Compile Include="Data\Navigation\INavigationStackStorage.cs" />
-    <Compile Include="Data\Navigation\NavigationStackStorage.cs" />
+    <Compile Include="Data\Navigation\WinStoreNavigationStackStorage.cs" />
     <Compile Include="Host\HostViewModel.cs" />
     <Compile Include="Pages\AttachedBehavior.cs" />
     <Compile Include="Pages\ContentSwitchingPage.cs" />

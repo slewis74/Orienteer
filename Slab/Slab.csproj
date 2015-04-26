@@ -37,6 +37,10 @@
     <Compile Include="Data\BindableBase.cs" />
     <Compile Include="Data\DispatchesToOriginalThreadBase.cs" />
     <Compile Include="Data\GroupedData.cs" />
+    <Compile Include="Pages\Navigation\INavigationStack.cs" />
+    <Compile Include="Pages\Navigation\INavigationStackStorage.cs" />
+    <Compile Include="Pages\Navigation\NavigationStack.cs" />
+    <Compile Include="Pages\Navigation\NavigationStackStorage.cs" />
     <Compile Include="Requests\GoBackRequest.cs" />
     <Compile Include="Requests\GoHomeRequest.cs" />
     <Compile Include="Pages\Controller.cs" />

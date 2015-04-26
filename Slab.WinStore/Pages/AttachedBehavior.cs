@@ -1,7 +1,7 @@
-﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml;
 using Microsoft.Xaml.Interactivity;
 
-namespace SlabRt.Pages
+namespace Slab.WinStore.Pages
 {
     public abstract class AttachedBehavior : DependencyObject, IBehavior
     {

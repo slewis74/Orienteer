@@ -72,7 +72,7 @@ namespace Slab.WinPhone
             Task.Run(() => context.Post(_ =>
             {
                 var route = navigatingCancelEventArgs.Uri.ToString().Substring(1);
-                _navigator.Navigate(route);
+                _navigator.NavigateAsync(route);
             }, null));
         }
 

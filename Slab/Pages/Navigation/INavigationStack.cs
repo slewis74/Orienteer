@@ -1,6 +1,6 @@
-﻿namespace Slab.WinStore.Data.Navigation
+﻿namespace Slab.Pages.Navigation
 {
-    public interface INavigationStackStorage
+    public interface INavigationStack
     {
         string DefaultRoute { get; }
         bool AlwaysStartFromDefaultRoute { get; }

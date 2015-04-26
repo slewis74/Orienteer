@@ -27,7 +27,7 @@ namespace Slab.Pages.Navigation
             DoNavigate(controllerResult);
         }
 
-        public async void Navigate<TController>(Expression<Func<TController, Task<ActionResult>>> action)
+        public async Task NavigateAsync<TController>(Expression<Func<TController, Task<ActionResult>>> action)
             where TController : IController
         {
             var controllerResult = await _controllerInvoker.CallAsync(action);
@@ -35,7 +35,7 @@ namespace Slab.Pages.Navigation
             DoNavigate(controllerResult);
         }
 
-        public async void Navigate(string route)
+        public async Task NavigateAsync(string route)
         {
             var controllerResult = await _controllerInvoker.CallAsync(route);
             DoNavigate(controllerResult);
