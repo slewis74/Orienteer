@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slab.iOS", "Slab.iOS\Slab.i
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slab.Android", "Slab.Android\Slab.Android.csproj", "{BBECF759-526C-4EB1-AB1F-3EBB21D42F6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slab.Forms", "Slab.Forms\Slab.Forms.csproj", "{8308798C-10BC-495F-B010-CCC75E72128F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,16 @@ Global
 		{BBECF759-526C-4EB1-AB1F-3EBB21D42F6E}.Release|ARM.ActiveCfg = Release|Any CPU
 		{BBECF759-526C-4EB1-AB1F-3EBB21D42F6E}.Release|x64.ActiveCfg = Release|Any CPU
 		{BBECF759-526C-4EB1-AB1F-3EBB21D42F6E}.Release|x86.ActiveCfg = Release|Any CPU
+		{8308798C-10BC-495F-B010-CCC75E72128F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8308798C-10BC-495F-B010-CCC75E72128F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8308798C-10BC-495F-B010-CCC75E72128F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{8308798C-10BC-495F-B010-CCC75E72128F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8308798C-10BC-495F-B010-CCC75E72128F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8308798C-10BC-495F-B010-CCC75E72128F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8308798C-10BC-495F-B010-CCC75E72128F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8308798C-10BC-495F-B010-CCC75E72128F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{8308798C-10BC-495F-B010-CCC75E72128F}.Release|x64.ActiveCfg = Release|Any CPU
+		{8308798C-10BC-495F-B010-CCC75E72128F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

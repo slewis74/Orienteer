@@ -5,7 +5,7 @@
         <version>1.0.0</version>
         <authors>Shannon Lewis</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Slab framework for Windows 8.1 and Windows Phone 8</description>
+        <description>Navigation framework for Mobile XAML based technologies.</description>
     </metadata>
     <files>
         <file src="Slab.WinStore\SlabResources\Controls.xaml" target="content\win8\SlabResources\Controls.xaml" />
@@ -19,11 +19,18 @@
         <file src="Slab.WinStore\Bin\Debug\Slab.Xaml.dll" target="lib\win8\Slab.Xaml.dll" />
         <file src="Slab.WinStore\Bin\Debug\Slab.WinStore.dll" target="lib\win8\Slab.WinStore.dll" />
         
-      <file src="Slab.WinPhone\Bin\Debug\Slab.dll" target="lib\wp8\Slab.dll" />
-      <file src="Slab.WinPhone\Bin\Debug\Slab.Xaml.dll" target="lib\wp8\Slab.Xaml.dll" />
-      <file src="Slab.WinPhone\Bin\Debug\Slab.WinPhone.dll" target="lib\wp8\Slab.WinPhone.dll" />
+        <file src="Slab.WinPhone\Bin\Release\Slab.dll" target="lib\wp8\Slab.dll" />
+        <file src="Slab.WinPhone\Bin\Release\Slab.Xaml.dll" target="lib\wp8\Slab.Xaml.dll" />
+        <file src="Slab.WinPhone\Bin\Release\Slab.WinPhone.dll" target="lib\wp8\Slab.WinPhone.dll" />
 
-        <file src="Slab\Bin\Debug\Slab.dll" target="lib\portable-win+net40+wp8+MonoAndroid10+MonoTouch10\Slab.dll" />
-        <!--<file src="App.xaml.install.xdt" target="content\win8\App.xaml.install.xdt" />-->
+        <file src="Slab.iOS\Bin\Release\Slab.dll" target="lib\xamarinios10\Slab.dll" />
+        <file src="Slab.iOS\Bin\Release\Slab.Xaml.dll" target="lib\xamarinios10\Slab.Xaml.dll" />
+        <file src="Slab.iOS\Bin\Release\Slab.iOS.dll" target="lib\xamarinios10\Slab.iOS.dll" />
+
+        <file src="Slab.Android\Bin\Release\Slab.dll" target="lib\MonoAndroid22\Slab.dll" />
+        <file src="Slab.Android\Bin\Release\Slab.Xaml.dll" target="lib\MonoAndroid22\Slab.Xaml.dll" />
+        <file src="Slab.Android\Bin\Release\Slab.Android.dll" target="lib\MonoAndroid22\Slab.Android.dll" />
+
+        <file src="Slab\Bin\Debug\Slab.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Slab.dll" />
     </files>
 </package>
