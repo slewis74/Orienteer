@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Data\AsyncObservableCollection.cs" />
+    <Compile Include="Data\DispatchingObservableCollection.cs" />
     <Compile Include="Data\BindableBase.cs" />
     <Compile Include="Data\DispatchesToOriginalThreadBase.cs" />
     <Compile Include="Data\GroupedData.cs" />

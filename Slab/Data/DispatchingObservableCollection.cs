@@ -10,16 +10,21 @@ using System.Threading;
 
 namespace Slab.Data
 {
-    public class AsyncObservableCollection<T> : ObservableCollection<T>
+    /// <summary>
+    /// ObservableCollection that automatically dispatches change events to the thread the collection was created on,
+    /// which should be the UI thread.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class DispatchingObservableCollection<T> : ObservableCollection<T>
     {
         private readonly SynchronizationContext _synchronizationContext = SynchronizationContext.Current;
         private bool _suppressChangeEvents;
 
-        public AsyncObservableCollection()
+        public DispatchingObservableCollection()
         {
         }
 
-        public AsyncObservableCollection(IEnumerable<T> list)
+        public DispatchingObservableCollection(IEnumerable<T> list)
             : base(list)
         {
         }
@@ -135,7 +140,7 @@ namespace Slab.Data
         }
     }
 
-    public class DistinctAsyncObservableCollection<T> : AsyncObservableCollection<T>
+    public class DistinctAsyncObservableCollection<T> : DispatchingObservableCollection<T>
     {
         public DistinctAsyncObservableCollection()
         {

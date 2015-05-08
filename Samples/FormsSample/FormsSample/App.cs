@@ -18,10 +18,10 @@ namespace FormsSample
             LetThereBeIoC(callingAssembly);
 
             // The root page of your application
-            var slabNavigationPage = _container.Resolve<SlabNavigationPage>();
-            MainPage = slabNavigationPage;
+            var SlabNavigationPage = _container.Resolve<SlabNavigationPage>();
+            MainPage = SlabNavigationPage;
 
-            slabNavigationPage.DoStartup();
+            SlabNavigationPage.DoStartup();
         }
 
         private void LetThereBeIoC(Assembly callingAssembly)

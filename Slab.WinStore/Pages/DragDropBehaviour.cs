@@ -47,11 +47,11 @@ namespace Slab.WinStore.Pages
         public string FloatingControlTypeName { get; set; }
 
         public static readonly DependencyProperty LocationCommandMappingsProperty =
-            DependencyProperty.Register("LocationCommandMappings", typeof(AsyncObservableCollection<LocationCommandMapping>), typeof(DragDropBehaviour), new PropertyMetadata(default(AsyncObservableCollection<LocationCommandMapping>)));
+            DependencyProperty.Register("LocationCommandMappings", typeof(DispatchingObservableCollection<LocationCommandMapping>), typeof(DragDropBehaviour), new PropertyMetadata(default(DispatchingObservableCollection<LocationCommandMapping>)));
 
-        public AsyncObservableCollection<LocationCommandMapping> LocationCommandMappings
+        public DispatchingObservableCollection<LocationCommandMapping> LocationCommandMappings
         {
-            get { return (AsyncObservableCollection<LocationCommandMapping>)GetValue(LocationCommandMappingsProperty); }
+            get { return (DispatchingObservableCollection<LocationCommandMapping>)GetValue(LocationCommandMappingsProperty); }
             set { SetValue(LocationCommandMappingsProperty, value); }
         }
 
