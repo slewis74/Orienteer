@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Autofac;
-using Slab.Forms.Pages;
-using Slab.Pages.Navigation;
+using Orienteer.Forms.Pages;
+using Orienteer.Pages.Navigation;
 using Module = Autofac.Module;
 
 namespace FormsSample.Modules
@@ -23,7 +23,7 @@ namespace FormsSample.Modules
                 .PropertiesAutowired();
 
             builder
-                .RegisterType<SlabNavigationPage>()
+                .RegisterType<OrienteerNavigationPage>()
                 .AsSelf()
                 .SingleInstance();
 

@@ -66,21 +66,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Slab.Autofac\Slab.Autofac.csproj">
+    <ProjectReference Include="..\..\..\Orienteer.Autofac\Orienteer.Autofac.csproj">
       <Project>{de100afd-4b94-4827-9b87-207609f5e5f1}</Project>
-      <Name>Slab.Autofac</Name>
+      <Name>Orienteer.Autofac</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Slab.Forms\Slab.Forms.csproj">
+    <ProjectReference Include="..\..\..\Orienteer.Forms\Orienteer.Forms.csproj">
       <Project>{8308798c-10bc-495f-b010-ccc75e72128f}</Project>
-      <Name>Slab.Forms</Name>
+      <Name>Orienteer.Forms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Slab.Xaml\Slab.Xaml.csproj">
+    <ProjectReference Include="..\..\..\Orienteer.Xaml\Orienteer.Xaml.csproj">
       <Project>{0bc0040e-1c82-4032-9a94-5e714451e647}</Project>
-      <Name>Slab.Xaml</Name>
+      <Name>Orienteer.Xaml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Slab\Slab.csproj">
+    <ProjectReference Include="..\..\..\Orienteer\Orienteer.csproj">
       <Project>{f14590d2-1e0b-44f2-b907-0909177536fe}</Project>
-      <Name>Slab</Name>
+      <Name>Orienteer</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Sample.Shared\Sample.Shared.csproj">
       <Project>{412e22f2-4564-4238-a5eb-86cacc875861}</Project>

@@ -1,0 +1,9 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:Orienteer.WinStore.Pages.Converters">
+
+    <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
+    <converters:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
+</ResourceDictionary>

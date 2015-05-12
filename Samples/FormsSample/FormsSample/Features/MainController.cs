@@ -1,7 +1,7 @@
 ﻿using System;
 using FormsSample.Home;
-using Slab.Pages;
-using Slab.Pages.Navigation;
+using Orienteer.Pages;
+using Orienteer.Pages.Navigation;
 
 namespace FormsSample.Features
 {

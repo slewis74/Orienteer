@@ -1,7 +1,7 @@
 using System.Reflection;
 using Autofac;
-using Slab.Autofac;
-using Slab.Pages;
+using Orienteer.Autofac;
+using Orienteer.Pages;
 
 namespace FormsSample.Modules
 {

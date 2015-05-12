@@ -5,7 +5,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ms-appx:///SlabResources/SlabResources.xaml" xdt:Transform="Insert"/>
+                <ResourceDictionary Source="ms-appx:///OrienteerResources/OrienteerResources.xaml" xdt:Transform="Insert"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

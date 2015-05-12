@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
-using Slab.Forms.Pages;
+using Orienteer.Forms.Pages;
 using Xamarin.Forms;
 
 namespace FormsSample
@@ -18,10 +18,10 @@ namespace FormsSample
             LetThereBeIoC(callingAssembly);
 
             // The root page of your application
-            var SlabNavigationPage = _container.Resolve<SlabNavigationPage>();
-            MainPage = SlabNavigationPage;
+            var OrienteerNavigationPage = _container.Resolve<OrienteerNavigationPage>();
+            MainPage = OrienteerNavigationPage;
 
-            SlabNavigationPage.DoStartup();
+            OrienteerNavigationPage.DoStartup();
         }
 
         private void LetThereBeIoC(Assembly callingAssembly)

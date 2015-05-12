@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Orienteer</id>
+        <version>1.0.0</version>
+        <authors>Shannon Lewis</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Navigation framework for Mobile XAML based technologies.</description>
+    </metadata>
+    <files>
+        <file src="Orienteer.WinStore\OrienteerResources\Controls.xaml" target="content\win8\OrienteerResources\Controls.xaml" />
+        <file src="Orienteer.WinStore\OrienteerResources\Converters.xaml" target="content\win8\OrienteerResources\Converters.xaml" />
+        <file src="Orienteer.WinStore\OrienteerResources\StandardLayout.xaml" target="content\win8\OrienteerResources\StandardLayout.xaml" />
+        <file src="Orienteer.WinStore\OrienteerResources\StandardStyles.xaml" target="content\win8\OrienteerResources\StandardStyles.xaml" />
+        <file src="Orienteer.WinStore\OrienteerResources\OrienteerResources.xaml" target="content\win8\OrienteerResources\OrienteerResources.xaml" />
+        <file src="Orienteer.WinStore\Host\HostView.xaml" target="content\win8\OrienteerResources\HostView.xaml" />
+        <file src="Orienteer.WinStore\Host\HostView.xaml.cs" target="content\win8\OrienteerResources\HostView.xaml.cs" />
+        <file src="Orienteer.WinStore\Bin\Debug\Orienteer.dll" target="lib\win8\Orienteer.dll" />
+        <file src="Orienteer.WinStore\Bin\Debug\Orienteer.Xaml.dll" target="lib\win8\Orienteer.Xaml.dll" />
+        <file src="Orienteer.WinStore\Bin\Debug\Orienteer.WinStore.dll" target="lib\win8\Orienteer.WinStore.dll" />
+        
+        <file src="Orienteer.WinPhone\Bin\Release\Orienteer.dll" target="lib\wp8\Orienteer.dll" />
+        <file src="Orienteer.WinPhone\Bin\Release\Orienteer.Xaml.dll" target="lib\wp8\Orienteer.Xaml.dll" />
+        <file src="Orienteer.WinPhone\Bin\Release\Orienteer.WinPhone.dll" target="lib\wp8\Orienteer.WinPhone.dll" />
+
+        <file src="Orienteer.iOS\Bin\Release\Orienteer.dll" target="lib\xamarinios10\Orienteer.dll" />
+        <file src="Orienteer.iOS\Bin\Release\Orienteer.Xaml.dll" target="lib\xamarinios10\Orienteer.Xaml.dll" />
+        <file src="Orienteer.iOS\Bin\Release\Orienteer.iOS.dll" target="lib\xamarinios10\Orienteer.iOS.dll" />
+
+        <file src="Orienteer.Android\Bin\Release\Orienteer.dll" target="lib\MonoAndroid22\Orienteer.dll" />
+        <file src="Orienteer.Android\Bin\Release\Orienteer.Xaml.dll" target="lib\MonoAndroid22\Orienteer.Xaml.dll" />
+        <file src="Orienteer.Android\Bin\Release\Orienteer.Android.dll" target="lib\MonoAndroid22\Orienteer.Android.dll" />
+
+        <file src="Orienteer\Bin\Debug\Orienteer.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.dll" />
+    </files>
+</package>
