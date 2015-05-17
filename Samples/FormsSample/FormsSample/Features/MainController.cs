@@ -1,5 +1,5 @@
 ﻿using System;
-using FormsSample.Home;
+using FormsSample.Features.Home;
 using Orienteer.Pages;
 using Orienteer.Pages.Navigation;
 

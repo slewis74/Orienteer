@@ -40,7 +40,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Orienteer\Orienteer.csproj">
       <Project>{f14590d2-1e0b-44f2-b907-0909177536fe}</Project>
-      <Name>Slab</Name>
+      <Name>Orienteer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

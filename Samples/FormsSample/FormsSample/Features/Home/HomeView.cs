@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace FormsSample.Home
+namespace FormsSample.Features.Home
 {
     public class HomeView : ContentPage
     {

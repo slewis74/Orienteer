@@ -98,6 +98,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PlatformServices\MusicProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -159,6 +160,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Orienteer\Orienteer.csproj">
+      <Project>{f14590d2-1e0b-44f2-b907-0909177536fe}</Project>
+      <Name>Orienteer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sample.Shared\Sample.Shared.csproj">
+      <Project>{412e22f2-4564-4238-a5eb-86cacc875861}</Project>
+      <Name>Sample.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FormsSample\FormsSample.csproj">
       <Name>FormsSample</Name>
     </ProjectReference>
@@ -169,6 +178,9 @@
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\..\..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Slew.PresentationBus">
       <HintPath>..\..\..\packages\Slew.PresentationBus.1.0.0\lib\portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10\Slew.PresentationBus.dll</HintPath>

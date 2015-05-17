@@ -35,9 +35,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Features\Albums\AddAlbumCommand.cs" />
+    <Compile Include="Features\Albums\AddSongCommand.cs" />
+    <Compile Include="Features\Albums\AlbumController.cs" />
+    <Compile Include="Features\Albums\AlbumViewModel.cs" />
+    <Compile Include="Features\Albums\PlayAlbumCommand.cs" />
+    <Compile Include="Features\Albums\PlaySongCommand.cs" />
+    <Compile Include="Features\Albums\TrackViewModel.cs" />
+    <Compile Include="Features\Artists\All\ArtistsViewModel.cs" />
+    <Compile Include="Features\Artists\All\GroupedArtistViewModel.cs" />
+    <Compile Include="Features\Artists\All\PlayAllCommand.cs" />
+    <Compile Include="Features\Artists\ArtistsController.cs" />
+    <Compile Include="Features\Artists\Single\ArtistViewModel.cs" />
+    <Compile Include="Features\Artists\Single\DisplayAlbumCommand.cs" />
+    <Compile Include="Features\Artists\Single\PlayArtistCommand.cs" />
+    <Compile Include="Features\Home\DisplayArtistCommand.cs" />
     <Compile Include="Features\MainController.cs" />
-    <Compile Include="Home\HomeView.cs" />
-    <Compile Include="Home\HomeViewModel.cs" />
+    <Compile Include="Features\Home\HomeView.cs" />
+    <Compile Include="Features\Home\HomeViewModel.cs" />
     <Compile Include="Modules\ControllerModule.cs" />
     <Compile Include="Modules\NavigationModule.cs" />
     <Compile Include="Modules\PresentationBusModule.cs" />
@@ -87,6 +102,7 @@
       <Name>Sample.Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\..\packages\Xamarin.Forms.1.4.2.6355\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\..\packages\Xamarin.Forms.1.4.2.6355\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

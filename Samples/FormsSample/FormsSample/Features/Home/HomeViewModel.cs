@@ -1,4 +1,4 @@
-﻿namespace FormsSample.Home
+﻿namespace FormsSample.Features.Home
 {
     public class HomeViewModel
     {
