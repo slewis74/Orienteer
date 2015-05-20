@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
+using System.Threading.Tasks;
 using Autofac;
 using Orienteer.Forms.Pages;
+using Sample.Shared;
 using Xamarin.Forms;
 
 namespace FormsSample
@@ -18,10 +20,10 @@ namespace FormsSample
             LetThereBeIoC(callingAssembly);
 
             // The root page of your application
-            var OrienteerNavigationPage = _container.Resolve<OrienteerNavigationPage>();
-            MainPage = OrienteerNavigationPage;
+            var orienteerNavigationPage = _container.Resolve<OrienteerNavigationPage>();
+            MainPage = orienteerNavigationPage;
 
-            OrienteerNavigationPage.DoStartup();
+            orienteerNavigationPage.DoStartup();
         }
 
         private void LetThereBeIoC(Assembly callingAssembly)
@@ -34,7 +36,12 @@ namespace FormsSample
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            Task.Run(async () =>
+            {
+                var musicProvider = _container.Resolve<IMusicProvider>();
+                await musicProvider.LoadContent();
+                await musicProvider.ReScanMusicLibrary();
+            });
         }
 
         protected override void OnSleep()

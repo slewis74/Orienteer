@@ -6,12 +6,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Search;
+using Microsoft.Xna.Framework.Media;
 using Newtonsoft.Json;
 using Orienteer.Data;
 using Sample.Shared;
 using Sample.Shared.Events;
-using Sample.Shared.Model;
 using Slew.PresentationBus;
+using Album = Sample.Shared.Model.Album;
+using Artist = Sample.Shared.Model.Artist;
+using Song = Sample.Shared.Model.Song;
 
 namespace FormsSample.WinPhone.PlatformServices
 {
@@ -53,7 +56,15 @@ namespace FormsSample.WinPhone.PlatformServices
             {
                 var artistsFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("Artists", CreationCollisionOption.OpenIfExists);
 
-                var data = await FileIO.ReadTextAsync(artistsFile);
+                var file = await artistsFile.OpenStreamForReadAsync();
+
+                // Read the data.
+                string data;
+                using (var streamReader = new StreamReader(file))
+                {
+                    data = streamReader.ReadToEnd();
+                }
+
                 var artistsData = JsonConvert.DeserializeObject<IEnumerable<Artist>>(data);
 
                 foreach (var artist in artistsData)
@@ -73,7 +84,7 @@ namespace FormsSample.WinPhone.PlatformServices
         {
             // copy to a separate list while loaded, to stop the UI flickering when reading lots of new data
             var artists = Artists.ToList();
-            var newTracks = await ScanMusicLibraryFolder(KnownFolders.MusicLibrary, artists);
+            var newTracks = await ScanMusicLibraryFolder(artists);
 
             if (newTracks)
             {
@@ -84,78 +95,78 @@ namespace FormsSample.WinPhone.PlatformServices
             return true;
         }
 
-        private async Task<bool> ScanMusicLibraryFolder(StorageFolder parentFolder, IList<Artist> artists)
+        private async Task<bool> ScanMusicLibraryFolder(IList<Artist> artists)
         {
             var newData = false;
-            foreach (var folder in await parentFolder.GetFoldersAsync())
-            {
-                foreach (var f in await folder.GetFilesAsync(CommonFileQuery.OrderByMusicProperties))
-                {
-                    var fileProps = await f.Properties.GetMusicPropertiesAsync();
 
-                    if (string.IsNullOrWhiteSpace(fileProps.Artist) == false)
+            using (var library = new MediaLibrary())
+            {
+                foreach (var libArtist in library.Artists)
+                {
+                    var artist = artists.FirstOrDefault(x => string.Compare(x.Name, libArtist.Name, StringComparison.CurrentCultureIgnoreCase) == 0);
+                    if (artist == null)
                     {
-                        var artist = artists.FirstOrDefault(x => string.Compare(x.Name, fileProps.Artist, StringComparison.CurrentCultureIgnoreCase) == 0);
-                        if (artist == null)
+                        artist = new Artist
                         {
-                            artist = new Artist
-                            {
-                                Name = fileProps.Artist
-                            };
-                            newData = true;
-                            artists.Add(artist);
-                        }
+                            Name = libArtist.Name
+                        };
+                        newData = true;
+                        artists.Add(artist);
+                    }
+
+                    foreach (var libAlbum in libArtist.Albums)
+                    {
                         var album = artist.Albums.FirstOrDefault(x =>
-                                string.Compare(x.Title, fileProps.Album, StringComparison.CurrentCultureIgnoreCase) == 0);
+                                string.Compare(x.Title, libAlbum.Name, StringComparison.CurrentCultureIgnoreCase) == 0);
                         if (album == null)
                         {
-                            var relativeFolder = folder.FolderRelativeId.Substring(folder.FolderRelativeId.IndexOf(@"\") + 1);
                             album = new Album
                             {
-                                Title = fileProps.Album,
-                                Folder = Path.Combine(relativeFolder, fileProps.Album.RemoveIllegalChars())
+                                Title = libAlbum.Name
+                                //Folder = Path.Combine(relativeFolder, fileProps.Album.RemoveIllegalChars())
                             };
                             artist.Albums.Add(album);
                             newData = true;
                         }
 
-                        uint discNumber = 1;
-                        if (f.Name[1] == '-')
+                        foreach (var libSong in libAlbum.Songs)
                         {
-                            discNumber = Convert.ToUInt32(f.Name.Substring(0, 1));
-                        }
-
-                        var song = album.Songs.FirstOrDefault(s => s.DiscNumber == discNumber && s.TrackNumber == fileProps.TrackNumber);
-                        if (song == null)
-                        {
-                            song = new Song
+                            var song = album.Songs.FirstOrDefault(s => s.TrackNumber == libSong.TrackNumber);
+                            if (song == null)
                             {
-                                Title = fileProps.Title,
-                                DiscNumber = discNumber,
-                                TrackNumber = fileProps.TrackNumber,
-                                Path = f.Path,
-                                Duration = fileProps.Duration
-                            };
-                            album.Songs.Add(song);
-                            newData = true;
-                            await _presentationBus.PublishAsync(new SongLoadedEvent(album, song));
-                            // save new entry to app storage
+                                song = new Song
+                                {
+                                    Title = libSong.Name,
+                                    TrackNumber = (uint)libSong.TrackNumber,
+                                    Duration = libSong.Duration
+                                };
+                                album.Songs.Add(song);
+                                newData = true;
+                                await _presentationBus.PublishAsync(new SongLoadedEvent(album, song));
+                                // save new entry to app storage
+                            }
+                            
                         }
-                        song.SetStorageFile(f);
                     }
+                    
                 }
-                newData |= await ScanMusicLibraryFolder(folder, artists);
             }
             return newData;
         }
 
         private async Task SaveData(IEnumerable<Artist> artists)
         {
-            var artistsFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("Artists", CreationCollisionOption.ReplaceExisting);
-
             var artistsData = JsonConvert.SerializeObject(artists);
 
-            await FileIO.WriteTextAsync(artistsFile, artistsData);
+            byte[] fileBytes = System.Text.Encoding.UTF8.GetBytes(artistsData.ToCharArray());
+
+            var artistsFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("Artists", CreationCollisionOption.ReplaceExisting);
+
+            // Write the data from the textbox.
+            using (var s = await artistsFile.OpenStreamForWriteAsync())
+            {
+                s.Write(fileBytes, 0, fileBytes.Length);
+            }
 
             Debug.WriteLine("Save completed");
         }
