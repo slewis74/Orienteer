@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using FormsSample.Features.Home;
+﻿using FormsSample.Features.Home;
 using Orienteer.Pages;
 using Orienteer.Pages.Navigation;
 using Sample.Shared;
@@ -9,11 +7,11 @@ namespace FormsSample.Features
 {
     public class MainController : Controller
     {
-        private readonly Func<HomeViewModel> _homeViewModelFactory;
+        private readonly HomeViewModel.Factory _homeViewModelFactory;
         private readonly IMusicProvider _musicProvider;
 
         public MainController(
-            Func<HomeViewModel> homeViewModelFactory,
+            HomeViewModel.Factory homeViewModelFactory,
             IMusicProvider musicProvider)
         {
             _homeViewModelFactory = homeViewModelFactory;
@@ -24,8 +22,7 @@ namespace FormsSample.Features
         {
             var artists = _musicProvider.Artists;
 
-            return new ViewModelActionResult(_homeViewModelFactory);
+            return new ViewModelActionResult(() => _homeViewModelFactory(artists));
         }
-         
     }
 }
