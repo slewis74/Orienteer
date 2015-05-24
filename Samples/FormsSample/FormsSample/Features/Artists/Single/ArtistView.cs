@@ -1,10 +1,10 @@
 ﻿using Xamarin.Forms;
 
-namespace FormsSample.Features.Home
+namespace FormsSample.Features.Artists.Single
 {
-    public class HomeView : ContentPage
+    public class ArtistView : ContentPage
     {
-        public HomeView()
+        public ArtistView()
         {
             var layout = new Grid { Padding = 24 };
             layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -12,16 +12,16 @@ namespace FormsSample.Features.Home
 
             var label = new Label
             {
-                Text = "Jukebox",
                 FontSize = 24
             };
-            layout.Children.Add(label, 0 , 0);
+            label.SetBinding(Label.TextProperty, new Binding("Name"));
+            layout.Children.Add(label, 0, 0);
 
             var listView = new ListView();
-            listView.SetBinding(ListView.ItemsSourceProperty, new Binding("Artists"));
-            listView.ItemTemplate = new DataTemplate(typeof(ArtistCell));
+            listView.SetBinding(ListView.ItemsSourceProperty, new Binding("Albums"));
+            listView.ItemTemplate = new DataTemplate(typeof(AlbumCell));
 
-            listView.ItemSelected += (sender, args) => ((HomeViewModel) BindingContext).DisplayArtist.Execute(args.SelectedItem);
+            listView.ItemSelected += (sender, args) => ((ArtistViewModel) BindingContext).DisplayAlbum.Execute(args.SelectedItem);
 
             layout.Children.Add(listView, 0, 1);
 
@@ -29,9 +29,9 @@ namespace FormsSample.Features.Home
         }
     }
 
-    public class ArtistCell : ViewCell
+    public class AlbumCell : ViewCell
     {
-        public ArtistCell()
+        public AlbumCell()
         {
             var layout = new Grid { HeightRequest = 40 };
             layout.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -40,9 +40,9 @@ namespace FormsSample.Features.Home
             var image = new Image();
             layout.Children.Add(image, 0, 0);
 
-            var name = new Label();
-            name.SetBinding(Label.TextProperty, new Binding("Name"));
-            layout.Children.Add(name, 1, 0);
+            var title = new Label();
+            title.SetBinding(Label.TextProperty, new Binding("Title"));
+            layout.Children.Add(title, 1, 0);
 
             View = layout;
         }

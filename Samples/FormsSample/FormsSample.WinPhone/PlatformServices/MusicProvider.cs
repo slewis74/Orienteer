@@ -12,6 +12,7 @@ using Orienteer.Data;
 using Sample.Shared;
 using Sample.Shared.Events;
 using Slew.PresentationBus;
+using Xamarin.Forms;
 using Album = Sample.Shared.Model.Album;
 using Artist = Sample.Shared.Model.Artist;
 using Song = Sample.Shared.Model.Song;

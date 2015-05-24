@@ -38,6 +38,7 @@
     <Compile Include="Features\Albums\AddAlbumCommand.cs" />
     <Compile Include="Features\Albums\AddSongCommand.cs" />
     <Compile Include="Features\Albums\AlbumController.cs" />
+    <Compile Include="Features\Albums\AlbumView.cs" />
     <Compile Include="Features\Albums\AlbumViewModel.cs" />
     <Compile Include="Features\Albums\PlayAlbumCommand.cs" />
     <Compile Include="Features\Albums\PlaySongCommand.cs" />
@@ -46,6 +47,7 @@
     <Compile Include="Features\Artists\All\GroupedArtistViewModel.cs" />
     <Compile Include="Features\Artists\All\PlayAllCommand.cs" />
     <Compile Include="Features\Artists\ArtistsController.cs" />
+    <Compile Include="Features\Artists\Single\ArtistView.cs" />
     <Compile Include="Features\Artists\Single\ArtistViewModel.cs" />
     <Compile Include="Features\Artists\Single\DisplayAlbumCommand.cs" />
     <Compile Include="Features\Artists\Single\PlayArtistCommand.cs" />
