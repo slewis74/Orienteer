@@ -67,6 +67,7 @@ namespace Orienteer.Forms.Pages
         public async Task HandleAsync(ViewModelNavigationRequest presentationEvent)
         {
             await NavigateToViewModelAndAddToStack(presentationEvent.Route, presentationEvent.Args.ViewModel);
+            presentationEvent.IsHandled = true;
         }
 
         public async Task HandleAsync(GoBackRequest presentationEvent)
