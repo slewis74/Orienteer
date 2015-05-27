@@ -6,8 +6,8 @@ namespace Orienteer.Pages.Navigation
 {
     public interface INavigator
     {
-        void Navigate<TController>(Expression<Func<TController, ActionResult>> action) where TController : IController;
-        Task NavigateAsync<TController>(Expression<Func<TController, Task<ActionResult>>> action) where TController : IController;
+        void Navigate<TController>(Expression<Func<TController, ActionResult>> action, bool animated = true) where TController : IController;
+        Task NavigateAsync<TController>(Expression<Func<TController, Task<ActionResult>>> action, bool animated = true) where TController : IController;
         
         DataActionResult<TData> GetData<TController, TData>(Expression<Func<TController, ActionResult>> action) 
             where TController : IController;
@@ -16,6 +16,6 @@ namespace Orienteer.Pages.Navigation
             Expression<Func<TController, Task<ActionResult>>> action)
             where TController : IController;
 
-        Task NavigateAsync(string route);
+        Task NavigateAsync(string route, bool animated = true);
     }
 }

@@ -29,7 +29,8 @@ namespace FormsSample.Features.Artists
 
         public ActionResult ShowAll()
         {
-            return new ViewModelActionResult(() => _artistsViewModelFactory());
+            var artists = _musicProvider.Artists;
+            return new ViewModelActionResult(() => _artistsViewModelFactory(artists));
         }
 
         public ActionResult ShowArtist(string name)

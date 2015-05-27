@@ -51,10 +51,8 @@
     <Compile Include="Features\Artists\Single\ArtistViewModel.cs" />
     <Compile Include="Features\Artists\Single\DisplayAlbumCommand.cs" />
     <Compile Include="Features\Artists\Single\PlayArtistCommand.cs" />
-    <Compile Include="Features\Home\DisplayArtistCommand.cs" />
-    <Compile Include="Features\MainController.cs" />
-    <Compile Include="Features\Home\HomeView.cs" />
-    <Compile Include="Features\Home\HomeViewModel.cs" />
+    <Compile Include="Features\Artists\All\DisplayArtistCommand.cs" />
+    <Compile Include="Features\Artists\All\ArtistsView.cs" />
     <Compile Include="Modules\ControllerModule.cs" />
     <Compile Include="Modules\NavigationModule.cs" />
     <Compile Include="Modules\PresentationBusModule.cs" />

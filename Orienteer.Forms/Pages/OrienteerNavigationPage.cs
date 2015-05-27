@@ -54,19 +54,19 @@ namespace Orienteer.Forms.Pages
             }
         }
 
-        public async Task DoStartup()
+        private async Task DoStartup()
         {
             var routes = _navigationStack.RetrieveRoutes();
             foreach (var route in routes)
             {
-                await _navigator.NavigateAsync(route);
+                await _navigator.NavigateAsync(route, false);
             }
             _hasAppearedBefore = true;
         }
 
         public async Task HandleAsync(ViewModelNavigationRequest presentationEvent)
         {
-            await NavigateToViewModelAndAddToStack(presentationEvent.Route, presentationEvent.Args.ViewModel);
+            await NavigateToViewModelAndAddToStack(presentationEvent.Route, presentationEvent.Args.ViewModel, presentationEvent.Animated);
             presentationEvent.IsHandled = true;
         }
 
@@ -79,11 +79,11 @@ namespace Orienteer.Forms.Pages
             presentationEvent.IsHandled = true;
         }
 
-        private async Task NavigateToViewModelAndAddToStack(string route, object viewModel)
+        private async Task NavigateToViewModelAndAddToStack(string route, object viewModel, bool animated)
         {
             var page = NavigateToViewModel(viewModel);
 
-            await GoForward(route, page);
+            await GoForward(route, page, animated);
         }
 
         private Page NavigateToViewModel(object viewModel)
@@ -93,11 +93,11 @@ namespace Orienteer.Forms.Pages
             return page;
         }
 
-        private async Task GoForward(string route, Page newPage)
+        private async Task GoForward(string route, Page newPage, bool animated)
         {
             _navigationStackCache.Push(new NavigationFrameStackItem(route, newPage));
 
-            await Navigation.PushAsync(newPage);
+            await Navigation.PushAsync(newPage, animated);
 
             // Only store this if the app is already running, i.e. not doing startup restore of the stack
             if (_hasAppearedBefore && _navigationStack != null)

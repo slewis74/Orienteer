@@ -13,7 +13,7 @@ namespace Orienteer.WinStore.Pages.Navigation
         {
         }
 
-        protected override void DoNavigate(ControllerInvokerResult controllerResult)
+        protected override void DoNavigate(ControllerInvokerResult controllerResult, bool animated)
         {
             var result = controllerResult.Result;
             var settingsResult = result as ISettingsPageActionResult;
@@ -23,7 +23,7 @@ namespace Orienteer.WinStore.Pages.Navigation
                 return;
             }
 
-            base.DoNavigate(controllerResult);
+            base.DoNavigate(controllerResult, animated);
         }
 
         public void SettingsNavigateBack()

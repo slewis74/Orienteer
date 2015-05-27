@@ -19,29 +19,29 @@ namespace Orienteer.Pages.Navigation
             _controllerInvoker = controllerInvoker;
         }
 
-        public void Navigate<TController>(Expression<Func<TController, ActionResult>> action)
+        public void Navigate<TController>(Expression<Func<TController, ActionResult>> action, bool animated = true)
             where TController : IController
         {
             var controllerResult = _controllerInvoker.Call(action);
 
-            DoNavigate(controllerResult);
+            DoNavigate(controllerResult, animated);
         }
 
-        public async Task NavigateAsync<TController>(Expression<Func<TController, Task<ActionResult>>> action)
+        public async Task NavigateAsync<TController>(Expression<Func<TController, Task<ActionResult>>> action, bool animated = true)
             where TController : IController
         {
             var controllerResult = await _controllerInvoker.CallAsync(action);
 
-            DoNavigate(controllerResult);
+            DoNavigate(controllerResult, animated);
         }
 
-        public async Task NavigateAsync(string route)
+        public async Task NavigateAsync(string route, bool animated = true)
         {
             var controllerResult = await _controllerInvoker.CallAsync(route);
-            DoNavigate(controllerResult);
+            DoNavigate(controllerResult, animated);
         }
 
-        protected virtual void DoNavigate(ControllerInvokerResult controllerResult)
+        protected virtual void DoNavigate(ControllerInvokerResult controllerResult, bool animated)
         {
             var route = controllerResult.Route;
             var result = controllerResult.Result;
@@ -60,7 +60,8 @@ namespace Orienteer.Pages.Navigation
             {
                 _presentationBus.PublishAsync(new ViewModelNavigationRequest(route,
                                                                         new ViewModelNavigationRequestEventArgs(
-                                                                            viewModelResult.ViewModelInstance)));
+                                                                            viewModelResult.ViewModelInstance),
+                                                                            animated));
             }
         }
 

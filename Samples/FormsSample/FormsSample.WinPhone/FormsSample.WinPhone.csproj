@@ -98,6 +98,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\NavigationModule.cs" />
     <Compile Include="Modules\PlatformServicesModule.cs" />
     <Compile Include="PlatformServices\MusicProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -161,6 +162,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Orienteer.WinPhone\Orienteer.WinPhone.csproj">
+      <Project>{e3c8453a-3b3e-454b-8ef5-d334bc83665c}</Project>
+      <Name>Orienteer.WinPhone</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Orienteer\Orienteer.csproj">
       <Project>{f14590d2-1e0b-44f2-b907-0909177536fe}</Project>
       <Name>Orienteer</Name>

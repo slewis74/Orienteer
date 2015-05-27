@@ -8,7 +8,7 @@ namespace FormsSample.Modules
 {
     public class NavigationModule : Module
     {
-        private const string DefaultRoute = "Main/Home";
+        private const string DefaultRoute = "Artists/ShowAll";
         private const string ViewRootNamespace = "FormsSample.Features";
         private const string ViewModelRootNamespace = "FormsSample.Features";
 

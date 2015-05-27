@@ -1,10 +1,10 @@
 ﻿using Xamarin.Forms;
 
-namespace FormsSample.Features.Home
+namespace FormsSample.Features.Artists.All
 {
-    public class HomeView : ContentPage
+    public class ArtistsView : ContentPage
     {
-        public HomeView()
+        public ArtistsView()
         {
             var layout = new Grid { Padding = 24 };
             layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -21,7 +21,7 @@ namespace FormsSample.Features.Home
             listView.SetBinding(ListView.ItemsSourceProperty, new Binding("Artists"));
             listView.ItemTemplate = new DataTemplate(typeof(ArtistCell));
 
-            listView.ItemSelected += (sender, args) => ((HomeViewModel) BindingContext).DisplayArtist.Execute(args.SelectedItem);
+            listView.ItemSelected += (sender, args) => ((ArtistsViewModel) BindingContext).DisplayArtist.Execute(args.SelectedItem);
 
             layout.Children.Add(listView, 0, 1);
 

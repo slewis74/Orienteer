@@ -1,9 +1,8 @@
-﻿using FormsSample.Features.Artists;
-using Orienteer.Pages.Navigation;
+﻿using Orienteer.Pages.Navigation;
 using Orienteer.Xaml.ViewModels;
 using Sample.Shared.Model;
 
-namespace FormsSample.Features.Home
+namespace FormsSample.Features.Artists.All
 {
     public class DisplayArtistCommand : NavigationCommand<Artist>
     {
