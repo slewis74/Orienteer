@@ -18,6 +18,15 @@ namespace FormsSample
         public App(Assembly callingAssembly)
         {
             LetThereBeIoC(callingAssembly);
+
+            // ReSharper disable once CSharpWarnings::CS4014
+            DoInit();
+
+            var orienteerNavigationPage = _container.Resolve<OrienteerNavigationPage>();
+            MainPage = orienteerNavigationPage;
+
+            // If DoStartup isn't called here then iOS crashes.
+            orienteerNavigationPage.DoStartup();
         }
 
         private void LetThereBeIoC(Assembly callingAssembly)
@@ -26,13 +35,6 @@ namespace FormsSample
             builder.RegisterAssemblyModules(new[] { GetType().GetTypeInfo().Assembly, callingAssembly });
 
             _container = builder.Build();
-
-            // ReSharper disable once CSharpWarnings::CS4014
-            DoInit();
-
-            // The root page of your application
-            var orienteerNavigationPage = _container.Resolve<OrienteerNavigationPage>();
-            MainPage = orienteerNavigationPage;
         }
 
         // ReSharper disable once UnusedMethodReturnValue.Local

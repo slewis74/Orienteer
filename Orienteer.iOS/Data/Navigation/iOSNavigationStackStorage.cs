@@ -7,14 +7,14 @@ namespace Orienteer.iOS.Data.Navigation
     {
         protected override void WriteRoutes(string[] routes)
         {
-            NSUserDefaults settings = NSUserDefaults.StandardUserDefaults;
+            var settings = NSUserDefaults.StandardUserDefaults;
             settings.RemoveObject("Navigation");
             settings["Navigation"] = NSArray.FromStrings(routes);
         }
 
         protected override string[] ReadRoutes()
         {
-            NSUserDefaults settings = NSUserDefaults.StandardUserDefaults;
+            var settings = NSUserDefaults.StandardUserDefaults;
             return settings.StringArrayForKey("Navigation");
         }
     }

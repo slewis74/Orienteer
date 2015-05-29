@@ -54,7 +54,7 @@ namespace Orienteer.Forms.Pages
             }
         }
 
-        private async Task DoStartup()
+        public async Task DoStartup()
         {
             var routes = _navigationStack.RetrieveRoutes();
             foreach (var route in routes)
