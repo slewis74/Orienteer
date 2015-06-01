@@ -12,7 +12,7 @@ namespace FormsSample.Features.Artists.All
 
         public override void Execute(Artist parameter)
         {
-            Navigator.Navigate<ArtistsController>(c => c.ShowArtist(parameter.Name));
+            Navigator.NavigateAsync<ArtistsController>(c => c.ShowArtist(parameter.Name));
         }
     }
 }

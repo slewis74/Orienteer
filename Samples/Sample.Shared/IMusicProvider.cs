@@ -6,9 +6,7 @@ namespace Sample.Shared
 {
     public interface IMusicProvider
     {
-        DistinctAsyncObservableCollection<Artist> Artists { get; }
-
-        Task LoadContent();
+        Task<DistinctAsyncObservableCollection<Artist>> GetArtists();
 
         Task<bool> ReScanMusicLibrary();
     }

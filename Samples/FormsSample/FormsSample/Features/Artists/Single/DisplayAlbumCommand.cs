@@ -17,7 +17,7 @@ namespace FormsSample.Features.Artists.Single
 
         public override void Execute(Album album)
         {
-            Navigator.Navigate<AlbumController>(c => c.ShowAlbum(_artist.Name, album.Title));
+            Navigator.NavigateAsync<AlbumController>(c => c.ShowAlbum(_artist.Name, album.Title));
         }
     }
 }

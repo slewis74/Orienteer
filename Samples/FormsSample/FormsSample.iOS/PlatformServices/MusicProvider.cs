@@ -16,14 +16,27 @@ namespace FormsSample.iOS.PlatformServices
 {
     public class MusicProvider : IMusicProvider
     {
+        private bool _hasLoaded;
+
         public MusicProvider()
         {
             Artists = new DistinctAsyncObservableCollection<Artist>();
         }
 
-        public DistinctAsyncObservableCollection<Artist> Artists { get; private set; }
+        private DistinctAsyncObservableCollection<Artist> Artists { get; set; }
 
-        public async Task LoadContent()
+        public async Task<DistinctAsyncObservableCollection<Artist>> GetArtists()
+        {
+            if (_hasLoaded)
+                return Artists;
+
+            await LoadContent();
+            _hasLoaded = true;
+
+            return Artists;
+        }
+
+        private async Task LoadContent()
         {
             var artists = new List<Artist>();
             await LoadData(artists);
@@ -40,7 +53,11 @@ namespace FormsSample.iOS.PlatformServices
         {
             var storageFile = IsolatedStorageFile.GetUserStoreForApplication();
             if (storageFile.FileExists("Artists") == false)
+            {
+                Debug.WriteLine("No artists file found");
                 return false;
+            }
+            Debug.WriteLine("Artists file found");
 
             try
             {
@@ -50,6 +67,7 @@ namespace FormsSample.iOS.PlatformServices
                     using (var textStream = new StreamReader(artistsFile))
                     {
                         var data = await textStream.ReadToEndAsync();
+                        Debug.WriteLine("Artists data {0}", data);
                         artistsData = JsonConvert.DeserializeObject<IEnumerable<Artist>>(data);
                     }
                 }
@@ -70,7 +88,7 @@ namespace FormsSample.iOS.PlatformServices
         public async Task<bool> ReScanMusicLibrary()
         {
             // copy to a separate list while loaded, to stop the UI flickering when reading lots of new data
-            var artists = Artists.ToList();
+            var artists = (await GetArtists()).ToList();
             var newTracks = await ScanMusicLibraryFolder(artists);
 
             if (newTracks)
@@ -84,6 +102,34 @@ namespace FormsSample.iOS.PlatformServices
 
         private async Task<bool> ScanMusicLibraryFolder(IList<Artist> artists)
         {
+            if (artists.Any())
+                return false;
+
+            var artist1 = new Artist
+            {
+                Name = "Black Eyed Peas"
+            };
+            var album1 = new Album{ Title = "Monkey Business"};
+            album1.Songs.Add(new Song { TrackNumber = 1, Title = "Boom, Boom, Pow"});
+            artist1.Albums.Add(album1);
+            artists.Add(artist1);
+
+            var artist2 = new Artist
+            {
+                Name = "Hilltop Hoods"
+            };
+            var album2 = new Album { Title = "Drinking from the sun" };
+            album2.Songs.Add(new Song { TrackNumber = 3, Title = "I love it" });
+            artist2.Albums.Add(album2);
+
+            var album3 = new Album { Title = "State of the art" };
+            album3.Songs.Add(new Song { TrackNumber = 3, Title = "Chase that feeling" });
+            artist2.Albums.Add(album3);
+
+            artists.Add(artist2);
+
+            return true;
+
             var foundNewItems = false;
             var mq = new MPMediaQuery();
             var value = NSNumber.FromInt32((int)MPMediaType.Music);

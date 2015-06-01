@@ -20,6 +20,7 @@ namespace FormsSample.WinPhone.PlatformServices
     public class MusicProvider : IMusicProvider
     {
         private readonly IPresentationBus _presentationBus;
+        private bool _hasLoaded;
 
         public MusicProvider(IPresentationBus presentationBus)
         {
@@ -28,9 +29,20 @@ namespace FormsSample.WinPhone.PlatformServices
             Artists = new DistinctAsyncObservableCollection<Artist>();
         }
 
-        public DistinctAsyncObservableCollection<Artist> Artists { get; private set; }
+        private DistinctAsyncObservableCollection<Artist> Artists { get; set; }
 
-        public async Task LoadContent()
+        public async Task<DistinctAsyncObservableCollection<Artist>> GetArtists()
+        {
+            if (_hasLoaded)
+                return Artists;
+
+            await LoadContent();
+            _hasLoaded = true;
+
+            return Artists;
+        }
+
+        private async Task LoadContent()
         {
             var artists = new List<Artist>();
             await LoadData(artists);
@@ -82,7 +94,7 @@ namespace FormsSample.WinPhone.PlatformServices
         public async Task<bool> ReScanMusicLibrary()
         {
             // copy to a separate list while loaded, to stop the UI flickering when reading lots of new data
-            var artists = Artists.ToList();
+            var artists = (await GetArtists()).ToList();
             var newTracks = await ScanMusicLibraryFolder(artists);
 
             if (newTracks)

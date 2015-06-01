@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using FormsSample.Features.Albums;
 using FormsSample.Features.Artists.All;
 using FormsSample.Features.Artists.Single;
@@ -27,18 +29,22 @@ namespace FormsSample.Features.Artists
             _artistViewModelFactory = artistViewModelFactory;
         }
 
-        public ActionResult ShowAll()
+        public async Task<ActionResult> ShowAll()
         {
-            var artists = _musicProvider.Artists;
+            var artists = await _musicProvider.GetArtists();
             return new ViewModelActionResult(() => _artistsViewModelFactory(artists));
         }
 
-        public ActionResult ShowArtist(string name)
+        public async Task<ActionResult> ShowArtist(string name)
         {
-            var artist = _musicProvider.Artists.SingleOrDefault(a => a.Name == name);
+            var artists = await _musicProvider.GetArtists();
+            var artist = artists.SingleOrDefault(a => a.Name == name);
 
             if (artist == null)
-                return ShowAll();
+            {
+                Debug.WriteLine("Artist {0} not found, total artists {1}", name, artists.Count);
+                return await ShowAll();
+            }
             if (artist.Albums.Count == 1)
                 return new ViewModelActionResult(() => _albumViewModelFactory(artist, artist.Albums.Single()));
             return new ViewModelActionResult(() => _artistViewModelFactory(artist));

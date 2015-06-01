@@ -36,6 +36,7 @@
     <Compile Include="Data\DispatchingObservableCollection.cs" />
     <Compile Include="Data\BindableBase.cs" />
     <Compile Include="Data\DispatchesToOriginalThreadBase.cs" />
+    <Compile Include="Data\DistinctAsyncObservableCollection.cs" />
     <Compile Include="Data\GroupedData.cs" />
     <Compile Include="Pages\Navigation\INavigationStack.cs" />
     <Compile Include="Pages\Navigation\INavigationStackStorage.cs" />

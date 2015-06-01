@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Orienteer.Pages;
 using Orienteer.Pages.Navigation;
 using Sample.Shared;
@@ -18,9 +19,9 @@ namespace FormsSample.Features.Albums
             _albumViewModelFactory = albumViewModelFactory;
         }
 
-        public ActionResult ShowAlbum(string artistName, string albumTitle)
+        public async Task<ActionResult> ShowAlbum(string artistName, string albumTitle)
         {
-            var artist = _musicProvider.Artists.Single(a => a.Name == artistName);
+            var artist = (await _musicProvider.GetArtists()).Single(a => a.Name == artistName);
 
             return new ViewModelActionResult(() => _albumViewModelFactory(artist, artist.Albums.Single(a => a.Title == albumTitle)));
         }

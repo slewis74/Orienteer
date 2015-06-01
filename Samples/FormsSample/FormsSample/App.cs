@@ -19,14 +19,14 @@ namespace FormsSample
         {
             LetThereBeIoC(callingAssembly);
 
+            var navigationPage = _container.Resolve<OrienteerNavigationPage>();
+            MainPage = navigationPage;
+
+            // If DoStartup isn't called here then iOS/Android crashes.
+            navigationPage.DoStartup();
+
             // ReSharper disable once CSharpWarnings::CS4014
-            DoInit();
-
-            var orienteerNavigationPage = _container.Resolve<OrienteerNavigationPage>();
-            MainPage = orienteerNavigationPage;
-
-            // If DoStartup isn't called here then iOS crashes.
-            orienteerNavigationPage.DoStartup();
+            DoRescan();
         }
 
         private void LetThereBeIoC(Assembly callingAssembly)
@@ -38,11 +38,9 @@ namespace FormsSample
         }
 
         // ReSharper disable once UnusedMethodReturnValue.Local
-        private async Task DoInit()
+        private async Task DoRescan()
         {
             var musicProvider = _container.Resolve<IMusicProvider>();
-            await musicProvider.LoadContent();
-
             // ReSharper disable once CSharpWarnings::CS4014
             Task.Run(async () =>
             {

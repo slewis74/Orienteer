@@ -6,8 +6,6 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading.Tasks;
 using Android.App;
-using Android.Content;
-using Android.Database;
 using Android.Provider;
 using Newtonsoft.Json;
 using Orienteer.Data;
@@ -18,15 +16,28 @@ namespace FormsSample.Droid.PlatformServices
 {
     public class MusicProvider : IMusicProvider
     {
-     public MusicProvider()
+        private bool _hasLoaded;
+
+        public MusicProvider()
         {
             Artists = new DistinctAsyncObservableCollection<Artist>();
         }
 
-        public DistinctAsyncObservableCollection<Artist> Artists { get; private set; }
+     private DistinctAsyncObservableCollection<Artist> Artists { get; set; }
 
-        public async Task LoadContent()
-        {
+     public async Task<DistinctAsyncObservableCollection<Artist>> GetArtists()
+     {
+         if (_hasLoaded)
+             return Artists;
+
+         await LoadContent();
+         _hasLoaded = true;
+
+         return Artists;
+     }
+
+     private async Task LoadContent()
+     {
             var artists = new List<Artist>();
             await LoadData(artists);
 
@@ -72,7 +83,7 @@ namespace FormsSample.Droid.PlatformServices
         public async Task<bool> ReScanMusicLibrary()
         {
             // copy to a separate list while loaded, to stop the UI flickering when reading lots of new data
-            var artists = Artists.ToList();
+            var artists = (await GetArtists()).ToList();
             var newTracks = await ScanMusicLibraryFolder(artists);
 
             if (newTracks)

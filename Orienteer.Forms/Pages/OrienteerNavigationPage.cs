@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Orienteer.Pages.Navigation;
@@ -17,7 +18,7 @@ namespace Orienteer.Forms.Pages
         private readonly INavigator _navigator;
         private readonly IViewLocator _viewLocator;
         private readonly INavigationStack _navigationStack;
-        private bool _hasAppearedBefore;
+        private bool _hasStarted;
 
         private readonly Stack<NavigationFrameStackItem> _navigationStackCache;
 
@@ -39,7 +40,7 @@ namespace Orienteer.Forms.Pages
         {
             base.OnAppearing();
 
-            if (_hasAppearedBefore == false)
+            if (_hasStarted == false)
             {
                 DoStartup();
             }
@@ -56,12 +57,17 @@ namespace Orienteer.Forms.Pages
 
         public async Task DoStartup()
         {
+            if (_hasStarted)
+                return;
+
+            _hasStarted = true;
+
             var routes = _navigationStack.RetrieveRoutes();
             foreach (var route in routes)
             {
+                Debug.WriteLine("Restoring route {0}", route);
                 await _navigator.NavigateAsync(route, false);
             }
-            _hasAppearedBefore = true;
         }
 
         public async Task HandleAsync(ViewModelNavigationRequest presentationEvent)
@@ -100,7 +106,7 @@ namespace Orienteer.Forms.Pages
             await Navigation.PushAsync(newPage, animated);
 
             // Only store this if the app is already running, i.e. not doing startup restore of the stack
-            if (_hasAppearedBefore && _navigationStack != null)
+            if (_hasStarted && _navigationStack != null)
             {
                 _navigationStack.StoreRoutes(_navigationStackCache.Select(i => i.Route).ToArray());
             }
