@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using Android.App;
 using Android.Content;
 using Orienteer.Pages.Navigation;
 
 namespace Orienteer.Android.Data.Navigation
 {
+    /// <summary>
+    /// NOTE: tried using PutStringSet/GetStringSet but the get doesn't return the strings in the same order as the
+    /// put.  Storing in a single string for now, using ;;; as a separator.
+    /// </summary>
     public class AndroidNavigationStackStorage : NavigationStackStorage
     {
         protected override void WriteRoutes(string[] routes)
@@ -14,7 +17,7 @@ namespace Orienteer.Android.Data.Navigation
             {
                 using (var editor = prefs.Edit())
                 {
-                    editor.PutStringSet("Stack", routes);
+                    editor.PutString("Stack", string.Join(";;;", routes));
                     editor.Apply();
                 }
             }
@@ -22,12 +25,12 @@ namespace Orienteer.Android.Data.Navigation
 
         protected override string[] ReadRoutes()
         {
-            ICollection<string> routes = null;
+            string routes = null;
             using (var prefs = Application.Context.GetSharedPreferences("Navigation", FileCreationMode.Private))
             {
-                routes = prefs.GetStringSet("Stack", null);
+                routes = prefs.GetString("Stack", null);
             }
-            return routes == null ? null : routes.ToArray();
+            return routes == null ? null : routes.Split(new []{ ";;;" }, StringSplitOptions.None);
         }
     }
 }
