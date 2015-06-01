@@ -27,7 +27,7 @@ namespace Orienteer.Android.Data.Navigation
             {
                 routes = prefs.GetStringSet("Stack", null);
             }
-            return routes.ToArray();
+            return routes == null ? null : routes.ToArray();
         }
     }
 }

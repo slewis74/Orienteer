@@ -5,18 +5,20 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading.Tasks;
-using Foundation;
-using MediaPlayer;
+using Android.App;
+using Android.Content;
+using Android.Database;
+using Android.Provider;
 using Newtonsoft.Json;
 using Orienteer.Data;
 using Sample.Shared;
 using Sample.Shared.Model;
 
-namespace FormsSample.iOS.PlatformServices
+namespace FormsSample.Droid.PlatformServices
 {
     public class MusicProvider : IMusicProvider
     {
-        public MusicProvider()
+     public MusicProvider()
         {
             Artists = new DistinctAsyncObservableCollection<Artist>();
         }
@@ -85,48 +87,61 @@ namespace FormsSample.iOS.PlatformServices
         private async Task<bool> ScanMusicLibraryFolder(IList<Artist> artists)
         {
             var foundNewItems = false;
-            var mq = new MPMediaQuery();
-            var value = NSNumber.FromInt32((int)MPMediaType.Music);
-            var type = MPMediaItem.MediaTypeProperty;
-            var predicate = MPMediaPropertyPredicate.PredicateWithValue(value, type);
-            mq.AddFilterPredicate(predicate);
 
-            foreach (var item in mq.Items)
+            var uri = MediaStore.Audio.Media.ExternalContentUri;
+            string[] projection = {
+                    MediaStore.Audio.Media.InterfaceConsts.Id,
+                    MediaStore.Audio.Media.InterfaceConsts.AlbumId,
+                    MediaStore.Audio.Media.InterfaceConsts.Title,
+                    MediaStore.Audio.Media.InterfaceConsts.Artist,
+                    MediaStore.Audio.Media.InterfaceConsts.Album,
+                    MediaStore.Audio.Media.InterfaceConsts.Duration,
+                    MediaStore.Audio.Media.InterfaceConsts.Track
+                };
+
+            var cursor = Application.Context.ContentResolver.Query(uri, projection, null, null, null);
+            if (cursor.MoveToFirst())
             {
-                var artist = artists.FirstOrDefault(a => a.Name == item.Artist);
-                if (artist == null)
+                do
                 {
-                    artist = new Artist
+                    var name = cursor.GetString(3);
+                    var artist = artists.FirstOrDefault(a => a.Name == name);
+                    if (artist == null)
                     {
-                        Name = item.Artist
-                    };
-                    artists.Add(artist);
-                    foundNewItems = true;
-                }
+                        artist = new Artist
+                        {
+                            Name = name
+                        };
+                        artists.Add(artist);
+                        foundNewItems = true;
+                    }
 
-                var album = artist.Albums.FirstOrDefault(a => a.Title == item.AlbumTitle);
-                if (album == null)
-                {
-                    album = new Album
+                    var title = cursor.GetString(4);
+                    var album = artist.Albums.FirstOrDefault(a => a.Title == title);
+                    if (album == null)
                     {
-                        Title = item.AlbumTitle
-                    };
-                    artist.Albums.Add(album);
-                    foundNewItems = true;
-                }
+                        album = new Album
+                        {
+                            Title = title
+                        };
+                        artist.Albums.Add(album);
+                        foundNewItems = true;
+                    }
 
-                var song = album.Songs.FirstOrDefault(s => s.Title == item.Title);
-                if (song == null)
-                {
-                    song = new Song
+                    var songTitle = cursor.GetString(2);
+                    var song = album.Songs.FirstOrDefault(s => s.Title == songTitle);
+                    if (song == null)
                     {
-                        Title = item.Title,
-                        DiscNumber = (uint)item.DiscNumber,
-                        Duration = TimeSpan.FromSeconds(item.PlaybackDuration)
-                    };
-                    album.Songs.Add(song);
-                    foundNewItems = true;
-                }
+                        song = new Song
+                        {
+                            Title = songTitle,
+                            TrackNumber = uint.Parse(cursor.GetString(6)),
+                            Duration = TimeSpan.FromMilliseconds(int.Parse(cursor.GetString(5)))
+                        };
+                        album.Songs.Add(song);
+                        foundNewItems = true;
+                    }
+                } while (cursor.MoveToNext());
             }
 
             return foundNewItems;
@@ -145,6 +160,6 @@ namespace FormsSample.iOS.PlatformServices
             }
 
             Debug.WriteLine("Save completed");
-        }
+        }    
     }
 }

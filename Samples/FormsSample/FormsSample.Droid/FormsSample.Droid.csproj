@@ -84,6 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Modules\NavigationModule.cs" />
+    <Compile Include="Modules\PlatformServicesModule.cs" />
+    <Compile Include="PlatformServices\MusicProvider.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,6 +105,18 @@
     <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Orienteer.Android\Orienteer.Android.csproj">
+      <Project>{bbecf759-526c-4eb1-ab1f-3ebb21d42f6e}</Project>
+      <Name>Orienteer.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Orienteer\Orienteer.csproj">
+      <Project>{f14590d2-1e0b-44f2-b907-0909177536fe}</Project>
+      <Name>Orienteer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sample.Shared\Sample.Shared.csproj">
+      <Project>{412e22f2-4564-4238-a5eb-86cacc875861}</Project>
+      <Name>Sample.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FormsSample\FormsSample.csproj">
       <Name>FormsSample</Name>
     </ProjectReference>
