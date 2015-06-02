@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Orienteer.Pages.Navigation;
@@ -65,7 +63,6 @@ namespace Orienteer.Forms.Pages
             var routes = _navigationStack.RetrieveRoutes();
             foreach (var route in routes)
             {
-                Debug.WriteLine("Restoring route {0}", route);
                 await _navigator.NavigateAsync(route, false);
             }
         }
