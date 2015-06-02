@@ -31,6 +31,6 @@
         <file src="Orienteer.Android\Bin\Release\Orienteer.Xaml.dll" target="lib\MonoAndroid22\Orienteer.Xaml.dll" />
         <file src="Orienteer.Android\Bin\Release\Orienteer.Android.dll" target="lib\MonoAndroid22\Orienteer.Android.dll" />
 
-        <file src="Orienteer\Bin\Debug\Orienteer.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.dll" />
+        <file src="Orienteer\Bin\Release\Orienteer.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.dll" />
     </files>
 </package>
