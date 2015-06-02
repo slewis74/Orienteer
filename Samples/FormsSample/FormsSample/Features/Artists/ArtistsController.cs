@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using FormsSample.Features.Albums;
@@ -31,8 +32,16 @@ namespace FormsSample.Features.Artists
 
         public async Task<ActionResult> ShowAll()
         {
-            var artists = await _musicProvider.GetArtists();
-            return new ViewModelActionResult(() => _artistsViewModelFactory(artists));
+            try
+            {
+                var artists = await _musicProvider.GetArtists();
+                return new ViewModelActionResult(() => _artistsViewModelFactory(artists));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("ERROR: {0} {1}", ex.Message, ex.StackTrace);
+                throw;
+            }
         }
 
         public async Task<ActionResult> ShowArtist(string name)

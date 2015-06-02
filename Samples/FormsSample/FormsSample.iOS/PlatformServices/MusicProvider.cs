@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Foundation;
 using MediaPlayer;
 using Newtonsoft.Json;
+using Orienteer;
 using Orienteer.Data;
 using Sample.Shared;
 using Sample.Shared.Model;
@@ -25,13 +26,17 @@ namespace FormsSample.iOS.PlatformServices
 
         private DistinctAsyncObservableCollection<Artist> Artists { get; set; }
 
+        private readonly AsyncLock _asyncLock = new AsyncLock();
         public async Task<DistinctAsyncObservableCollection<Artist>> GetArtists()
         {
-            if (_hasLoaded)
-                return Artists;
-
-            await LoadContent();
-            _hasLoaded = true;
+            using (var releaser = await _asyncLock.LockAsync())
+            {
+                if (_hasLoaded == false)
+                {
+                    await LoadContent();
+                    _hasLoaded = true;
+                }
+            }
 
             return Artists;
         }
@@ -54,10 +59,8 @@ namespace FormsSample.iOS.PlatformServices
             var storageFile = IsolatedStorageFile.GetUserStoreForApplication();
             if (storageFile.FileExists("Artists") == false)
             {
-                Debug.WriteLine("No artists file found");
                 return false;
             }
-            Debug.WriteLine("Artists file found");
 
             try
             {
@@ -66,8 +69,9 @@ namespace FormsSample.iOS.PlatformServices
                 {
                     using (var textStream = new StreamReader(artistsFile))
                     {
-                        var data = await textStream.ReadToEndAsync();
-                        Debug.WriteLine("Artists data {0}", data);
+                        // WARNING: Do not use the async method here, if you do the method returns and the nav tries to finish
+                        // initialising before the data is available.
+                        var data = textStream.ReadToEnd();
                         artistsData = JsonConvert.DeserializeObject<IEnumerable<Artist>>(data);
                     }
                 }

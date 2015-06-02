@@ -33,6 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AsyncLock.cs" />
+    <Compile Include="AsyncSemaphore.cs" />
     <Compile Include="Data\DispatchingObservableCollection.cs" />
     <Compile Include="Data\BindableBase.cs" />
     <Compile Include="Data\DispatchesToOriginalThreadBase.cs" />

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Microsoft.Xna.Framework.Media;
 using Newtonsoft.Json;
+using Orienteer;
 using Orienteer.Data;
 using Sample.Shared;
 using Sample.Shared.Events;
@@ -31,13 +32,17 @@ namespace FormsSample.WinPhone.PlatformServices
 
         private DistinctAsyncObservableCollection<Artist> Artists { get; set; }
 
+        private readonly AsyncLock _asyncLock = new AsyncLock();
         public async Task<DistinctAsyncObservableCollection<Artist>> GetArtists()
         {
-            if (_hasLoaded)
-                return Artists;
+            using (var releaser = await _asyncLock.LockAsync())
+            {
+                if (_hasLoaded)
+                    return Artists;
 
-            await LoadContent();
-            _hasLoaded = true;
+                await LoadContent();
+                _hasLoaded = true;
+            }
 
             return Artists;
         }
