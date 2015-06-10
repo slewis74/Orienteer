@@ -4,7 +4,7 @@ using Orienteer.Xaml;
 
 namespace Orienteer.WinPhone.Pages
 {
-    public class ViewLocator : ViewLocatorBase<FrameworkElement>
+    public class ViewLocator : ViewLocatorBase<FrameworkElement>, IViewLocator
     {
         public override FrameworkElement Resolve(object viewModel)
         {
@@ -13,4 +13,7 @@ namespace Orienteer.WinPhone.Pages
             return view;
         }
     }
+
+    public interface IViewLocator : IViewLocator<FrameworkElement>
+    { }
 }
