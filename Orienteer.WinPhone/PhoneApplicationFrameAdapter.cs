@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -7,7 +9,6 @@ using Microsoft.Phone.Controls;
 using Orienteer.Pages.Navigation;
 using Orienteer.Requests;
 using Orienteer.WinPhone.Pages;
-using Orienteer.Xaml;
 using Slew.PresentationBus;
 
 namespace Orienteer.WinPhone
@@ -18,22 +19,30 @@ namespace Orienteer.WinPhone
     {
         private readonly IViewLocator _viewLocator;
         private readonly INavigator _navigator;
+        private readonly INavigationStack _navigationStack;
         private PhoneApplicationFrame _phoneApplicationFrame;
         private readonly string _viewRootNamespace;
         private readonly string _baseFeatureFolder;
+        private readonly Stack<string> _navigationStackCache;
+        private readonly Dictionary<string, object> _dataContextCache; 
 
-        private object _dataContext;
+        private bool _hasStarted;
 
         public PhoneApplicationFrameAdapter(
             string viewRootNamespace,
             string baseFeatureFolder,
             IViewLocator viewLocator,
-            INavigator navigator)
+            INavigator navigator,
+            INavigationStack navigationStack)
         {
             _viewRootNamespace = viewRootNamespace;
             _baseFeatureFolder = baseFeatureFolder;
             _viewLocator = viewLocator;
             _navigator = navigator;
+            _navigationStack = navigationStack;
+
+            _navigationStackCache = new Stack<string>();
+            _dataContextCache = new Dictionary<string, object>();
         }
 
         public PhoneApplicationFrame PhoneApplicationFrame
@@ -57,32 +66,62 @@ namespace Orienteer.WinPhone
             }
         }
 
+        public async Task DoStartup()
+        {
+            if (_hasStarted)
+                return;
+
+            var routes = _navigationStack.RetrieveRoutes();
+            foreach (var route in routes)
+            {
+                Debug.WriteLine("Restoring route {0}", route);
+                await _navigator.NavigateAsync(route, false);
+            }
+
+            _hasStarted = true;
+        }
+
         private void PhoneApplicationFrameOnNavigating(object sender, NavigatingCancelEventArgs navigatingCancelEventArgs)
         {
-            if (navigatingCancelEventArgs.Uri.OriginalString.Contains(".xaml"))
+            var originalString = navigatingCancelEventArgs.Uri.OriginalString;
+            Debug.WriteLine("Navigating to {0}", originalString);
+
+            // ignore this event if we're navigating to a page or an external app, rather than a route.
+            if (originalString.Contains(".xaml") || originalString.Contains("external"))
             {
                 return;
             }
             
             navigatingCancelEventArgs.Cancel = true;
 
-            var context = SynchronizationContext.Current;
-
-            Task.Run(() => context.Post(_ =>
-            {
-                var route = navigatingCancelEventArgs.Uri.ToRoute();
-                _navigator.NavigateAsync(route);
-            }, null));
+            var route = navigatingCancelEventArgs.Uri.ToRoute();
+            _navigator.NavigateAsync(route);
         }
 
         private void PhoneApplicationFrameOnNavigated(object sender, NavigationEventArgs navigationEventArgs)
         {
+            var uri = navigationEventArgs.Uri.ToString();
+            Debug.WriteLine("Navigated to {0}", uri);
+
             // The data context is set prior to the Handle method triggering the navigate to the page URI.
             if (navigationEventArgs.NavigationMode == NavigationMode.New)
             {
-                ((FrameworkElement) navigationEventArgs.Content).DataContext = _dataContext;
+                ((FrameworkElement)navigationEventArgs.Content).DataContext = _dataContextCache[uri];
             }
-            _dataContext = null;
+            else if (navigationEventArgs.NavigationMode == NavigationMode.Back)
+            {
+                _navigationStack.StoreRoutes(_navigationStackCache.ToArray());
+            }
+
+            ClearDataContextForViewPath(uri);
+        }
+
+        private void ClearDataContextForViewPath(string viewPath)
+        {
+            if (_dataContextCache.ContainsKey(viewPath))
+            {
+                _dataContextCache.Remove(viewPath);
+            }
         }
 
         public void Handle(ViewModelNavigationRequest presentationEvent)
@@ -94,10 +133,21 @@ namespace Orienteer.WinPhone
 
             // store the data context, because we can't control the creation of the page, we have to assign the ViewModel
             // when the OnNavigated fires, meaning the reached the page.
-            _dataContext = presentationEvent.Args.ViewModel;
+            ClearDataContextForViewPath(viewAsPath);
+            _dataContextCache.Add(viewAsPath, presentationEvent.Args.ViewModel);
 
-            PhoneApplicationFrame.Navigate(new Uri(viewAsPath, UriKind.Relative));
+            if (PhoneApplicationFrame.Navigate(new Uri(viewAsPath, UriKind.Relative)))
+                Debug.WriteLine("PhoneApplicationFrame.Navigate(\"{0}\")", viewAsPath);
+            else
+                Debug.WriteLine("ERROR PhoneApplicationFrame.Navigate(\"{0}\") FAILED", viewAsPath);
 
+            _navigationStackCache.Push(presentationEvent.Route);
+            if (_hasStarted)
+            {
+                _navigationStack.StoreRoutes(_navigationStackCache.ToArray());
+            }
+
+            Debug.WriteLine("Handled route {0}", presentationEvent.Route);
             presentationEvent.IsHandled = true;
         }
     }

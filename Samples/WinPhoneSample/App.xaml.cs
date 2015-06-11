@@ -131,13 +131,19 @@ namespace WinPhoneSample
             // Handle reset requests for clearing the backstack
             RootFrame.Navigated += CheckForResetNavigation;
 
-            var adapter = _container.Resolve<IPhoneApplicationFrameAdapter>();
-            adapter.PhoneApplicationFrame = RootFrame;
+            InitFrame();
 
             DoRescan();
 
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;
+        }
+
+        private async Task InitFrame()
+        {
+            var adapter = _container.Resolve<IPhoneApplicationFrameAdapter>();
+            adapter.PhoneApplicationFrame = RootFrame;
+            await adapter.DoStartup();
         }
 
         private void LetThereBeIoC(Assembly callingAssembly)
