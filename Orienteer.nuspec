@@ -6,6 +6,10 @@
         <authors>Shannon Lewis</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Navigation framework for Mobile XAML based technologies.</description>
+        <dependencies>
+            <dependency id="Slew.PresentationBus" version="1.0.6" />
+            <dependency id="Newtonsoft.Json" version="6.0.5" />
+        </dependencies>
     </metadata>
     <files>
         <file src="Orienteer.WinStore\OrienteerResources\Controls.xaml" target="content\win8\OrienteerResources\Controls.xaml" />
