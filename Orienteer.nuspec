@@ -19,9 +19,9 @@
         <file src="Orienteer.WinStore\OrienteerResources\OrienteerResources.xaml" target="content\win8\OrienteerResources\OrienteerResources.xaml" />
         <file src="Orienteer.WinStore\Host\HostView.xaml" target="content\win8\OrienteerResources\HostView.xaml" />
         <file src="Orienteer.WinStore\Host\HostView.xaml.cs" target="content\win8\OrienteerResources\HostView.xaml.cs" />
-        <file src="Orienteer.WinStore\Bin\Debug\Orienteer.dll" target="lib\win8\Orienteer.dll" />
-        <file src="Orienteer.WinStore\Bin\Debug\Orienteer.Xaml.dll" target="lib\win8\Orienteer.Xaml.dll" />
-        <file src="Orienteer.WinStore\Bin\Debug\Orienteer.WinStore.dll" target="lib\win8\Orienteer.WinStore.dll" />
+        <file src="Orienteer.WinStore\Bin\Release\Orienteer.dll" target="lib\win8\Orienteer.dll" />
+        <file src="Orienteer.WinStore\Bin\Release\Orienteer.Xaml.dll" target="lib\win8\Orienteer.Xaml.dll" />
+        <file src="Orienteer.WinStore\Bin\Release\Orienteer.WinStore.dll" target="lib\win8\Orienteer.WinStore.dll" />
         
         <file src="Orienteer.WinPhone\Bin\Release\Orienteer.dll" target="lib\wp8\Orienteer.dll" />
         <file src="Orienteer.WinPhone\Bin\Release\Orienteer.Xaml.dll" target="lib\wp8\Orienteer.Xaml.dll" />
