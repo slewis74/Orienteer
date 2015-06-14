@@ -28,13 +28,12 @@
         <file src="Orienteer.WinPhone\Bin\x86\Release\Orienteer.WinPhone.dll" target="lib\wp8\Orienteer.WinPhone.dll" />
 
         <file src="Orienteer.iOS\Bin\iPhone\Release\Orienteer.dll" target="lib\xamarinios10\Orienteer.dll" />
-        <file src="Orienteer.iOS\Bin\iPhone\Release\Orienteer.Xaml.dll" target="lib\xamarinios10\Orienteer.Xaml.dll" />
         <file src="Orienteer.iOS\Bin\iPhone\Release\Orienteer.iOS.dll" target="lib\xamarinios10\Orienteer.iOS.dll" />
 
         <file src="Orienteer.Android\Bin\Release\Orienteer.dll" target="lib\MonoAndroid22\Orienteer.dll" />
-        <file src="Orienteer.Android\Bin\Release\Orienteer.Xaml.dll" target="lib\MonoAndroid22\Orienteer.Xaml.dll" />
         <file src="Orienteer.Android\Bin\Release\Orienteer.Android.dll" target="lib\MonoAndroid22\Orienteer.Android.dll" />
 
-        <file src="Orienteer\Bin\Release\Orienteer.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.dll" />
+        <file src="Orienteer.Xaml\Bin\Release\Orienteer.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.dll" />
+        <file src="Orienteer.Xaml\Bin\Release\Orienteer.Xaml.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.Xaml.dll" />
     </files>
 </package>
