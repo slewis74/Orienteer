@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
+using Orienteer.Data;
 using Orienteer.Pages.Navigation;
 using Orienteer.Requests;
 using Orienteer.WinPhone.Pages;
@@ -14,6 +14,7 @@ using Slew.PresentationBus;
 namespace Orienteer.WinPhone
 {
     public class PhoneApplicationFrameAdapter : 
+        DispatchesToOriginalThreadBase,
         IPhoneApplicationFrameAdapter,
         IHandlePresentationEvent<ViewModelNavigationRequest>
     {
@@ -66,17 +67,34 @@ namespace Orienteer.WinPhone
             }
         }
 
+        private ManualResetEvent _resetEvent;
         public async Task DoStartup()
         {
             if (_hasStarted)
                 return;
 
             var routes = _navigationStack.RetrieveRoutes();
-            foreach (var route in routes)
+
+            // restore the routes from a background thread, otherwise the WP Frame will only do the first nav.
+            Task.Run(() =>
             {
-                Debug.WriteLine("Restoring route {0}", route);
-                await _navigator.NavigateAsync(route, false);
-            }
+                using (_resetEvent = new ManualResetEvent(false))
+                {
+                    foreach (var r in routes)
+                    {
+                        var route = r;
+                        // Dispatch the actual nav call back onto the UI thread.
+                        DispatchCall(async c =>
+                        {
+                            await _navigator.NavigateAsync(route, false);
+                        });   
+
+                        // wait for this nav to complete before we continue
+                        _resetEvent.WaitOne();
+                    }
+                }
+                _resetEvent = null;
+            });
 
             _hasStarted = true;
         }
@@ -84,7 +102,6 @@ namespace Orienteer.WinPhone
         private void PhoneApplicationFrameOnNavigating(object sender, NavigatingCancelEventArgs navigatingCancelEventArgs)
         {
             var originalString = navigatingCancelEventArgs.Uri.OriginalString;
-            Debug.WriteLine("Navigating to {0}", originalString);
 
             // ignore this event if we're navigating to a page or an external app, rather than a route.
             if (originalString.Contains(".xaml") || originalString.Contains("external"))
@@ -101,7 +118,6 @@ namespace Orienteer.WinPhone
         private void PhoneApplicationFrameOnNavigated(object sender, NavigationEventArgs navigationEventArgs)
         {
             var uri = navigationEventArgs.Uri.ToString();
-            Debug.WriteLine("Navigated to {0}", uri);
 
             if (uri.Contains("external"))
             {
@@ -115,10 +131,16 @@ namespace Orienteer.WinPhone
             }
             else if (navigationEventArgs.NavigationMode == NavigationMode.Back)
             {
+                _navigationStackCache.Pop();
                 _navigationStack.StoreRoutes(_navigationStackCache.ToArray());
             }
 
             ClearDataContextForViewPath(uri);
+
+            // during startup we need to signal that each nav has completed, because the background thread has to WaitOne
+            // before trying to restore the next route.
+            if (_resetEvent != null)
+                _resetEvent.Set();
         }
 
         private void ClearDataContextForViewPath(string viewPath)
@@ -141,10 +163,7 @@ namespace Orienteer.WinPhone
             ClearDataContextForViewPath(viewAsPath);
             _dataContextCache.Add(viewAsPath, presentationEvent.Args.ViewModel);
 
-            if (PhoneApplicationFrame.Navigate(new Uri(viewAsPath, UriKind.Relative)))
-                Debug.WriteLine("PhoneApplicationFrame.Navigate(\"{0}\")", viewAsPath);
-            else
-                Debug.WriteLine("ERROR PhoneApplicationFrame.Navigate(\"{0}\") FAILED", viewAsPath);
+            PhoneApplicationFrame.Navigate(new Uri(viewAsPath, UriKind.Relative));
 
             _navigationStackCache.Push(presentationEvent.Route);
             if (_hasStarted)
@@ -152,7 +171,6 @@ namespace Orienteer.WinPhone
                 _navigationStack.StoreRoutes(_navigationStackCache.ToArray());
             }
 
-            Debug.WriteLine("Handled route {0}", presentationEvent.Route);
             presentationEvent.IsHandled = true;
         }
     }
