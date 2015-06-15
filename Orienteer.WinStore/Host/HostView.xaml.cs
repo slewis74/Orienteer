@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 
-namespace Slab.WinStore.Host
+namespace Orienteer.WinStore.Host
 {
     public sealed partial class HostView
     {
