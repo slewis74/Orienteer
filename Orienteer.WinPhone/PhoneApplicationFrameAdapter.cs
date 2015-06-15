@@ -103,6 +103,11 @@ namespace Orienteer.WinPhone
             var uri = navigationEventArgs.Uri.ToString();
             Debug.WriteLine("Navigated to {0}", uri);
 
+            if (uri.Contains("external"))
+            {
+                return;
+            }
+            
             // The data context is set prior to the Handle method triggering the navigate to the page URI.
             if (navigationEventArgs.NavigationMode == NavigationMode.New)
             {
