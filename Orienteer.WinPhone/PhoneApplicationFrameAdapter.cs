@@ -82,6 +82,7 @@ namespace Orienteer.WinPhone
                 {
                     foreach (var r in routes)
                     {
+                        _resetEvent.Reset();
                         var route = r;
                         // Dispatch the actual nav call back onto the UI thread.
                         DispatchCall(async c =>
@@ -94,9 +95,8 @@ namespace Orienteer.WinPhone
                     }
                 }
                 _resetEvent = null;
+                _hasStarted = true;
             });
-
-            _hasStarted = true;
         }
 
         private void PhoneApplicationFrameOnNavigating(object sender, NavigatingCancelEventArgs navigatingCancelEventArgs)

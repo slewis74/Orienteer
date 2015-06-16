@@ -151,8 +151,7 @@ namespace WinPhoneSample
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyModules(new[]
             {
-                callingAssembly, 
-                typeof(IPhoneApplicationFrameAdapter).Assembly
+                callingAssembly
             });
 
             _container = builder.Build();

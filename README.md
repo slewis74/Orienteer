@@ -34,6 +34,7 @@ The samples use
 - Orienteer.Autofac
 
 ###Application class
+####Xamarin Forms
 In the Xamarin Forms app the App class has been updated as follows.
 
         private IContainer _container;
@@ -63,7 +64,57 @@ In the Xamarin Forms app the App class has been updated as follows.
 
 This code scans the PCL DLL and the native app dll (callingAssembly) for Autofac Modules to register, so platform specific registrations are added to the Modules in the native projects.
 
-The sample is also using simple page style navigation so it also assigns the OrienteerNavigationPage to be the MainPage.  This page derives from NavigationPage, but includes some monitoring of the navigation and controls storage of the navigation stack. 
+The sample is also using simple page style navigation so it also assigns the OrienteerNavigationPage to be the MainPage.  This page derives from NavigationPage, but includes some monitoring of the navigation and controls storage of the navigation stack.
+
+####Windows Phone
+In the Windows Phone app, InitializePhoneApplication method has been modified as follows
+
+        private IContainer _container;
+
+        // Do not add any additional code to this method
+        private void InitializePhoneApplication()
+        {
+            if (phoneApplicationInitialized)
+                return;
+
+            LetThereBeIoC(typeof(App).Assembly);
+
+            // Create the frame but don't set it as RootVisual yet; this allows the splash
+            // screen to remain active until the application is ready to render.
+            RootFrame = new PhoneApplicationFrame();
+            RootFrame.Navigated += CompleteInitializePhoneApplication;
+
+            // Handle navigation failures
+            RootFrame.NavigationFailed += RootFrame_NavigationFailed;
+
+            // Handle reset requests for clearing the backstack
+            RootFrame.Navigated += CheckForResetNavigation;
+
+            InitFrame();
+
+            // Ensure we don't initialize again
+            phoneApplicationInitialized = true;
+        }
+
+        private async Task InitFrame()
+        {
+            var adapter = _container.Resolve<IPhoneApplicationFrameAdapter>();
+            adapter.PhoneApplicationFrame = RootFrame;
+            await adapter.DoStartup();
+        }
+
+        private void LetThereBeIoC(Assembly callingAssembly)
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterAssemblyModules(new[]
+            {
+                callingAssembly
+            });
+
+            _container = builder.Build();
+        } 
+
+The IoC setup here is very similar to the Xamarin Forms sample.  The main difference is the way we hook into the underlying navigation provided by Windows Phone.  Here we use an adapter that connects to the standard PhoneApplicationFrame and then monitors/controls the navigation.
 
 ###IoC and Autofac
 Default modules
