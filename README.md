@@ -11,6 +11,7 @@ Like Magellan, navigation is based on MVC and the use of Controller Actions.  Th
 
 Here are some example actions
 
+```csharp
     public async Task<ActionResult> ShowAll()
     {
         var artists = await _musicProvider.GetArtists();
@@ -30,6 +31,7 @@ Here are some example actions
         
 		return new ViewModelActionResult(() => _artistViewModelFactory(artist));
     } 
+```
 
 So the action could be as simple as ShowAll, where you just need to retrieve data and hand it to a ViewModel, or it can contain more complicated routing logic like ShowArtist, where we're making decisions based on the data that was retrieved.  This could of course also include decisions based on who the user is, what permissions they have (for Line of Business style apps) or any other requirements you may have. 
 
@@ -40,15 +42,17 @@ For this, the Navigator provided by Orienteer also includes methods to retrieve 
 
 A controller action used for retrieving data returns a DataActionResult, for example
 
+```csharp
 	public ActionResult SearchForSuggestions(string searchText)
 	{
 	    return new DataActionResult<SearchResult[]>(GetSearchResults(searchText));
 	}
-
+```
 And to call that controller action, the GetData call would be
 
+```csharp
     var result = navigator.GetData<SearchController, SearchResult[]>(c => c.SearchForSuggestions(queryText));
-
+```
 
 ###Navigation Stack persistence
 Internally Orienteer uses a string to represent the calls to the controller actions.  These strings look much like the URLs you'd use to navigate to a controller action in ASP.NET MVC.
@@ -77,6 +81,7 @@ The samples use
 ####Xamarin Forms
 In the Xamarin Forms app the App class has been updated as follows.
 
+```csharp
         private IContainer _container;
 
         /// <summary>
@@ -101,6 +106,7 @@ In the Xamarin Forms app the App class has been updated as follows.
 
             _container = builder.Build();
         }
+```
 
 This code scans the PCL DLL and the native app dll (callingAssembly) for Autofac Modules to register, so platform specific registrations are added to the Modules in the native projects.
 
@@ -109,6 +115,7 @@ The sample is also using simple page style navigation so it also assigns the Ori
 ####Windows Phone
 In the Windows Phone app, InitializePhoneApplication method has been modified as follows
 
+```csharp
         private IContainer _container;
 
         // Do not add any additional code to this method
@@ -153,6 +160,7 @@ In the Windows Phone app, InitializePhoneApplication method has been modified as
 
             _container = builder.Build();
         } 
+```
 
 The IoC setup here is very similar to the Xamarin Forms sample.  The main difference is the way we hook into the underlying navigation provided by Windows Phone.  Here we use an adapter that connects to the standard PhoneApplicationFrame and then monitors/controls the navigation.
 
@@ -179,6 +187,7 @@ The NavigationStack registration consists of a couple of parameters that are imp
 
 All of the samples are setup to restore the navigation stack, here's an example Autofac module registration
 
+```csharp
 	    builder
 	        .RegisterType<NavigationStack>()
 	        .As<INavigationStack>()
@@ -186,7 +195,7 @@ All of the samples are setup to restore the navigation stack, here's an example 
 	        .WithParameter("alwaysStartFromDefaultRoute", false)
 	        .InstancePerLifetimeScope()
 	        .PropertiesAutowired();
-
+```
 
 ###ViewLocator
 To configure the provided ViewLocator, you must provide a base namespace for the Views and ViewModels.  The locator assumes a parallel heirarchy exists for the Views and ViewModels.  In the sample the Views and ViewModels are in the same folder, so the same values are used for both base namespaces, however you don't have to do it this way if you prefer to have separate folder structures.
