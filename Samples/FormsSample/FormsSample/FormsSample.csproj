@@ -58,6 +58,7 @@
     <Compile Include="Modules\PresentationBusModule.cs" />
     <Compile Include="Modules\PresentationBusSubscriptionModule.cs" />
     <Compile Include="Modules\ViewModelModule.cs" />
+    <Compile Include="Modules\ViewModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

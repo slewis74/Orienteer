@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="Data\Navigation\WinPhoneNavigationStackStorage.cs" />
     <Compile Include="IPhoneApplicationFrameAdapter.cs" />
+    <Compile Include="Pages\ViewFactory.cs" />
     <Compile Include="Pages\ViewLocator.cs" />
     <Compile Include="PhoneApplicationFrameAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

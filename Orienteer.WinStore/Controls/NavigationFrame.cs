@@ -1,11 +1,9 @@
 ﻿using Orienteer.Pages;
 using Orienteer.Pages.Navigation;
 using Orienteer.Requests;
-using Orienteer.WinStore.Data.Navigation;
 using Orienteer.WinStore.Events;
 using Orienteer.WinStore.Pages;
 using Orienteer.WinStore.Requests;
-using Orienteer.Xaml;
 using Orienteer.Xaml.ViewModels;
 using Slew.PresentationBus;
 using System;
@@ -57,11 +55,11 @@ namespace Orienteer.WinStore.Controls
         }
 
         public static readonly DependencyProperty ViewLocatorProperty =
-            DependencyProperty.Register("ViewLocator", typeof(object), typeof(NavigationFrame), new PropertyMetadata(default(IViewLocator<FrameworkElement>)));
+            DependencyProperty.Register("ViewLocator", typeof(object), typeof(NavigationFrame), new PropertyMetadata(default(IViewLocator)));
 
-        public IViewLocator<FrameworkElement> ViewLocator
+        public IViewLocator ViewLocator
         {
-            get { return (IViewLocator<FrameworkElement>)GetValue(ViewLocatorProperty); }
+            get { return (IViewLocator)GetValue(ViewLocatorProperty); }
             set { SetValue(ViewLocatorProperty, value); }
         }
 

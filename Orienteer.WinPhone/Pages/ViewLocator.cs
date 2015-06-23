@@ -1,14 +1,20 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using Orienteer.Xaml;
 
 namespace Orienteer.WinPhone.Pages
 {
     public class ViewLocator : ViewLocatorBase<FrameworkElement>, IViewLocator
     {
+        private readonly IViewFactory<FrameworkElement> _viewFactory;
+
+        public ViewLocator(IViewFactory<FrameworkElement> viewFactory)
+        {
+            _viewFactory = viewFactory;
+        }
+
         public override FrameworkElement Resolve(object viewModel)
         {
-            var view = (FrameworkElement)Activator.CreateInstance(DetermineViewType(viewModel.GetType()));
+            var view = _viewFactory.Resolve(DetermineViewType(viewModel.GetType()));
             view.DataContext = viewModel;
             return view;
         }

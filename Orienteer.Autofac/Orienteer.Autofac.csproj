@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AutofacControllerFactory.cs" />
+    <Compile Include="AutofacViewFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +47,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Orienteer.Xaml\Orienteer.Xaml.csproj">
+      <Project>{0bc0040e-1c82-4032-9a94-5e714451e647}</Project>
+      <Name>Orienteer.Xaml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orienteer\Orienteer.csproj">
       <Project>{f14590d2-1e0b-44f2-b907-0909177536fe}</Project>
       <Name>Orienteer</Name>

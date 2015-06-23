@@ -22,7 +22,7 @@ namespace Orienteer.WinStore.Pages
             Unloaded += StopLayoutUpdates;
         }
 
-        public IViewLocator<FrameworkElement> ViewLocator { get; set; }
+        public IViewLocator ViewLocator { get; set; }
 
         public static readonly DependencyProperty NarrowWidthProperty =
             DependencyProperty.Register("NarrowWidth", typeof(int), typeof(ContentSwitchingPage), new PropertyMetadata(500));

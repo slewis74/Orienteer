@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
+using System.Windows;
 using Autofac;
+using Orienteer.Autofac;
 using Orienteer.Pages.Navigation;
 using Orienteer.WinPhone;
 using Orienteer.WinPhone.Data.Navigation;
@@ -35,6 +37,11 @@ namespace WinPhoneSample.Modules
 
             builder
                 .RegisterType<Navigator>().AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder
+                .RegisterType<AutofacViewFactory<FrameworkElement>>()
+                .AsImplementedInterfaces()
                 .SingleInstance();
 
             builder

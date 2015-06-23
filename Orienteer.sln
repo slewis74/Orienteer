@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{30871CD8-050F-45E3-8878-82D73E517AFB}"
 	ProjectSection(SolutionItems) = preProject
 		App.xaml.install.xdt = App.xaml.install.xdt
+		Orienteer.Autofac.nuspec = Orienteer.Autofac.nuspec
 		Orienteer.nuspec = Orienteer.nuspec
 	EndProjectSection
 EndProject

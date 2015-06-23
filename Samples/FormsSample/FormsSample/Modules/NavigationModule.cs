@@ -1,7 +1,9 @@
 ﻿using System.Reflection;
 using Autofac;
+using Orienteer.Autofac;
 using Orienteer.Forms.Pages;
 using Orienteer.Pages.Navigation;
+using Xamarin.Forms;
 using Module = Autofac.Module;
 
 namespace FormsSample.Modules
@@ -29,6 +31,11 @@ namespace FormsSample.Modules
 
             builder
                 .RegisterType<Navigator>().AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder
+                .RegisterType<AutofacViewFactory<Page>>()
+                .AsImplementedInterfaces()
                 .SingleInstance();
 
             builder

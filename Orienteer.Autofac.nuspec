@@ -6,7 +6,7 @@
         <authors>Shannon Lewis</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Autofac controller factory for the Orienteer Navigation framework.</description>
-		<projectUrl>https://github.com/slewis74/Orienteer</projectUrl>
+		    <projectUrl>https://github.com/slewis74/Orienteer</projectUrl>
         <dependencies>
             <dependency id="Orienteer" version="1.0.0" />
         </dependencies>
