@@ -112,7 +112,6 @@ namespace WinPhoneSample
         private bool phoneApplicationInitialized = false;
         private IContainer _container;
 
-        // Do not add any additional code to this method
         private void InitializePhoneApplication()
         {
             if (phoneApplicationInitialized)
@@ -120,22 +119,15 @@ namespace WinPhoneSample
 
             LetThereBeIoC(typeof(App).Assembly);
 
-            // Create the frame but don't set it as RootVisual yet; this allows the splash
-            // screen to remain active until the application is ready to render.
             RootFrame = new PhoneApplicationFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
-
-            // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
-
-            // Handle reset requests for clearing the backstack
             RootFrame.Navigated += CheckForResetNavigation;
 
             InitFrameAdapter();
 
             DoRescan();
 
-            // Ensure we don't initialize again
             phoneApplicationInitialized = true;
         }
 

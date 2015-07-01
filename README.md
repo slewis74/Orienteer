@@ -118,7 +118,6 @@ In the Windows Phone app, InitializePhoneApplication method has been modified as
 ```csharp
         private IContainer _container;
 
-        // Do not add any additional code to this method
         private void InitializePhoneApplication()
         {
             if (phoneApplicationInitialized)
@@ -126,24 +125,20 @@ In the Windows Phone app, InitializePhoneApplication method has been modified as
 
             LetThereBeIoC(typeof(App).Assembly);
 
-            // Create the frame but don't set it as RootVisual yet; this allows the splash
-            // screen to remain active until the application is ready to render.
             RootFrame = new PhoneApplicationFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
-
-            // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
-
-            // Handle reset requests for clearing the backstack
             RootFrame.Navigated += CheckForResetNavigation;
 
-            InitFrame();
+            InitFrameAdapter();
+
+            DoRescan();
 
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;
         }
 
-        private async Task InitFrame()
+        private async Task InitFrameAdapter()
         {
             var adapter = _container.Resolve<IPhoneApplicationFrameAdapter>();
             adapter.PhoneApplicationFrame = RootFrame;
@@ -162,7 +157,7 @@ In the Windows Phone app, InitializePhoneApplication method has been modified as
         } 
 ```
 
-The IoC setup here is very similar to the Xamarin Forms sample.  The main difference is the way we hook into the underlying navigation provided by Windows Phone.  Here we use an adapter that connects to the standard PhoneApplicationFrame and then monitors/controls the navigation.
+The IoC setup here is very similar to the Xamarin Forms sample.  The main difference is the way we hook into the underlying navigation provided by Windows Phone.  Here we use an adapter that connects to the standard PhoneApplicationFrame and then monitors/controls the navigation.  See my [blog post](http://blog.shannonlewis.me/2015/07/orienteer-winphone/) for other config details.
 
 ###IoC and Autofac
 Default modules
