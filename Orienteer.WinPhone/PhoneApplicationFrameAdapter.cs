@@ -44,6 +44,15 @@ namespace Orienteer.WinPhone
 
             _navigationStackCache = new Stack<string>();
             _dataContextCache = new Dictionary<string, object>();
+
+            _manifestNavigationPage = "/Orienteer";
+        }
+
+        private string _manifestNavigationPage;
+        public string ManifestNavigationPage
+        {
+            get { return _manifestNavigationPage; }
+            set { _manifestNavigationPage = "/" + value; }
         }
 
         public PhoneApplicationFrame PhoneApplicationFrame
@@ -68,6 +77,7 @@ namespace Orienteer.WinPhone
         }
 
         private ManualResetEvent _resetEvent;
+
         public async Task DoStartup()
         {
             if (_hasStarted)
@@ -110,6 +120,11 @@ namespace Orienteer.WinPhone
             }
             
             navigatingCancelEventArgs.Cancel = true;
+
+            if (originalString == ManifestNavigationPage)
+            {
+                return;
+            }
 
             var route = navigatingCancelEventArgs.Uri.ToRoute();
             _navigator.NavigateAsync(route);

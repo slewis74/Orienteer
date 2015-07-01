@@ -131,7 +131,7 @@ namespace WinPhoneSample
             // Handle reset requests for clearing the backstack
             RootFrame.Navigated += CheckForResetNavigation;
 
-            InitFrame();
+            InitFrameAdapter();
 
             DoRescan();
 
@@ -139,7 +139,7 @@ namespace WinPhoneSample
             phoneApplicationInitialized = true;
         }
 
-        private async Task InitFrame()
+        private async Task InitFrameAdapter()
         {
             var adapter = _container.Resolve<IPhoneApplicationFrameAdapter>();
             adapter.PhoneApplicationFrame = RootFrame;
