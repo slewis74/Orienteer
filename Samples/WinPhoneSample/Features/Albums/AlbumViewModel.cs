@@ -18,11 +18,14 @@ namespace WinPhoneSample.Features.Albums
             IPresentationBus presentationBus,
             INavigator navigator,
             Artist artist,
-            Album album)
+            Album album,
+            PinAlbumCommand.Factory pinAlbumCommandFactory)
             : base(navigator)
         {
             _artist = artist;
             _album = album;
+
+            PinAlbum = pinAlbumCommandFactory(_artist.Name, _album.Title);
 
             PlaySong = new PlaySongCommand(presentationBus);
             PlayAlbum = new PlayAlbumCommand(presentationBus);
@@ -45,6 +48,8 @@ namespace WinPhoneSample.Features.Albums
         public PlayAlbumCommand PlayAlbum { get; private set; }
         public AddSongCommand AddSong { get; private set; }
         public AddAlbumCommand AddAlbum { get; private set; }
+
+        public PinAlbumCommand PinAlbum { get; set; }
 
         public string Title { get { return _album.Title; } }
         public string ArtistName { get { return _artist.Name; } }

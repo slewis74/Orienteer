@@ -113,6 +113,13 @@ namespace Orienteer.WinPhone
         {
             var originalString = navigatingCancelEventArgs.Uri.OriginalString;
 
+            if (originalString == ManifestNavigationPage)
+            {
+                DoStartup();
+                navigatingCancelEventArgs.Cancel = true;
+                return;
+            }
+
             // ignore this event if we're navigating to a page or an external app, rather than a route.
             if (originalString.Contains(".xaml") || originalString.Contains("external"))
             {
@@ -126,7 +133,8 @@ namespace Orienteer.WinPhone
                 return;
             }
 
-            var route = navigatingCancelEventArgs.Uri.ToRoute();
+            // NOTE: the Uri will have Url encoding if it was sourced from a secondary tile.
+            var route = navigatingCancelEventArgs.Uri.ToRoute().WithoutUrlEncoding();
             _navigator.NavigateAsync(route);
         }
 
@@ -194,8 +202,7 @@ namespace Orienteer.WinPhone
     {
         public static string ToRoute(this Uri @this)
         {
-            var route = @this.ToString();
-            return route[0] == '/' ? route.Substring(1) : route;
+            return @this.ToString().ToRoute();
         }
     }
 }

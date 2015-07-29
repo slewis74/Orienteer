@@ -103,6 +103,7 @@
       <DependentUpon>AlbumView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\Albums\AlbumViewModel.cs" />
+    <Compile Include="Features\Albums\PinAlbumCommand.cs" />
     <Compile Include="Features\Albums\PlayAlbumCommand.cs" />
     <Compile Include="Features\Albums\PlaySongCommand.cs" />
     <Compile Include="Features\Albums\TrackViewModel.cs" />
@@ -119,6 +120,7 @@
     </Compile>
     <Compile Include="Features\Artists\Single\ArtistViewModel.cs" />
     <Compile Include="Features\Artists\Single\DisplayAlbumCommand.cs" />
+    <Compile Include="Features\Artists\Single\PinArtistCommand.cs" />
     <Compile Include="Features\Artists\Single\PlayArtistCommand.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -171,6 +173,7 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\favs.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

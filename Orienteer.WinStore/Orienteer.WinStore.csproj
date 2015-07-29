@@ -141,7 +141,7 @@
     <Compile Include="Requests\DisplaySettingsRequest.cs" />
     <Compile Include="ViewModels\Positioning.cs" />
     <Compile Include="ViewModels\SearchViewModelBase.cs" />
-    <Compile Include="ViewModels\TogglePinCommand.cs" />
+    <Compile Include="Commands\TogglePinCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="OrienteerResources\Controls.xaml">

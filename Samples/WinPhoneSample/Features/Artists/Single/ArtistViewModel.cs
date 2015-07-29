@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Orienteer.Pages.Navigation;
 using Orienteer.Xaml.ViewModels;
 using Sample.Shared.Model;
@@ -15,9 +16,11 @@ namespace WinPhoneSample.Features.Artists.Single
         public ArtistViewModel(
             IPresentationBus presentationBus,
             INavigator navigator,
+            PinArtistCommand.Factory pinArtistCommandFactory,
             Artist artist)
             : base(navigator)
         {
+            PinArtist = pinArtistCommandFactory(artist.Name);
             _artist = artist;
 
             DisplayAlbum = new DisplayAlbumCommand(Navigator, _artist);
@@ -40,6 +43,8 @@ namespace WinPhoneSample.Features.Artists.Single
         public string LargeBitmapUri { get { return _artist.LargeBitmapUri; } }
 
         public PlayArtistCommand PlayArtist { get; private set; }
+
+        public PinArtistCommand PinArtist { get; set; }
 
         public Artist GetArtist()
         {

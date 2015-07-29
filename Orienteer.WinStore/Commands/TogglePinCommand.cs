@@ -2,9 +2,10 @@
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Orienteer.WinStore.ViewModels;
 using Orienteer.Xaml.ViewModels;
 
-namespace Orienteer.WinStore.ViewModels
+namespace Orienteer.WinStore.Commands
 {
     public abstract class TogglePinCommand : Command<FrameworkElement>
     {

@@ -40,10 +40,13 @@
     <Compile Include="Data\DispatchesToOriginalThreadBase.cs" />
     <Compile Include="Data\DistinctAsyncObservableCollection.cs" />
     <Compile Include="Data\GroupedData.cs" />
+    <Compile Include="Pages\ControllerRouteConverter.cs" />
+    <Compile Include="Pages\IControllerRouteConverter.cs" />
     <Compile Include="Pages\Navigation\INavigationStack.cs" />
     <Compile Include="Pages\Navigation\INavigationStackStorage.cs" />
     <Compile Include="Pages\Navigation\NavigationStack.cs" />
     <Compile Include="Pages\Navigation\NavigationStackStorage.cs" />
+    <Compile Include="Pages\RouteDescriptor.cs" />
     <Compile Include="Requests\GoBackRequest.cs" />
     <Compile Include="Requests\GoHomeRequest.cs" />
     <Compile Include="Pages\Controller.cs" />
@@ -69,6 +72,7 @@
     <Compile Include="Requests\PageNavigationRequestEventArgs.cs" />
     <Compile Include="Requests\ViewModelNavigationRequest.cs" />
     <Compile Include="Requests\ViewModelNavigationRequestEventArgs.cs" />
+    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Slew.PresentationBus">

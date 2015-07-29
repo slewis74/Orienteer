@@ -83,6 +83,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\PinSecondaryTileCommand.cs" />
     <Compile Include="Data\Navigation\WinPhoneNavigationStackStorage.cs" />
     <Compile Include="IPhoneApplicationFrameAdapter.cs" />
     <Compile Include="Pages\ViewFactory.cs" />

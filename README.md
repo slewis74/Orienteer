@@ -142,7 +142,6 @@ In the Windows Phone app, InitializePhoneApplication method has been modified as
         {
             var adapter = _container.Resolve<IPhoneApplicationFrameAdapter>();
             adapter.PhoneApplicationFrame = RootFrame;
-            await adapter.DoStartup();
         }
 
         private void LetThereBeIoC(Assembly callingAssembly)

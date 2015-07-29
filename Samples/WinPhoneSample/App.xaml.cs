@@ -135,7 +135,6 @@ namespace WinPhoneSample
         {
             var adapter = _container.Resolve<IPhoneApplicationFrameAdapter>();
             adapter.PhoneApplicationFrame = RootFrame;
-            await adapter.DoStartup();
         }
 
         private void LetThereBeIoC(Assembly callingAssembly)

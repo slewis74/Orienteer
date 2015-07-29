@@ -12,13 +12,16 @@ namespace Orienteer.Pages
     {
         private readonly IControllerFactory _controllerFactory;
         private readonly IControllerLocator _controllerLocator;
+        private readonly IControllerRouteConverter _controllerRouteConverter;
 
         public ControllerInvoker(
             IControllerFactory controllerFactory,
-            IControllerLocator controllerLocator)
+            IControllerLocator controllerLocator,
+            IControllerRouteConverter controllerRouteConverter)
         {
             _controllerFactory = controllerFactory;
             _controllerLocator = controllerLocator;
+            _controllerRouteConverter = controllerRouteConverter;
         }
 
         public ControllerInvokerResult Call<TController>(Expression<Func<TController, ActionResult>> action)
@@ -27,14 +30,13 @@ namespace Orienteer.Pages
             var instance = _controllerFactory.Create<TController>();
 
             var body = (MethodCallExpression)action.Body;
-            var parameterValues = new List<object>();
-            var route = BuildMethodCall<TController>(action, body, parameterValues);
+            var routeDescriptor = _controllerRouteConverter.GetRoute(action);
 
-            var result = (ActionResult)body.Method.Invoke(instance, parameterValues.ToArray());
+            var result = (ActionResult)body.Method.Invoke(instance, routeDescriptor.ParameterValues.ToArray());
             
             return new ControllerInvokerResult
                        {
-                           Route = route,
+                           Route = routeDescriptor.Route,
                            Result = result
                        };
         }
@@ -45,50 +47,17 @@ namespace Orienteer.Pages
             var instance = _controllerFactory.Create<TController>();
 
             var body = (MethodCallExpression)action.Body;
-            var parameterValues = new List<object>();
-            var route = BuildMethodCall<TController>(action, body, parameterValues);
+            var routeDescriptor = _controllerRouteConverter.GetAsyncRoute(action);
 
-            var result = await (Task<ActionResult>)body.Method.Invoke(instance, parameterValues.ToArray());
+            var result = await (Task<ActionResult>)body.Method.Invoke(instance, routeDescriptor.ParameterValues.ToArray());
 
             return new ControllerInvokerResult
             {
-                Route = route,
+                Route = routeDescriptor.Route,
                 Result = result
             };
         }
 
-        private static string BuildMethodCall<TController>(LambdaExpression action, MethodCallExpression body, List<object> parameterValues)
-            where TController : IController
-        {
-            var parameters = body.Method.GetParameters();
-            var arguments = body.Arguments;
-            for (var i = 0; i < parameters.Length && i < arguments.Count; i++)
-            {
-                var argument = arguments[i];
-                var lambda = Expression.Lambda<Func<TController, object>>(Expression.Convert(argument, typeof (object)),
-                                                                          action.Parameters.ToList());
-                var compiled = lambda.Compile();
-                var value = compiled(default(TController));
-
-                parameterValues.Add(value);
-            }
-
-            var route = typeof (TController).Name.Replace("Controller", string.Empty) + "/" +
-                      body.Method.Name;
-            if (parameterValues.Any())
-            {
-                route += "?";
-                for (var paramIndex = 0; paramIndex < parameters.Length; paramIndex++)
-                {
-                    if (paramIndex > 0)
-                    {
-                        route += "&";
-                    }
-                    route += parameters[paramIndex].Name + "=" + parameterValues[paramIndex];
-                }
-            }
-            return route;
-        }
 
         public async Task<ControllerInvokerResult> CallAsync(string route)
         {
@@ -141,6 +110,8 @@ namespace Orienteer.Pages
 
         private ControllerRoute ParseRoute(string route)
         {
+            route = route.ToRoute();
+
             var indexOfControllerActionSeparator = route.IndexOf('/');
             var controllerName = route.Substring(0, indexOfControllerActionSeparator);
 
