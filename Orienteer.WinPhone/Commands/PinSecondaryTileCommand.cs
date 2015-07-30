@@ -24,25 +24,32 @@ namespace Orienteer.WinPhone.Commands
             return IsNotAlreadyPinned;
         }
 
-        public async override void Execute(FrameworkElement parameter)
+        public override void Execute(FrameworkElement parameter)
         {
-            if (IsNotAlreadyPinned)
+            var tileData = new IconicTileData
             {
-                var tileData = new IconicTileData
-                {
-                    Title = TileTitle,
-                    IconImage = new Uri("/Assets/ApplicationIcon.png", UriKind.Relative),
-                    WideContent1 = WideContent1,
-                    WideContent2 = WideContent2,
-                    WideContent3 = WideContent3
-                };
+                Title = TileTitle,
+                IconImage = new Uri("/Assets/Tiles/IconicTileMediumLarge.png", UriKind.Relative),
+                SmallIconImage = new Uri("/Assets/Tiles/IconicTileSmall.png", UriKind.Relative),
+                WideContent1 = WideContent1,
+                WideContent2 = WideContent2,
+                WideContent3 = WideContent3
+            };
+
+            var tile = ShellTile.ActiveTiles.SingleOrDefault(t => t.NavigationUri.ToString() == ActivationRoute);
+            if (tile == null)
+            {
 
                 ShellTile.Create(new Uri(ActivationRoute, UriKind.Relative), tileData, true);
-
-                NotifyChanged(() => IsAlreadyPinned);
-                NotifyChanged(() => IsNotAlreadyPinned);
-                RaiseCanExecuteChanged();
             }
+            else
+            {
+                tile.Update(tileData);
+            }
+
+            NotifyChanged(() => IsAlreadyPinned);
+            NotifyChanged(() => IsNotAlreadyPinned);
+            RaiseCanExecuteChanged();
         }
     }
 }
