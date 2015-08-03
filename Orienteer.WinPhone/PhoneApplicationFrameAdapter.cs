@@ -78,7 +78,7 @@ namespace Orienteer.WinPhone
 
         private ManualResetEvent _resetEvent;
 
-        public async Task DoStartup()
+        private async Task DoStartup()
         {
             if (_hasStarted)
                 return;
