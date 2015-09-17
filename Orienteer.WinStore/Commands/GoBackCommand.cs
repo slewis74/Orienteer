@@ -1,8 +1,9 @@
-﻿using Orienteer.Requests;
+﻿using System.Threading.Tasks;
+using Orienteer.Requests;
 using Orienteer.WinStore.Events;
 using Orienteer.WinStore.Requests;
 using Orienteer.Xaml.ViewModels;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace Orienteer.WinStore.Commands
 {
@@ -21,20 +22,21 @@ namespace Orienteer.WinStore.Commands
         public override bool CanExecute(object parameter)
         {
             if (_canGoBack.HasValue == false)
-                _canGoBack = RequestCanGoBackState();
+                RequestCanGoBackState();
             return _canGoBack.GetValueOrDefault();
         }
 
-        private bool? RequestCanGoBackState()
+        private async Task RequestCanGoBackState()
         {
             var request = new CanGoBackRequest();
-            _presentationBus.PublishAsync(request);
-            return request.CanGoBack;
+            var response = await _presentationBus.Request(request);
+            _canGoBack = response.CanGoBack;
+            RaiseCanExecuteChanged();
         }
 
         public override void Execute(object parameter)
         {
-            _presentationBus.PublishAsync(new GoBackRequest());
+            _presentationBus.Send(new Orienteer.Requests.GoBackCommand());
         }
 
         public void Handle(CanGoBackChanged presentationEvent)

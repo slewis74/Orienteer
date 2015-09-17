@@ -1,4 +1,4 @@
-﻿using Slew.PresentationBus;
+﻿using PresentationBus;
 
 namespace Orienteer.WinStore.Events
 {

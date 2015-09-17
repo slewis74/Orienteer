@@ -1,6 +1,6 @@
 ﻿using Orienteer.Xaml.ViewModels;
 using Sample.Shared.Requests;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace FormsSample.Features.Artists.Single
 {
@@ -16,7 +16,7 @@ namespace FormsSample.Features.Artists.Single
         public override void Execute(ArtistViewModel parameter)
         {
             var artist = parameter.GetArtist();
-            _presentationBus.PublishAsync(new PlayArtistNowRequest(artist));
+            _presentationBus.Send(new PlayArtistNowCommand(artist));
         }
     }
 }

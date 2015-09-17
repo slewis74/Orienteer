@@ -1,10 +1,10 @@
-﻿using Slew.PresentationBus;
+﻿using PresentationBus;
 
 namespace Orienteer.Requests
 {
-    public class PageNavigationRequest : PresentationRequest
+    public class PageNavigationCommand : IPresentationCommand
     {
-        public PageNavigationRequest(string route, PageNavigationRequestEventArgs args)
+        public PageNavigationCommand(string route, PageNavigationRequestEventArgs args)
         {
             Args = args;
             Route = route;

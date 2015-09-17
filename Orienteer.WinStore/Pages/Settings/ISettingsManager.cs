@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Orienteer.Pages;
 using Orienteer.Pages.Navigation;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace Orienteer.WinStore.Pages.Settings
 {

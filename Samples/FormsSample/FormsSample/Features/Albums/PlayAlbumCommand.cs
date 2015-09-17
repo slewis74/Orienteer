@@ -1,6 +1,6 @@
 ﻿using Orienteer.Xaml.ViewModels;
 using Sample.Shared.Requests;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace FormsSample.Features.Albums
 {
@@ -15,7 +15,7 @@ namespace FormsSample.Features.Albums
 
         public override void Execute(AlbumViewModel parameter)
         {
-            _presentationBus.PublishAsync(new PlayAlbumNowRequest(parameter.ArtistName, parameter.GetAlbum()));
+            _presentationBus.Send(new PlayAlbumNowCommand(parameter.ArtistName, parameter.GetAlbum()));
         }
 
     }

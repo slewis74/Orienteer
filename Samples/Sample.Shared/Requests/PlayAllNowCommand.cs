@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Sample.Shared.Model;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace Sample.Shared.Requests
 {
-    public class PlayAllNowRequest : PresentationRequest
+    public class PlayAllNowCommand : IPresentationCommand
     {
-        public PlayAllNowRequest(IEnumerable<Artist> artists)
+        public PlayAllNowCommand(IEnumerable<Artist> artists)
         {
             Artists = artists;
         }

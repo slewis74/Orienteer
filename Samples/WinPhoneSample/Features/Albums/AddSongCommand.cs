@@ -1,6 +1,6 @@
 using Orienteer.Xaml.ViewModels;
 using Sample.Shared.Requests;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace WinPhoneSample.Features.Albums
 {
@@ -15,7 +15,7 @@ namespace WinPhoneSample.Features.Albums
 
         public override void Execute(TrackViewModel parameter)
         {
-            _presentationBus.PublishAsync(new AddSongToCurrentPlaylistRequest { Song = parameter.GetSong() });
+            _presentationBus.Send(new AddSongToCurrentPlaylistCommand { Song = parameter.GetSong() });
         }
     }
 }

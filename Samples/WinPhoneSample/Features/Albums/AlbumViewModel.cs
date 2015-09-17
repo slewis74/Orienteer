@@ -3,7 +3,7 @@ using Orienteer.Data;
 using Orienteer.Pages.Navigation;
 using Orienteer.Xaml.ViewModels;
 using Sample.Shared.Model;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace WinPhoneSample.Features.Albums
 {

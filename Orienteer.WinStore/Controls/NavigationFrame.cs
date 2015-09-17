@@ -5,7 +5,7 @@ using Orienteer.WinStore.Events;
 using Orienteer.WinStore.Pages;
 using Orienteer.WinStore.Requests;
 using Orienteer.Xaml.ViewModels;
-using Slew.PresentationBus;
+using PresentationBus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +19,9 @@ namespace Orienteer.WinStore.Controls
 {
     public class NavigationFrame : 
         ContentControl,
-        IHandlePresentationEvent<PageNavigationRequest>,
-        IHandlePresentationEvent<ViewModelNavigationRequest>,
-        IHandlePresentationEvent<GoBackRequest>
+        IHandlePresentationCommand<PageNavigationCommand>,
+        IHandlePresentationCommandAsync<ViewModelNavigationCommand>,
+        IHandlePresentationCommandAsync<GoBackCommand>
     {
         private readonly Stack<NavigationFrameStackItem> _navigationStack;
 
@@ -41,8 +41,8 @@ namespace Orienteer.WinStore.Controls
                 return;
 
             var viewType = Content.GetType();
-            var request = new DisplaySettingsRequest(viewType, args.Request);
-            PresentationBus.PublishAsync(request);
+            var cmd = new DisplaySettingsCommand(viewType, args.Request);
+            PresentationBus.Send(cmd);
         }
 
         public static readonly DependencyProperty TargetNameProperty =
@@ -108,7 +108,7 @@ namespace Orienteer.WinStore.Controls
 
             var frame = (NavigationFrame) d;
 
-            frame.PresentationBus.Subscribe(frame);
+            ((IPresentationBusConfiguration)frame.PresentationBus).Subscribe(frame);
         }
 
         public IPresentationBus PresentationBus
@@ -130,7 +130,7 @@ namespace Orienteer.WinStore.Controls
         {
             if (PresentationBus == null) return;
 
-            PresentationBus.UnSubscribe(this);
+            ((IPresentationBusConfiguration)PresentationBus).UnSubscribe(this);
         }
 
         private static void TryToRestoreNavigationStack(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -161,48 +161,47 @@ namespace Orienteer.WinStore.Controls
             
             await CheckItemContent(navigationFrameStackItem);
 
-            SwitchContent(navigationFrameStackItem.Content);
+            await SwitchContent(navigationFrameStackItem.Content);
         }
 
-        public async void Handle(GoBackRequest request)
+        public async Task HandleAsync(GoBackCommand command)
         {
             if (CanGoBack)
             {
                 await GoBack();
             }
-            request.IsHandled = true;
         }
 
-        public void Handle(PageNavigationRequest request)
+        public void Handle(PageNavigationCommand command)
         {
-            if (request.Args.Target != TargetName)
+            if (command.Args.Target != TargetName)
                 return;
 
-            NavigateToPage(request.Route, request.Args.ViewType, request.Args.Parameter);
+            NavigateToPage(command.Route, command.Args.ViewType, command.Args.Parameter);
         }
 
-        private void NavigateToPage(string route, Type viewType, object parameter)
+        private async Task NavigateToPage(string route, Type viewType, object parameter)
         {
             // create the view instance.
             var view = (FrameworkElement)Activator.CreateInstance(viewType);
             view.DataContext = parameter;
 
-            GoForward(route, view);
+            await GoForward(route, view);
         }
 
-        public void Handle(ViewModelNavigationRequest request)
+        public async Task HandleAsync(ViewModelNavigationCommand command)
         {
-            if (request.Args.Target != TargetName)
+            if (command.Args.Target != TargetName)
                 return;
 
-            NavigateToViewModelAndAddToStack(request.Route, request.Args.ViewModel);
+            await NavigateToViewModelAndAddToStack(command.Route, command.Args.ViewModel);
         }
 
-        private void NavigateToViewModelAndAddToStack(string route, object viewModel)
+        private async Task NavigateToViewModelAndAddToStack(string route, object viewModel)
         {
             var contentSwitchingPage = NavigateToViewModel(viewModel);
 
-            GoForward(route, contentSwitchingPage);
+            await GoForward(route, contentSwitchingPage);
         }
 
         private FrameworkElement NavigateToViewModel(object viewModel)
@@ -219,7 +218,7 @@ namespace Orienteer.WinStore.Controls
             return contentSwitchingPage;
         }
 
-        private void GoForward(string route, FrameworkElement newContent)
+        private async Task GoForward(string route, FrameworkElement newContent)
         {
             // We only want 1 SearchViewModel on the top of the stack, so if the top item and the new content
             // are both SearchViewModels, we pop the top one off and discard it.
@@ -233,7 +232,7 @@ namespace Orienteer.WinStore.Controls
 
             _navigationStack.Push(new NavigationFrameStackItem(route, newContent));
 
-            SwitchContent(newContent);
+            await SwitchContent(newContent);
             
             UpdateCurrentPageTitle(newContent);
 
@@ -253,7 +252,7 @@ namespace Orienteer.WinStore.Controls
             
             var item = _navigationStack.Peek();
             await CheckItemContent(item);
-            SwitchContent(item.Content);
+            await SwitchContent(item.Content);
 
             UpdateCurrentPageTitle(item.Content);
 
@@ -263,7 +262,7 @@ namespace Orienteer.WinStore.Controls
             }
         }
 
-        private void SwitchContent(FrameworkElement content)
+        private async Task SwitchContent(FrameworkElement content)
         {
             var dataTransferManager = DataTransferManager.GetForCurrentView();
             if (Content != null)
@@ -272,7 +271,7 @@ namespace Orienteer.WinStore.Controls
             }
 
             Content = content;
-            SetCanGoBack();
+            await SetCanGoBack();
 
             if (Content != null)
             {
@@ -299,10 +298,10 @@ namespace Orienteer.WinStore.Controls
             }
         }
 
-        private void SetCanGoBack()
+        private async Task SetCanGoBack()
         {
             CanGoBack = _navigationStack.Count() > 1;
-            PresentationBus.PublishAsync(new CanGoBackChanged(CanGoBack));
+            await PresentationBus.Publish(new CanGoBackChanged(CanGoBack));
         }
 
         private void UpdateCurrentPageTitle(FrameworkElement newContent)

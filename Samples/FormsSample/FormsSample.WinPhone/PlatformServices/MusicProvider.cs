@@ -11,7 +11,7 @@ using Orienteer;
 using Orienteer.Data;
 using Sample.Shared;
 using Sample.Shared.Events;
-using Slew.PresentationBus;
+using PresentationBus;
 using Album = Sample.Shared.Model.Album;
 using Artist = Sample.Shared.Model.Artist;
 using Song = Sample.Shared.Model.Song;
@@ -56,7 +56,7 @@ namespace FormsSample.WinPhone.PlatformServices
             Artists.AddRange(artists);
             Artists.CompleteLargeUpdate();
 
-            await _presentationBus.PublishAsync(new AlbumDataLoaded(Artists));
+            await _presentationBus.Publish(new AlbumDataLoaded(Artists));
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace FormsSample.WinPhone.PlatformServices
                                 };
                                 album.Songs.Add(song);
                                 newData = true;
-                                await _presentationBus.PublishAsync(new SongLoadedEvent(album, song));
+                                await _presentationBus.Publish(new SongLoadedEvent(album, song));
                                 // save new entry to app storage
                             }
                             

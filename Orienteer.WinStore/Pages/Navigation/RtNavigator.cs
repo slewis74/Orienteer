@@ -3,7 +3,7 @@ using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml.Controls;
 using Orienteer.Pages;
 using Orienteer.Pages.Navigation;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace Orienteer.WinStore.Pages.Navigation
 {

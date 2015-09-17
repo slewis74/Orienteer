@@ -1,10 +1,10 @@
-﻿using Slew.PresentationBus;
+﻿using PresentationBus;
 
 namespace Orienteer.Requests
 {
-    public class ViewModelNavigationRequest : PresentationRequest
+    public class ViewModelNavigationCommand : IPresentationCommand
     {
-        public ViewModelNavigationRequest(string route, ViewModelNavigationRequestEventArgs args, bool animated)
+        public ViewModelNavigationCommand(string route, ViewModelNavigationRequestEventArgs args, bool animated)
         {
             Route = route;
             Args = args;

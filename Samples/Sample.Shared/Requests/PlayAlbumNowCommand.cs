@@ -2,9 +2,9 @@
 
 namespace Sample.Shared.Requests
 {
-    public class PlayAlbumNowRequest : PlayNowRequest<Album>
+    public class PlayAlbumNowCommand : PlayNowCommand<Album>
     {
-        public PlayAlbumNowRequest(string artistName, Album album)
+        public PlayAlbumNowCommand(string artistName, Album album)
             : base(artistName, album.Title)
         {
             Scope = album;

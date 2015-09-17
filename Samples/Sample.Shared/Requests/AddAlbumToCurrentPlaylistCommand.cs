@@ -2,7 +2,7 @@
 
 namespace Sample.Shared.Requests
 {
-    public class AddAlbumToCurrentPlaylistRequest : AddToCurrentPlaylistRequest
+    public class AddAlbumToCurrentPlaylistCommand : AddToCurrentPlaylistCommand
     {
         public Album Album { get; set; }
     }

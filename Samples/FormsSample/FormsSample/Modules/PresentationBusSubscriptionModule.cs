@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Autofac.Core;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace FormsSample.Modules
 {
@@ -16,10 +16,10 @@ namespace FormsSample.Modules
             if (e == null)
                 return;
 
-            var handler = e.Instance as IHandlePresentationEvents;
+            var handler = e.Instance as IHandlePresentationMessages;
             if (handler == null)
                 return;
-            var bus = e.Context.Resolve<IPresentationBus>();
+            var bus = e.Context.Resolve<IPresentationBusConfiguration>();
             bus.Subscribe(handler);
         }
     }

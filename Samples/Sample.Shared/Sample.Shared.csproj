@@ -43,15 +43,15 @@
   <ItemGroup>
     <Compile Include="Events\AlbumDataLoaded.cs" />
     <Compile Include="Events\SongLoadedEvent.cs" />
-    <Compile Include="Requests\AddAlbumToCurrentPlaylistRequest.cs" />
-    <Compile Include="Requests\AddArtistToCurrentPlaylistRequest.cs" />
-    <Compile Include="Requests\AddSongToCurrentPlaylistRequest.cs" />
-    <Compile Include="Requests\AddToCurrentPlaylistRequest.cs" />
-    <Compile Include="Requests\PlayAlbumNowRequest.cs" />
-    <Compile Include="Requests\PlayAllNowRequest.cs" />
-    <Compile Include="Requests\PlayArtistNowRequest.cs" />
-    <Compile Include="Requests\PlayNowRequest.cs" />
-    <Compile Include="Requests\PlaySongNowRequest.cs" />
+    <Compile Include="Requests\AddAlbumToCurrentPlaylistCommand.cs" />
+    <Compile Include="Requests\AddArtistToCurrentPlaylistCommand.cs" />
+    <Compile Include="Requests\AddSongToCurrentPlaylistCommand.cs" />
+    <Compile Include="Requests\AddToCurrentPlaylistCommand.cs" />
+    <Compile Include="Requests\PlayAlbumNowCommand.cs" />
+    <Compile Include="Requests\PlayAllNowCommand.cs" />
+    <Compile Include="Requests\PlayArtistNowCommand.cs" />
+    <Compile Include="Requests\PlayNowCommand.cs" />
+    <Compile Include="Requests\PlaySongNowCommand.cs" />
     <Compile Include="IAlbumArtStorage.cs" />
     <Compile Include="IMusicProvider.cs" />
     <Compile Include="Model\Album.cs" />
@@ -59,10 +59,10 @@
     <Compile Include="Model\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Reference Include="Slew.PresentationBus">
-      <HintPath>..\..\packages\Slew.PresentationBus.1.0.0\lib\portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10\Slew.PresentationBus.dll</HintPath>
+    <Reference Include="PresentationBus, Version=2.0.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PresentationBus.2.0.13\lib\portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0\PresentationBus.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>

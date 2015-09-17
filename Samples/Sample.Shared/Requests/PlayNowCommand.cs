@@ -1,10 +1,10 @@
-﻿using Slew.PresentationBus;
+﻿using PresentationBus;
 
 namespace Sample.Shared.Requests
 {
-    public class PlayNowRequest<T> : PresentationRequest
+    public class PlayNowCommand<T> : IPresentationCommand
     {
-        public PlayNowRequest(string artistName, string albumTitle)
+        public PlayNowCommand(string artistName, string albumTitle)
         {
             ArtistName = artistName;
             AlbumTitle = albumTitle;

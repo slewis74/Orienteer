@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Orienteer.Requests;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace Orienteer.Pages.Navigation
 {
@@ -49,7 +49,7 @@ namespace Orienteer.Pages.Navigation
             var pageResult = result as IPageActionResult;
             if (pageResult != null)
             {
-                _presentationBus.PublishAsync(new PageNavigationRequest(route,
+                _presentationBus.Send(new PageNavigationCommand(route,
                                                                    new PageNavigationRequestEventArgs(pageResult.PageType,
                                                                                                       pageResult.Parameter)));
                 return;
@@ -58,7 +58,7 @@ namespace Orienteer.Pages.Navigation
             var viewModelResult = result as IViewModelActionResult;
             if (viewModelResult != null)
             {
-                _presentationBus.PublishAsync(new ViewModelNavigationRequest(route,
+                _presentationBus.Send(new ViewModelNavigationCommand(route,
                                                                         new ViewModelNavigationRequestEventArgs(
                                                                             viewModelResult.ViewModelInstance),
                                                                             animated));

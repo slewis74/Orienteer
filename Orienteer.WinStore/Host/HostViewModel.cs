@@ -5,7 +5,7 @@ using Orienteer.Pages.Navigation;
 using Orienteer.WinStore.Commands;
 using Orienteer.WinStore.Pages.Navigation;
 using Orienteer.Xaml;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace Orienteer.WinStore.Host
 {

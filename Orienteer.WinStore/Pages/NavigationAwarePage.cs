@@ -76,7 +76,7 @@ namespace Orienteer.WinStore.Pages
             if (viewModel == null)
                 return;
 
-            viewModel.PresentationBus.PublishAsync(new GoHomeRequest());
+            viewModel.PresentationBus.Send(new GoHomeCommand());
         }
 
         public virtual void GoBack(object sender, RoutedEventArgs e)
@@ -85,7 +85,7 @@ namespace Orienteer.WinStore.Pages
             if (viewModel == null)
                 return;
 
-            viewModel.PresentationBus.PublishAsync(new GoBackRequest());
+            viewModel.PresentationBus.Send(new GoBackCommand());
         }
 
         /// <summary>

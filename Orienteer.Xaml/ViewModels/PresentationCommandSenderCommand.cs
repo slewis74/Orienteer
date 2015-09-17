@@ -1,20 +1,20 @@
-﻿using Slew.PresentationBus;
+﻿using PresentationBus;
 
 namespace Orienteer.Xaml.ViewModels
 {
-    public class PresentationRequestCommand<T> : Command
-        where T : IPresentationRequest, new()
+    public class PresentationCommandSenderCommand<T> : Command
+        where T : IPresentationCommand, new()
     {
         private readonly IPresentationBus _presentationBus;
 
-        public PresentationRequestCommand(IPresentationBus presentationBus)
+        public PresentationCommandSenderCommand(IPresentationBus presentationBus)
         {
             _presentationBus = presentationBus;
         }
 
         public override void Execute(object parameter)
         {
-            _presentationBus.PublishAsync(new T());
+            _presentationBus.Send(new T());
         }
     }
 }

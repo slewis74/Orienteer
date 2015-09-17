@@ -3,15 +3,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Orienteer.Pages.Navigation;
 using Orienteer.Requests;
-using Slew.PresentationBus;
+using PresentationBus;
 using Xamarin.Forms;
 
 namespace Orienteer.Forms.Pages
 {
     public class OrienteerNavigationPage :
         NavigationPage,
-        IHandlePresentationEventAsync<ViewModelNavigationRequest>,
-        IHandlePresentationEventAsync<GoBackRequest>
+        IHandlePresentationCommandAsync<ViewModelNavigationCommand>,
+        IHandlePresentationCommandAsync<GoBackCommand>
     {
         private readonly INavigator _navigator;
         private readonly IViewLocator _viewLocator;
@@ -67,19 +67,17 @@ namespace Orienteer.Forms.Pages
             }
         }
 
-        public async Task HandleAsync(ViewModelNavigationRequest presentationEvent)
+        public async Task HandleAsync(ViewModelNavigationCommand command)
         {
-            await NavigateToViewModelAndAddToStack(presentationEvent.Route, presentationEvent.Args.ViewModel, presentationEvent.Animated);
-            presentationEvent.IsHandled = true;
+            await NavigateToViewModelAndAddToStack(command.Route, command.Args.ViewModel, command.Animated);
         }
 
-        public async Task HandleAsync(GoBackRequest presentationEvent)
+        public async Task HandleAsync(GoBackCommand command)
         {
             if (Navigation.NavigationStack.Any())
             {
                 await GoBack();
             }
-            presentationEvent.IsHandled = true;
         }
 
         private async Task NavigateToViewModelAndAddToStack(string route, object viewModel, bool animated)

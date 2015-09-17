@@ -9,14 +9,14 @@ using Orienteer.Data;
 using Orienteer.Pages.Navigation;
 using Orienteer.Requests;
 using Orienteer.WinPhone.Pages;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace Orienteer.WinPhone
 {
     public class PhoneApplicationFrameAdapter : 
         DispatchesToOriginalThreadBase,
         IPhoneApplicationFrameAdapter,
-        IHandlePresentationEvent<ViewModelNavigationRequest>
+        IHandlePresentationCommand<ViewModelNavigationCommand>
     {
         private readonly IViewLocator _viewLocator;
         private readonly INavigator _navigator;
@@ -78,7 +78,7 @@ namespace Orienteer.WinPhone
 
         private ManualResetEvent _resetEvent;
 
-        private async Task DoStartup()
+        private void DoStartup()
         {
             if (_hasStarted)
                 return;
@@ -174,9 +174,9 @@ namespace Orienteer.WinPhone
             }
         }
 
-        public void Handle(ViewModelNavigationRequest presentationEvent)
+        public void Handle(ViewModelNavigationCommand command)
         {
-            var viewType = _viewLocator.DetermineViewType(presentationEvent.Args.ViewModel.GetType());
+            var viewType = _viewLocator.DetermineViewType(command.Args.ViewModel.GetType());
             var typeInfo = viewType.FullName;
             var viewWithoutRootNamespace = typeInfo.Replace(_viewRootNamespace, string.Empty);
             var viewAsPath = "/" + _baseFeatureFolder + viewWithoutRootNamespace.Replace(".", "/") + ".xaml";
@@ -184,17 +184,15 @@ namespace Orienteer.WinPhone
             // store the data context, because we can't control the creation of the page, we have to assign the ViewModel
             // when the OnNavigated fires, meaning the reached the page.
             ClearDataContextForViewPath(viewAsPath);
-            _dataContextCache.Add(viewAsPath, presentationEvent.Args.ViewModel);
+            _dataContextCache.Add(viewAsPath, command.Args.ViewModel);
 
             PhoneApplicationFrame.Navigate(new Uri(viewAsPath, UriKind.Relative));
 
-            _navigationStackCache.Push(presentationEvent.Route);
+            _navigationStackCache.Push(command.Route);
             if (_hasStarted)
             {
                 _navigationStack.StoreRoutes(_navigationStackCache.ToArray());
             }
-
-            presentationEvent.IsHandled = true;
         }
     }
 

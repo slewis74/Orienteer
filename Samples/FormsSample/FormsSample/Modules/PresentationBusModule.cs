@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace FormsSample.Modules
 {
@@ -7,7 +7,10 @@ namespace FormsSample.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<PresentationBus>().As<IPresentationBus>().SingleInstance();
+            builder.RegisterType<PresentationBus.PresentationBus>()
+                .As<IPresentationBus>()
+                .As<IPresentationBusConfiguration>()
+                .SingleInstance();
         }
     }
 }

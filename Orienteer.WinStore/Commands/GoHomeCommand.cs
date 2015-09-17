@@ -1,6 +1,5 @@
-﻿using Orienteer.Requests;
-using Orienteer.Xaml.ViewModels;
-using Slew.PresentationBus;
+﻿using Orienteer.Xaml.ViewModels;
+using PresentationBus;
 
 namespace Orienteer.WinStore.Commands
 {
@@ -15,7 +14,7 @@ namespace Orienteer.WinStore.Commands
 
         public override void Execute(object parameter)
         {
-            _presentationBus.PublishAsync(new GoHomeRequest());
+            _presentationBus.Send(new Orienteer.Requests.GoHomeCommand());
         }
     }
 }

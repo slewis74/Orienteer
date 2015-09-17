@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Orienteer.Xaml.ViewModels;
 using Sample.Shared.Model;
 using Sample.Shared.Requests;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace WinPhoneSample.Features.Artists.All
 {
@@ -19,7 +19,7 @@ namespace WinPhoneSample.Features.Artists.All
 
         public async override void Execute(object parameter)
         {
-            await _presentationBus.PublishAsync(new PlayAllNowRequest(_artists));
+            await _presentationBus.Send(new PlayAllNowCommand(_artists));
         }
     }
 }

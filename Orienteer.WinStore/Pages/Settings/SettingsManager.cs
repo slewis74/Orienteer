@@ -8,14 +8,14 @@ using Orienteer.Data;
 using Orienteer.Pages;
 using Orienteer.Pages.Navigation;
 using Orienteer.WinStore.Requests;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace Orienteer.WinStore.Pages.Settings
 {
     public class SettingsManager : 
         BindableBase, 
         ISettingsManager,
-        IHandlePresentationRequest<DisplaySettingsRequest>
+        IHandlePresentationCommand<DisplaySettingsCommand>
     {
         private readonly INavigator _navigator;
         private readonly Dictionary<Type, Dictionary<object, SettingsViewConfig>> _settings;
@@ -87,14 +87,13 @@ namespace Orienteer.WinStore.Pages.Settings
             return GetGlobalSettings().Concat(_settings.GetSettingsForScope(type).Values);
         }
 
-        public void Handle(DisplaySettingsRequest request)
+        public void Handle(DisplaySettingsCommand command)
         {
-            request.IsHandled = true;
-            var settings = GetViewSettings(request.Args);
+            var settings = GetViewSettings(command.Args);
 
             foreach (var setting in settings)
             {
-                request.CommandsRequest.ApplicationCommands.Add(
+                command.CommandsRequest.ApplicationCommands.Add(
                     new SettingsCommand(
                         setting.Id,
                         setting.Label,

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sample.Shared.Model;
-using Slew.PresentationBus;
+using PresentationBus;
 
 namespace Sample.Shared.Events
 {

@@ -94,12 +94,6 @@
     <Compile Include="..\FormsSample\Modules\ControllerModule.cs">
       <Link>Modules\ControllerModule.cs</Link>
     </Compile>
-    <Compile Include="..\FormsSample\Modules\PresentationBusModule.cs">
-      <Link>Modules\PresentationBusModule.cs</Link>
-    </Compile>
-    <Compile Include="..\FormsSample\Modules\PresentationBusSubscriptionModule.cs">
-      <Link>Modules\PresentationBusSubscriptionModule.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -201,8 +195,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Slew.PresentationBus">
-      <HintPath>..\..\..\packages\Slew.PresentationBus.1.0.0\lib\portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10\Slew.PresentationBus.dll</HintPath>
+    <Reference Include="PresentationBus, Version=2.0.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\PresentationBus.2.0.13\lib\portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0\PresentationBus.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\..\..\packages\Xamarin.Forms.1.4.2.6355\lib\WP80\Xamarin.Forms.Core.dll</HintPath>
