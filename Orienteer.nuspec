@@ -10,7 +10,7 @@
 		<releaseNotes>Tile pinning for WinPhone.  WinPhone app code no longer calls IPhoneApplicationFrameAdapter.DoStartup directly. 
 		</releaseNotes>
         <dependencies>
-            <dependency id="PresentationBus" version="1.0.4" />
+            <dependency id="PresentationBus" version="2.0.13" />
             <dependency id="Newtonsoft.Json" version="6.0.5" />
         </dependencies>
     </metadata>
