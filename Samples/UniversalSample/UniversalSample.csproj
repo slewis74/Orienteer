@@ -99,9 +99,42 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Features\Albums\AddAlbumCommand.cs" />
+    <Compile Include="Features\Albums\AddSongCommand.cs" />
+    <Compile Include="Features\Albums\AlbumController.cs" />
+    <Compile Include="Features\Albums\AlbumView.xaml.cs">
+      <DependentUpon>AlbumView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Albums\AlbumViewModel.cs" />
+    <Compile Include="Features\Albums\PinAlbumCommand.cs" />
+    <Compile Include="Features\Albums\PlayAlbumCommand.cs" />
+    <Compile Include="Features\Albums\PlaySongCommand.cs" />
+    <Compile Include="Features\Albums\TrackViewModel.cs" />
+    <Compile Include="Features\Artists\All\ArtistsView.xaml.cs">
+      <DependentUpon>ArtistsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Artists\All\ArtistsViewModel.cs" />
+    <Compile Include="Features\Artists\All\DisplayArtistCommand.cs" />
+    <Compile Include="Features\Artists\All\GroupedArtistViewModel.cs" />
+    <Compile Include="Features\Artists\All\PlayAllCommand.cs" />
+    <Compile Include="Features\Artists\ArtistsController.cs" />
+    <Compile Include="Features\Artists\Single\ArtistView.xaml.cs">
+      <DependentUpon>ArtistView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Artists\Single\ArtistViewModel.cs" />
+    <Compile Include="Features\Artists\Single\DisplayAlbumCommand.cs" />
+    <Compile Include="Features\Artists\Single\PinArtistCommand.cs" />
+    <Compile Include="Features\Artists\Single\PlayArtistCommand.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ControllerModule.cs" />
+    <Compile Include="Modules\NavigationModule.cs" />
+    <Compile Include="Modules\PlatformServicesModule.cs" />
+    <Compile Include="Modules\PresentationBusModule.cs" />
+    <Compile Include="Modules\PresentationBusSubscriptionModule.cs" />
+    <Compile Include="Modules\ViewModelModule.cs" />
+    <Compile Include="PlatformServices\MusicProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,12 +158,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Features\Albums\AlbumView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Features\Artists\All\ArtistsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Features\Artists\Single\ArtistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Orienteer.Autofac\Orienteer.Autofac.csproj">
+      <Project>{de100afd-4b94-4827-9b87-207609f5e5f1}</Project>
+      <Name>Orienteer.Autofac</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Orienteer.Universal\Orienteer.Universal.csproj">
       <Project>{d63907fe-2a5d-4689-b186-86dcc1ddfeb3}</Project>
       <Name>Orienteer.Universal</Name>
@@ -148,6 +197,7 @@
       <Name>Sample.Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

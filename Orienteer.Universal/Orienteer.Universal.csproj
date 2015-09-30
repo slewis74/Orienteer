@@ -113,6 +113,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\TogglePinCommand.cs" />
+    <Compile Include="Data\Navigation\UniversalNavigationStackStorage.cs" />
+    <Compile Include="Pages\ViewLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UniversalFrameAdapter.cs" />
     <Content Include="Properties\Orienteer.Universal.rd.xml" />

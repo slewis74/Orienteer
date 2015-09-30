@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Reflection;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Autofac;
 using Microsoft.ApplicationInsights;
+using Orienteer.Universal;
+using Sample.Shared;
 
 namespace UniversalSample
 {
@@ -14,6 +19,8 @@ namespace UniversalSample
     /// </summary>
     sealed partial class App : Application
     {
+        private IContainer _container;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -42,6 +49,8 @@ namespace UniversalSample
             }
 #endif
 
+            LetThereBeIoC(typeof(App).GetTypeInfo().Assembly);
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -62,15 +71,49 @@ namespace UniversalSample
                 Window.Current.Content = rootFrame;
             }
 
-            if (rootFrame.Content == null)
-            {
-                // When the navigation stack isn't restored navigate to the first page,
-                // configuring the new page by passing required information as a navigation
-                // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
-            }
+            //if (rootFrame.Content == null)
+            //{
+            //    // When the navigation stack isn't restored navigate to the first page,
+            //    // configuring the new page by passing required information as a navigation
+            //    // parameter
+            //    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+            //}
+
+            var adapter = InitFrameAdapter(rootFrame);
+
+            DoRescan();
+
             // Ensure the current window is active
             Window.Current.Activate();
+            adapter.DoStartup();
+        }
+
+        private void LetThereBeIoC(Assembly callingAssembly)
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterAssemblyModules(new[]
+            {
+                callingAssembly
+            });
+
+            _container = builder.Build();
+        }
+
+        private IUniversalFrameAdapter InitFrameAdapter(Frame rootFrame)
+        {
+            var adapter = _container.Resolve<IUniversalFrameAdapter>();
+            adapter.ApplicationFrame = rootFrame;
+            return adapter;
+        }
+
+        private void DoRescan()
+        {
+            var musicProvider = _container.Resolve<IMusicProvider>();
+            // ReSharper disable once CSharpWarnings::CS4014
+            Task.Run(async () =>
+            {
+                await musicProvider.ReScanMusicLibrary();
+            });
         }
 
         /// <summary>

@@ -3,6 +3,14 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -232,12 +240,20 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "Newtonsoft.json/6.0.8": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PresentationBus/2.0.13": {
+        "compile": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -1577,6 +1593,14 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -1849,12 +1873,20 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "Newtonsoft.json/6.0.8": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PresentationBus/2.0.13": {
+        "compile": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -3241,6 +3273,14 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -3499,12 +3539,20 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "Newtonsoft.json/6.0.8": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PresentationBus/2.0.13": {
+        "compile": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -4877,6 +4925,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -5154,12 +5210,20 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "Newtonsoft.json/6.0.8": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PresentationBus/2.0.13": {
+        "compile": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -6546,6 +6610,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -6804,12 +6876,20 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "Newtonsoft.json/6.0.8": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PresentationBus/2.0.13": {
+        "compile": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -8182,6 +8262,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -8459,12 +8547,20 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "Newtonsoft.json/6.0.8": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PresentationBus/2.0.13": {
+        "compile": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -9851,6 +9947,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -10109,12 +10213,20 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "Newtonsoft.json/6.0.8": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "PresentationBus/2.0.13": {
+        "compile": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -11488,6 +11600,20 @@
     }
   },
   "libraries": {
+    "autofac/3.5.2": {
+      "sha512": "pGR5LjY8T/16x6SkJNd7u6EjQnE4C7JS0BZJ7Yl7pt313gIUZ/2ZnPSOIM5eaIA7ArxaudlyyLvAT4ayX5UJ/A==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "Autofac.nuspec",
+        "lib/net40/Autofac.dll",
+        "lib/net40/Autofac.xml",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.xml",
+        "package/services/metadata/core-properties/14b288cae4b6435c88f25cef31d271e1.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
     "Microsoft.ApplicationInsights/1.0.0": {
       "sha512": "HZ47/thX57SOuIivSvIbsR6L9CCb/Yt3IyB2i4KHmmNlf3DO+lqFwWIKDdbDNWKX+qh0Rg20/JSMPK0dwUsYYw==",
       "type": "Package",
@@ -12191,14 +12317,39 @@
         "[Content_Types].xml"
       ]
     },
-    "Slew.PresentationBus/1.1.10": {
-      "sha512": "/GaW0J6FeI7D/guP7DVjU4asAyAZ9VALZ8pPy/6iUZkh2o3ghWFN/BLupXESHbjRZdMYCFLI1z9Cb81F0O8Pqg==",
+    "Newtonsoft.json/6.0.8": {
+      "sha512": "7ut47NDedTW19EbL0JpFDYUP62fcuz27hJrehCDNajdCS5NtqL+E39+7Um3OkNc2wl2ym7K8Ln5eNuLus6mVGQ==",
       "type": "Package",
       "files": [
         "_rels/.rels",
-        "Slew.PresentationBus.nuspec",
-        "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll",
-        "package/services/metadata/core-properties/16535ab231d0437da88bbcb43fc62dbf.psmdcp",
+        "Newtonsoft.Json.nuspec",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netcore45/Newtonsoft.Json.dll",
+        "lib/netcore45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Newtonsoft.Json.xml",
+        "tools/install.ps1",
+        "package/services/metadata/core-properties/d6cceb7474b245aab29598e10c6e65d6.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "PresentationBus/2.0.13": {
+      "sha512": "FXsWdBr6fD6yHf55bsvkGyumg5FLS6c4BKwslCP5+ieQkeCKK5VdX0qkehAP33LIE23Lkhi/kNfZcXsIaRP9jQ==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "PresentationBus.nuspec",
+        "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll",
+        "package/services/metadata/core-properties/31528d69bf8a459b82731337b6733c1f.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -14900,10 +15051,12 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "autofac >= 3.5.2",
       "Microsoft.ApplicationInsights >= 1.0.0",
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.0.0",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
-      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
+      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "Newtonsoft.json >= 6.0.8"
     ],
     "UAP,Version=v10.0": []
   }

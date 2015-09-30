@@ -201,12 +201,12 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "PresentationBus/2.0.13": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -1787,12 +1787,12 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "PresentationBus/2.0.13": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -3406,12 +3406,12 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "PresentationBus/2.0.13": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -5030,12 +5030,12 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "PresentationBus/2.0.13": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -6649,12 +6649,12 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "PresentationBus/2.0.13": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -8273,12 +8273,12 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "PresentationBus/2.0.13": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -9892,12 +9892,12 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Slew.PresentationBus/1.1.10": {
+      "PresentationBus/2.0.13": {
         "compile": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         },
         "runtime": {
-          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll": {}
+          "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -11924,14 +11924,14 @@
         "[Content_Types].xml"
       ]
     },
-    "Slew.PresentationBus/1.1.10": {
-      "sha512": "/GaW0J6FeI7D/guP7DVjU4asAyAZ9VALZ8pPy/6iUZkh2o3ghWFN/BLupXESHbjRZdMYCFLI1z9Cb81F0O8Pqg==",
+    "PresentationBus/2.0.13": {
+      "sha512": "FXsWdBr6fD6yHf55bsvkGyumg5FLS6c4BKwslCP5+ieQkeCKK5VdX0qkehAP33LIE23Lkhi/kNfZcXsIaRP9jQ==",
       "type": "Package",
       "files": [
         "_rels/.rels",
-        "Slew.PresentationBus.nuspec",
-        "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/Slew.PresentationBus.dll",
-        "package/services/metadata/core-properties/16535ab231d0437da88bbcb43fc62dbf.psmdcp",
+        "PresentationBus.nuspec",
+        "lib/portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0/PresentationBus.dll",
+        "package/services/metadata/core-properties/31528d69bf8a459b82731337b6733c1f.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -14634,7 +14634,7 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "Slew.PresentationBus >= 1.1.10"
+      "PresentationBus >= 2.0.13"
     ],
     "UAP,Version=v10.0": []
   }
