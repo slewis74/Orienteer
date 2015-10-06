@@ -1,6 +1,6 @@
 ﻿using PresentationBus;
 
-namespace Orienteer.Requests
+namespace Orienteer.Messages
 {
     public class GoBackCommand : IPresentationCommand
     {

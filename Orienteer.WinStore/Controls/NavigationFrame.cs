@@ -1,6 +1,5 @@
 ﻿using Orienteer.Pages;
 using Orienteer.Pages.Navigation;
-using Orienteer.Requests;
 using Orienteer.WinStore.Events;
 using Orienteer.WinStore.Pages;
 using Orienteer.WinStore.Requests;
@@ -14,6 +13,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Orienteer.Messages;
 
 namespace Orienteer.WinStore.Controls
 {

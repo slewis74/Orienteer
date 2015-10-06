@@ -35,7 +35,7 @@ namespace Orienteer.Universal.Data.Navigation
             var count = Convert.ToInt32(navContainer.Values["RouteCount"]);
             var results = new List<string>();
 
-            for (var i = 0; i < count; i++)
+            for (var i = count - 1; i >= 0; i--)
             {
                 results.Add(navContainer.Values["Route" + i].ToString());
             }

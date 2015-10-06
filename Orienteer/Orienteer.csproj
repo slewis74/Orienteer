@@ -47,8 +47,8 @@
     <Compile Include="Pages\Navigation\NavigationStack.cs" />
     <Compile Include="Pages\Navigation\NavigationStackStorage.cs" />
     <Compile Include="Pages\RouteDescriptor.cs" />
-    <Compile Include="Requests\GoBackCommand.cs" />
-    <Compile Include="Requests\GoHomeCommand.cs" />
+    <Compile Include="Messages\GoBackCommand.cs" />
+    <Compile Include="Messages\GoHomeCommand.cs" />
     <Compile Include="Pages\Controller.cs" />
     <Compile Include="Pages\ControllerFactory.cs" />
     <Compile Include="Pages\ControllerInvoker.cs" />
@@ -68,10 +68,10 @@
     <Compile Include="Pages\Navigation\PageActionResult.cs" />
     <Compile Include="Pages\Navigation\ViewModelActionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\PageNavigationCommand.cs" />
-    <Compile Include="Requests\PageNavigationRequestEventArgs.cs" />
-    <Compile Include="Requests\ViewModelNavigationCommand.cs" />
-    <Compile Include="Requests\ViewModelNavigationRequestEventArgs.cs" />
+    <Compile Include="Messages\PageNavigationCommand.cs" />
+    <Compile Include="Messages\PageNavigationRequestEventArgs.cs" />
+    <Compile Include="Messages\ViewModelNavigationCommand.cs" />
+    <Compile Include="Messages\ViewModelNavigationRequestEventArgs.cs" />
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Orienteer.Messages;
 using Orienteer.Pages.Navigation;
-using Orienteer.Requests;
 using PresentationBus;
 using Xamarin.Forms;
 

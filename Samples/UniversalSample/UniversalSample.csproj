@@ -134,6 +134,7 @@
     <Compile Include="Modules\PresentationBusModule.cs" />
     <Compile Include="Modules\PresentationBusSubscriptionModule.cs" />
     <Compile Include="Modules\ViewModelModule.cs" />
+    <Compile Include="PlatformServices\AlbumArtStorage.cs" />
     <Compile Include="PlatformServices\MusicProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

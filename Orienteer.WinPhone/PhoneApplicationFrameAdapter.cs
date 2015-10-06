@@ -6,8 +6,8 @@ using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Orienteer.Data;
+using Orienteer.Messages;
 using Orienteer.Pages.Navigation;
-using Orienteer.Requests;
 using Orienteer.WinPhone.Pages;
 using PresentationBus;
 

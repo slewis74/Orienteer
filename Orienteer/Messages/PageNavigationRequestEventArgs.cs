@@ -1,6 +1,6 @@
 using System;
 
-namespace Orienteer.Requests
+namespace Orienteer.Messages
 {
     public class PageNavigationRequestEventArgs : EventArgs
     {

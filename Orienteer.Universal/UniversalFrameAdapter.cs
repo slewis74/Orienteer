@@ -5,8 +5,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Orienteer.Data;
+using Orienteer.Messages;
 using Orienteer.Pages.Navigation;
-using Orienteer.Requests;
 using Orienteer.Universal.Pages;
 using PresentationBus;
 
@@ -15,7 +15,8 @@ namespace Orienteer.Universal
     public class UniversalFrameAdapter :
         DispatchesToOriginalThreadBase,
         IUniversalFrameAdapter,
-        IHandlePresentationCommand<ViewModelNavigationCommand>
+        IHandlePresentationCommand<ViewModelNavigationCommand>,
+        IHandlePresentationCommand<GoBackCommand>
     {
         private readonly IViewLocator _viewLocator;
         private readonly INavigator _navigator;
@@ -62,7 +63,7 @@ namespace Orienteer.Universal
             }
         }
 
-        public void DoStartup()
+        public async Task DoStartup()
         {
             if (_hasStarted)
                 return;
@@ -70,19 +71,12 @@ namespace Orienteer.Universal
             var routes = _navigationStack.RetrieveRoutes();
 
             // restore the routes from a background thread, otherwise the WP Frame will only do the first nav.
-            Task.Run(() =>
+            foreach (var r in routes)
             {
-                foreach (var r in routes)
-                {
-                    var route = r;
-                    // Dispatch the actual nav call back onto the UI thread.
-                    DispatchCall(async c =>
-                    {
-                        await _navigator.NavigateAsync(route, false);
-                    });
-                }
-                _hasStarted = true;
-            });
+                var route = r;
+                await _navigator.NavigateAsync(route, false);
+            }
+            _hasStarted = true;
         }
 
         private void ApplicationFrameOnNavigated(object sender, NavigationEventArgs navigationEventArgs)
@@ -109,12 +103,19 @@ namespace Orienteer.Universal
                 _navigationStack.StoreRoutes(_navigationStackCache.ToArray());
             }
         }
+
+        public void Handle(GoBackCommand presentationCommand)
+        {
+            ApplicationFrame.GoBack();
+            _navigationStackCache.Pop();
+            _navigationStack.StoreRoutes(_navigationStackCache.ToArray());
+        }
     }
 
     public interface IUniversalFrameAdapter
     {
         Frame ApplicationFrame { get; set; }
 
-        void DoStartup();
+        Task DoStartup();
     }
 }

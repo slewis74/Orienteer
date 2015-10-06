@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Orienteer.Requests;
+using Orienteer.Messages;
 using PresentationBus;
 
 namespace Orienteer.Pages.Navigation

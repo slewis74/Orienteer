@@ -13,6 +13,10 @@ namespace UniversalSample.Modules
             builder.RegisterType<MusicProvider>()
                 .As<IMusicProvider>()
                 .SingleInstance();
+
+            builder.RegisterType<AlbumArtStorage>()
+                .As<IAlbumArtStorage>()
+                .InstancePerDependency();
         }
     }
 }

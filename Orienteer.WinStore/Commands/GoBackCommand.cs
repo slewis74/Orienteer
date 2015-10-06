@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Orienteer.Requests;
 using Orienteer.WinStore.Events;
 using Orienteer.WinStore.Requests;
 using Orienteer.Xaml.ViewModels;
@@ -36,7 +35,7 @@ namespace Orienteer.WinStore.Commands
 
         public override void Execute(object parameter)
         {
-            _presentationBus.Send(new Orienteer.Requests.GoBackCommand());
+            _presentationBus.Send(new Messages.GoBackCommand());
         }
 
         public void Handle(CanGoBackChanged presentationEvent)
