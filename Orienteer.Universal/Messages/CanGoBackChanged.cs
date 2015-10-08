@@ -1,6 +1,6 @@
 ﻿using PresentationBus;
 
-namespace Orienteer.WinStore.Events
+namespace Orienteer.Universal.Messages
 {
     public class CanGoBackChanged : PresentationEvent
     {

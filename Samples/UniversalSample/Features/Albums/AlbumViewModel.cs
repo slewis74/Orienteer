@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Orienteer.Data;
 using Orienteer.Pages.Navigation;
+using Orienteer.Universal.Commands;
 using Orienteer.Xaml.ViewModels;
 using PresentationBus;
 using Sample.Shared.Model;
@@ -19,9 +20,11 @@ namespace UniversalSample.Features.Albums
             INavigator navigator,
             Artist artist,
             Album album,
-            PinAlbumCommand.Factory pinAlbumCommandFactory)
+            PinAlbumCommand.Factory pinAlbumCommandFactory,
+            GoBackCommand goBackCommand)
             : base(navigator)
         {
+            GoBack = goBackCommand;
             _artist = artist;
             _album = album;
 
@@ -69,6 +72,8 @@ namespace UniversalSample.Features.Albums
                 NotifyChanged(() => SelectedTrack);
             }
         }
+
+        public GoBackCommand GoBack { get; set; }
 
         public Album GetAlbum()
         {

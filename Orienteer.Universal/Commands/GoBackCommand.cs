@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using Orienteer.WinStore.Messages;
+using Orienteer.Universal.Messages;
 using Orienteer.Xaml.ViewModels;
 using PresentationBus;
 
-namespace Orienteer.WinStore.Commands
+namespace Orienteer.Universal.Commands
 {
-    public class GoBackCommand : 
+    public class GoBackCommand :
         Command,
         IHandlePresentationEvent<CanGoBackChanged>
     {

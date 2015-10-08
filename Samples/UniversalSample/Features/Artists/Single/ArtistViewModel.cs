@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Orienteer.Pages.Navigation;
+using Orienteer.Universal.Commands;
 using Orienteer.Xaml.ViewModels;
 using PresentationBus;
 using Sample.Shared.Model;
@@ -16,9 +17,11 @@ namespace UniversalSample.Features.Artists.Single
             IPresentationBus presentationBus,
             INavigator navigator,
             PinArtistCommand.Factory pinArtistCommandFactory,
-            Artist artist)
+            Artist artist,
+            GoBackCommand goBackCommand)
             : base(navigator)
         {
+            GoBack = goBackCommand;
             _artist = artist;
 
             DisplayAlbum = new DisplayAlbumCommand(Navigator, _artist);
@@ -44,6 +47,8 @@ namespace UniversalSample.Features.Artists.Single
         public PlayArtistCommand PlayArtist { get; private set; }
 
         public PinArtistCommand PinArtist { get; set; }
+
+        public GoBackCommand GoBack { get; set; }
 
         public Artist GetArtist()
         {

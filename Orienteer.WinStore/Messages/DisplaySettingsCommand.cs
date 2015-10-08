@@ -2,7 +2,7 @@
 using Windows.UI.ApplicationSettings;
 using PresentationBus;
 
-namespace Orienteer.WinStore.Requests
+namespace Orienteer.WinStore.Messages
 {
     public class DisplaySettingsCommand : IPresentationCommand
     {

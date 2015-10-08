@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -7,6 +6,7 @@ using Windows.UI.Xaml.Navigation;
 using Orienteer.Data;
 using Orienteer.Messages;
 using Orienteer.Pages.Navigation;
+using Orienteer.Universal.Messages;
 using Orienteer.Universal.Pages;
 using PresentationBus;
 
@@ -16,7 +16,8 @@ namespace Orienteer.Universal
         DispatchesToOriginalThreadBase,
         IUniversalFrameAdapter,
         IHandlePresentationCommand<ViewModelNavigationCommand>,
-        IHandlePresentationCommand<GoBackCommand>
+        IHandlePresentationCommand<GoBackCommand>,
+        IHandlePresentationRequest<CanGoBackRequest, CanGoBackResponse>
     {
         private readonly IViewLocator _viewLocator;
         private readonly INavigator _navigator;
@@ -109,6 +110,11 @@ namespace Orienteer.Universal
             ApplicationFrame.GoBack();
             _navigationStackCache.Pop();
             _navigationStack.StoreRoutes(_navigationStackCache.ToArray());
+        }
+
+        public CanGoBackResponse Handle(CanGoBackRequest request)
+        {
+            return new CanGoBackResponse { CanGoBack = ApplicationFrame.CanGoBack };
         }
     }
 

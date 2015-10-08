@@ -7,7 +7,7 @@ using Windows.UI.ApplicationSettings;
 using Orienteer.Data;
 using Orienteer.Pages;
 using Orienteer.Pages.Navigation;
-using Orienteer.WinStore.Requests;
+using Orienteer.WinStore.Messages;
 using PresentationBus;
 
 namespace Orienteer.WinStore.Pages.Settings

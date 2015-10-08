@@ -20,6 +20,7 @@
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="{Binding ArtistName}" />
             <TextBlock Text="{Binding Title}" Margin="9,-7,0,0"/>
+            <Button Content="Back" Command="{Binding GoBack}" HorizontalAlignment="Left"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
