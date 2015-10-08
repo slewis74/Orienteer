@@ -176,7 +176,7 @@ Registers the navigator and the components required to locate and create Views.
 
 The NavigationStack registration consists of a couple of parameters that are important to the functioning of the application.
 
-- **defaultRoute**: is the REST style route to the default controller action.
+- **defaultRoute**: is the MVC style route to the default controller action.
 - **alwaysStartFromDefaultRoute**: controls whether the application always starts from the defaultRoute or whether it remembers the navigation stack and restores it on restart.  It is important when setting this to false to ensure there is a **NavigationStackStorage** component registered (which will be a platform specific class and registration) and to call **PropertiesAutowired** on the NavigationStack registration, so the Storage instance gets assigned.
 
 All of the samples are setup to restore the navigation stack, here's an example Autofac module registration
