@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="Commands\PinSecondaryTileCommand.cs" />
     <Compile Include="Data\Navigation\WinPhoneNavigationStackStorage.cs" />
+    <Compile Include="Data\WinPhoneUIThreadDispatchHandler.cs" />
     <Compile Include="IPhoneApplicationFrameAdapter.cs" />
     <Compile Include="Pages\ViewFactory.cs" />
     <Compile Include="Pages\ViewLocator.cs" />

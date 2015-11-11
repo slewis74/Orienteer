@@ -14,7 +14,7 @@ namespace Orienteer.WinStore.Commands
 
         public override void Execute(object parameter)
         {
-            _presentationBus.Send(new Messages.GoHomeCommand());
+            _presentationBus.Send(new Orienteer.Messages.GoHomeCommand());
         }
     }
 }

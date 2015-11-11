@@ -59,6 +59,17 @@ Internally Orienteer uses a string to represent the calls to the controller acti
 
 This has 2 key purposes, firstly the stack of strings can be stored and used to re-instate the app upon a restart.  Secondly, the string can be used as a deep-link into the application, e.g. for creating secondary tiles in Windows Store and Phone apps.
 
+###Property Changes and UI Dispatching
+Orienteer contains the Bindable base class for any objects that needs to implement INotifyPropertyChanged.  Note that Bindable also inherits from DispatchesToUIThread, which requires the static UIDispatcher to be initialized during app startup, so you'll need something like the following
+
+```csharp
+	UIDispatcher.Initialize(new WinPhoneUIThreadDispatchHandler());
+```
+
+Bindable provides several overloads for ways to NotifyChanged.  All of these, including if they are called using an IL weaver like PropertyChanged.Fody, should then be automatically dispatched to the UI thread without you having to worry about it.
+
+DispatchingObservableCollection also depends on the UIDispatcher and automatically dispatches it's collection changed events to the UI thread.
+
 ###MVVM and Async
 MVVM is a critical part of using XAML, and Orienteer has a few components for making life easier.
 
@@ -90,6 +101,8 @@ In the Xamarin Forms app the App class has been updated as follows.
         /// <param name="callingAssembly">The calling assembly, which will be scanned for Modules for the IoC configuration.</param>
         public App(Assembly callingAssembly)
         {
+			UIDispatcher.Initialize(new FormsUIThreadDispatchHandler());
+
             LetThereBeIoC(callingAssembly);
 
             // The root page of your application
@@ -122,6 +135,8 @@ In the Windows Phone app, InitializePhoneApplication method has been modified as
         {
             if (phoneApplicationInitialized)
                 return;
+
+			UIDispatcher.Initialize(new WinPhoneUIThreadDispatchHandler());
 
             LetThereBeIoC(typeof(App).Assembly);
 

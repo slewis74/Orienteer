@@ -116,6 +116,7 @@
     <Compile Include="Commands\GoBackCommand.cs" />
     <Compile Include="Commands\TogglePinCommand.cs" />
     <Compile Include="Data\Navigation\UniversalNavigationStackStorage.cs" />
+    <Compile Include="Data\UniversalUIThreadDispatchHandler.cs" />
     <Compile Include="Messages\CanGoBackChanged.cs" />
     <Compile Include="Messages\CanGoBackRequest.cs" />
     <Compile Include="Pages\ViewLocator.cs" />

@@ -6,7 +6,7 @@ using Orienteer.Data;
 namespace Sample.Shared.Model
 {
     [DebuggerDisplay("Artist - {Name}")]
-	public class Artist : BindableBase
+	public class Artist : Bindable
     {
         public Artist()
         {

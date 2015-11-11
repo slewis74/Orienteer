@@ -110,6 +110,7 @@
     <Compile Include="Controls\PageHeader.cs" />
     <Compile Include="Controls\TogglePinButton.cs" />
     <Compile Include="Data\Navigation\WinStoreNavigationStackStorage.cs" />
+    <Compile Include="Data\WinStoreUIThreadDispatchHandler.cs" />
     <Compile Include="Host\HostViewModel.cs" />
     <Compile Include="Pages\AttachedBehavior.cs" />
     <Compile Include="Pages\ContentSwitchingPage.cs" />
@@ -140,7 +141,7 @@
     <Compile Include="Messages\CanGoBackChanged.cs" />
     <Compile Include="Messages\DisplaySettingsCommand.cs" />
     <Compile Include="ViewModels\Positioning.cs" />
-    <Compile Include="ViewModels\SearchViewModelBase.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="Commands\TogglePinCommand.cs" />
   </ItemGroup>
   <ItemGroup>

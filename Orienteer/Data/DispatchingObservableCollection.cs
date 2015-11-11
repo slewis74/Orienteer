@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace Orienteer.Data
 {
@@ -17,7 +17,6 @@ namespace Orienteer.Data
     /// <typeparam name="T"></typeparam>
     public class DispatchingObservableCollection<T> : ObservableCollection<T>
     {
-        private readonly SynchronizationContext _synchronizationContext = SynchronizationContext.Current;
         private bool _suppressChangeEvents;
 
         public DispatchingObservableCollection()
@@ -62,12 +61,12 @@ namespace Orienteer.Data
             CompleteLargeUpdate();
         }
 
-        protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        protected override async void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
             if (_suppressChangeEvents)
                 return;
 
-            DispatchCall(_ => RaiseCollectionChanged(e));
+            await DispatchCall(() => RaiseCollectionChanged(e));
         }
 
         private void RaiseCollectionChanged(object param)
@@ -76,12 +75,12 @@ namespace Orienteer.Data
             base.OnCollectionChanged((NotifyCollectionChangedEventArgs)param);
         }
 
-        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+        protected override async void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             if (_suppressChangeEvents)
                 return;
 
-            DispatchCall(_ => RaisePropertyChanged(e));
+            await DispatchCall(() => RaisePropertyChanged(e));
         }
 
         private void RaisePropertyChanged(object param)
@@ -127,16 +126,9 @@ namespace Orienteer.Data
             }
         }
 
-        protected void DispatchCall(SendOrPostCallback call)
+        protected async Task DispatchCall(Action action)
         {
-            if (SynchronizationContext.Current != _synchronizationContext)
-            {
-                _synchronizationContext.Post(call, null);
-            }
-            else
-            {
-                call(null);
-            }
+            await UIDispatcher.Execute(action);
         }
     }
 }

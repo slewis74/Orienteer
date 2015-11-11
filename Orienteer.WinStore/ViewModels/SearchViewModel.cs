@@ -1,28 +1,17 @@
-﻿using System.Threading;
-using Orienteer.Pages.Navigation;
+﻿using Orienteer.Pages.Navigation;
 using Orienteer.Xaml.ViewModels;
 
 namespace Orienteer.WinStore.ViewModels
 {
-    public abstract class SearchViewModelBase<TResult> : CanRequestNavigationBase, ISearchViewModelBase
+    public abstract class SearchViewModel<TResult> : CanRequestNavigation, ISearchViewModelBase
     {
         private readonly string _queryText;
 
-        protected SearchViewModelBase(
+        protected SearchViewModel(
             INavigator navigator,
             string queryText,
             TResult[] searchResults)
             : base(navigator)
-        {
-            _queryText = queryText;
-            SearchResults = searchResults;
-        }
-
-        protected SearchViewModelBase(
-            INavigator navigator, 
-            string queryText,
-            TResult[] searchResults,
-            SynchronizationContext synchronizationContext) : base(navigator, synchronizationContext)
         {
             _queryText = queryText;
             SearchResults = searchResults;

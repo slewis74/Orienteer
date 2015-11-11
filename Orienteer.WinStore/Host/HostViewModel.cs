@@ -9,7 +9,7 @@ using PresentationBus;
 
 namespace Orienteer.WinStore.Host
 {
-    public class HostViewModel : BindableBase
+    public class HostViewModel : Bindable
     {
         public IPresentationBus PresentationBus { get; set; }
         public IRtNavigator Navigator { get; set; }

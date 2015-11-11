@@ -169,6 +169,10 @@
       <Project>{de100afd-4b94-4827-9b87-207609f5e5f1}</Project>
       <Name>Orienteer.Autofac</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Orienteer.Forms\Orienteer.Forms.csproj">
+      <Project>{8308798c-10bc-495f-b010-ccc75e72128f}</Project>
+      <Name>Orienteer.Forms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Orienteer.WinPhone\Orienteer.WinPhone.csproj">
       <Project>{e3c8453a-3b3e-454b-8ef5-d334bc83665c}</Project>
       <Name>Orienteer.WinPhone</Name>

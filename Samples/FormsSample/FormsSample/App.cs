@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
+using Orienteer.Data;
+using Orienteer.Forms.Data;
 using Orienteer.Forms.Pages;
 using Sample.Shared;
 using Xamarin.Forms;
@@ -21,6 +23,8 @@ namespace FormsSample
         {
             try
             {
+                UIDispatcher.Initialize(new FormsUIThreadDispatchHandler());
+
                 LetThereBeIoC(callingAssembly);
 
                 var navigationPage = _container.Resolve<OrienteerNavigationPage>();

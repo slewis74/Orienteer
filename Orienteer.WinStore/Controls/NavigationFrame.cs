@@ -305,7 +305,7 @@ namespace Orienteer.WinStore.Controls
 
         private void UpdateCurrentPageTitle(FrameworkElement newContent)
         {
-            var hasPageTitle = newContent.DataContext as HasPageTitleBase;
+            var hasPageTitle = newContent.DataContext as HasPageTitle;
             if (hasPageTitle != null)
             {
                 CurrentPageTitle = hasPageTitle.PageTitle;

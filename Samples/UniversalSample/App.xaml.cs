@@ -9,7 +9,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Autofac;
 using Microsoft.ApplicationInsights;
+using Orienteer.Data;
 using Orienteer.Universal;
+using Orienteer.Universal.Data;
 using Sample.Shared;
 
 namespace UniversalSample
@@ -48,6 +50,8 @@ namespace UniversalSample
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+
+            UIDispatcher.Initialize(new UniversalUIThreadDispatchHandler());
 
             LetThereBeIoC(typeof(App).GetTypeInfo().Assembly);
 

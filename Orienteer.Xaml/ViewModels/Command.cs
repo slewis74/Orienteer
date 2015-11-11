@@ -5,7 +5,7 @@ using Orienteer.Data;
 
 namespace Orienteer.Xaml.ViewModels
 {
-	public abstract class Command : BindableBase, ICommand
+	public abstract class Command : Bindable, ICommand
 	{
 		public event EventHandler CanExecuteChanged;
 

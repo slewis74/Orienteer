@@ -4,21 +4,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
-using System.Threading;
 
 namespace Orienteer.Data
 {
-    public abstract class BindableBase : DispatchesToOriginalThreadBase, INotifyPropertyChanged
+    public abstract class Bindable : DispatchesToUIThread, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-        protected BindableBase()
-        {
-        }
-
-        protected BindableBase(SynchronizationContext synchronizationContext) : base(synchronizationContext)
-        {
-        }
 
         protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
         {
@@ -58,19 +49,25 @@ namespace Orienteer.Data
             NotifyChanged(propertyNames.ToArray());
         }
 
-        protected void NotifyChanged(params string[] propertyNames)
+        protected async void NotifyChanged(params string[] propertyNames)
         {
             if (PropertyChanged == null || propertyNames == null || propertyNames.Any() == false)
                 return;
 
-            DispatchCall(
-                _ =>
+            await DispatchCall(
+                () =>
                 {
                     foreach (var propertyName in propertyNames)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
                     }
                 });
+        }
+
+        protected virtual async void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            await DispatchCall(
+                () => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)));
         }
     }
 }

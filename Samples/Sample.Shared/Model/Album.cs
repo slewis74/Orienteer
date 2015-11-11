@@ -5,7 +5,7 @@ using Orienteer.Data;
 namespace Sample.Shared.Model
 {
     [DebuggerDisplay("Album - {Title}")]
-    public class Album : BindableBase
+    public class Album : Bindable
 	{
         public Album()
         {

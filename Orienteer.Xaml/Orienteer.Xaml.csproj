@@ -44,9 +44,9 @@
     <Compile Include="IViewLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewLocatorBase.cs" />
-    <Compile Include="ViewModels\CanRequestNavigationBase.cs" />
+    <Compile Include="ViewModels\CanRequestNavigation.cs" />
     <Compile Include="ViewModels\Command.cs" />
-    <Compile Include="ViewModels\HasPageTitleBase.cs" />
+    <Compile Include="ViewModels\HasPageTitle.cs" />
     <Compile Include="ViewModels\ICanHandleNavigation.cs" />
     <Compile Include="ViewModels\ISearchViewModelBase.cs" />
     <Compile Include="ViewModels\NavigationCommand.cs" />

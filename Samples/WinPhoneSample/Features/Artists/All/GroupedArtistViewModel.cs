@@ -3,7 +3,7 @@ using Sample.Shared.Model;
 
 namespace WinPhoneSample.Features.Artists.All
 {
-    public class GroupedArtistViewModel : BindableBase
+    public class GroupedArtistViewModel : Bindable
     {
         public GroupedArtistViewModel(Artist artist)
         {

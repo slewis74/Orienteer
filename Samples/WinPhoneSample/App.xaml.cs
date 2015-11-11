@@ -9,7 +9,9 @@ using System.Windows.Navigation;
 using Autofac;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Orienteer.Data;
 using Orienteer.WinPhone;
+using Orienteer.WinPhone.Data;
 using Sample.Shared;
 using WinPhoneSample.Resources;
 
@@ -116,6 +118,8 @@ namespace WinPhoneSample
         {
             if (phoneApplicationInitialized)
                 return;
+
+            UIDispatcher.Initialize(new WinPhoneUIThreadDispatchHandler());
 
             LetThereBeIoC(typeof(App).Assembly);
 

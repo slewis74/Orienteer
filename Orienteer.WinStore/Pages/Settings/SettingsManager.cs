@@ -13,7 +13,7 @@ using PresentationBus;
 namespace Orienteer.WinStore.Pages.Settings
 {
     public class SettingsManager : 
-        BindableBase, 
+        Bindable, 
         ISettingsManager,
         IHandlePresentationCommand<DisplaySettingsCommand>
     {

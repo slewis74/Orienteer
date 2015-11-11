@@ -13,7 +13,7 @@ using PresentationBus;
 namespace Orienteer.Universal
 {
     public class UniversalFrameAdapter :
-        DispatchesToOriginalThreadBase,
+        DispatchesToUIThread,
         IUniversalFrameAdapter,
         IHandlePresentationCommand<ViewModelNavigationCommand>,
         IHandlePresentationCommand<GoBackCommand>,

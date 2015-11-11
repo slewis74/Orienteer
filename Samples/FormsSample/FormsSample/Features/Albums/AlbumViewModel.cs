@@ -7,7 +7,7 @@ using PresentationBus;
 
 namespace FormsSample.Features.Albums
 {
-    public class AlbumViewModel : CanRequestNavigationBase
+    public class AlbumViewModel : CanRequestNavigation
     {
         private readonly Artist _artist;
         private readonly Album _album;

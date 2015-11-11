@@ -14,7 +14,7 @@ using PresentationBus;
 namespace Orienteer.WinPhone
 {
     public class PhoneApplicationFrameAdapter : 
-        DispatchesToOriginalThreadBase,
+        DispatchesToUIThread,
         IPhoneApplicationFrameAdapter,
         IHandlePresentationCommand<ViewModelNavigationCommand>
     {
@@ -95,7 +95,7 @@ namespace Orienteer.WinPhone
                         _resetEvent.Reset();
                         var route = r;
                         // Dispatch the actual nav call back onto the UI thread.
-                        DispatchCall(async c =>
+                        DispatchCall(async () =>
                         {
                             await _navigator.NavigateAsync(route, false);
                         });   

@@ -7,7 +7,7 @@ using PresentationBus;
 
 namespace WinPhoneSample.Features.Artists.Single
 {
-    public class ArtistViewModel : CanRequestNavigationBase
+    public class ArtistViewModel : CanRequestNavigation
     {
         private readonly Artist _artist;
 
