@@ -7,7 +7,10 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Navigation framework for Mobile XAML based technologies.</description>
 		<projectUrl>https://github.com/slewis74/Orienteer</projectUrl>
-		<releaseNotes>Tile pinning for WinPhone.  WinPhone app code no longer calls IPhoneApplicationFrameAdapter.DoStartup directly. 
+		<releaseNotes>1.0.17
+    - Changed away from SynchronizationContext for managing dispatching property/collection change events to the UI thread, for all but Xamarin Forms.  UIDispatcher.Initialize must now be called during app startup, refer to the sample apps for examples on each platform.
+1.0.16 
+    - Tile pinning for WinPhone.  WinPhone app code no longer calls IPhoneApplicationFrameAdapter.DoStartup directly. 
 		</releaseNotes>
         <dependencies>
             <dependency id="PresentationBus" version="2.0.13" />
