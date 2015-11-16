@@ -41,5 +41,9 @@
 
         <file src="Orienteer.Xaml\Bin\Release\Orienteer.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.dll" />
         <file src="Orienteer.Xaml\Bin\Release\Orienteer.Xaml.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.Xaml.dll" />
+
+        <file src="Orienteer.Universal\Bin\Release\Orienteer.dll" target="lib\uap10.0\Orienteer.dll" />
+        <file src="Orienteer.Universal\Bin\Release\Orienteer.Xaml.dll" target="lib\uap10.0\Orienteer.Xaml.dll" />
+        <file src="Orienteer.Universal\Bin\Release\Orienteer.Universal.dll" target="lib\uap10.0\Orienteer.Universal.dll" />
     </files>
 </package>

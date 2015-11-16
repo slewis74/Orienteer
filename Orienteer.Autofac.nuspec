@@ -12,14 +12,6 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="Orienteer.Autofac\Bin\Release\Orienteer.Autofac.dll" target="lib\win8\Orienteer.Autofac.dll" />
-        
-        <file src="Orienteer.Autofac\Bin\Release\Orienteer.Autofac.dll" target="lib\wp8\Orienteer.Autofac.dll" />
-
-        <file src="Orienteer.Autofac\Bin\Release\Orienteer.Autofac.dll" target="lib\xamarinios10\Orienteer.Autofac.dll" />
-
-        <file src="Orienteer.Autofac\Bin\Release\Orienteer.Autofac.dll" target="lib\MonoAndroid22\Orienteer.Autofac.dll" />
-
-        <file src="Orienteer.Autofac\Bin\Release\Orienteer.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.Autofac.dll" />
+        <file src="Orienteer.Autofac\Bin\Release\Orienteer.Autofac.dll" target="lib\portable-win+net45+wpa81+wp80+uap10.0+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.Autofac.dll" />
     </files>
 </package>
