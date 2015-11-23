@@ -1,6 +1,7 @@
 *.user
 *.suo
 *.g.*
+*.lock.json
 Debug
 Release
 AppPackages
