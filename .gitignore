@@ -3,5 +3,6 @@
 *.g.*
 Debug
 Release
+AppPackages
 */TestResults/*
 NuGetOutput/
