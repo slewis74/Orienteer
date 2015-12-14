@@ -13,7 +13,7 @@
     - Tile pinning for WinPhone.  WinPhone app code no longer calls IPhoneApplicationFrameAdapter.DoStartup directly. 
 		</releaseNotes>
         <dependencies>
-            <dependency id="PresentationBus" version="2.0.13" />
+            <dependency id="PresentationBus" version="2.0.14" />
             <dependency id="Newtonsoft.Json" version="6.0.5" />
         </dependencies>
     </metadata>
@@ -25,13 +25,13 @@
         <file src="Orienteer.WinStore\OrienteerResources\OrienteerResources.xaml" target="content\win8\OrienteerResources\OrienteerResources.xaml" />
         <file src="Orienteer.WinStore\Host\HostView.xaml" target="content\win8\OrienteerResources\HostView.xaml" />
         <file src="Orienteer.WinStore\Host\HostView.xaml.cs" target="content\win8\OrienteerResources\HostView.xaml.cs" />
-        <file src="Orienteer.WinStore\Bin\Release\Orienteer.dll" target="lib\win8\Orienteer.dll" />
-        <file src="Orienteer.WinStore\Bin\Release\Orienteer.Xaml.dll" target="lib\win8\Orienteer.Xaml.dll" />
-        <file src="Orienteer.WinStore\Bin\Release\Orienteer.WinStore.dll" target="lib\win8\Orienteer.WinStore.dll" />
+        <file src="Orienteer.WinStore\Bin\x86\Release\Orienteer.dll" target="lib\win8\Orienteer.dll" />
+        <file src="Orienteer.WinStore\Bin\x86\Release\Orienteer.Xaml.dll" target="lib\win8\Orienteer.Xaml.dll" />
+        <file src="Orienteer.WinStore\Bin\x86\Release\Orienteer.WinStore.dll" target="lib\win8\Orienteer.WinStore.dll" />
         
-        <file src="Orienteer.WinPhone\Bin\Release\Orienteer.dll" target="lib\wp8\Orienteer.dll" />
-        <file src="Orienteer.WinPhone\Bin\Release\Orienteer.Xaml.dll" target="lib\wp8\Orienteer.Xaml.dll" />
-        <file src="Orienteer.WinPhone\Bin\Release\Orienteer.WinPhone.dll" target="lib\wp8\Orienteer.WinPhone.dll" />
+        <file src="Orienteer.WinPhone\Bin\x86\Release\Orienteer.dll" target="lib\wp8\Orienteer.dll" />
+        <file src="Orienteer.WinPhone\Bin\x86\Release\Orienteer.Xaml.dll" target="lib\wp8\Orienteer.Xaml.dll" />
+        <file src="Orienteer.WinPhone\Bin\x86\Release\Orienteer.WinPhone.dll" target="lib\wp8\Orienteer.WinPhone.dll" />
 
         <file src="Orienteer.iOS\Bin\iPhone\Release\Orienteer.dll" target="lib\xamarinios10\Orienteer.dll" />
         <file src="Orienteer.iOS\Bin\iPhone\Release\Orienteer.iOS.dll" target="lib\xamarinios10\Orienteer.iOS.dll" />
@@ -42,8 +42,8 @@
         <file src="Orienteer.Xaml\Bin\Release\Orienteer.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.dll" />
         <file src="Orienteer.Xaml\Bin\Release\Orienteer.Xaml.dll" target="lib\portable-win+net45+wpa81+wp80+MonoAndroid22+MonoTouch10+xamarinios10\Orienteer.Xaml.dll" />
 
-        <file src="Orienteer.Universal\Bin\Release\Orienteer.dll" target="lib\uap10.0\Orienteer.dll" />
-        <file src="Orienteer.Universal\Bin\Release\Orienteer.Xaml.dll" target="lib\uap10.0\Orienteer.Xaml.dll" />
-        <file src="Orienteer.Universal\Bin\Release\Orienteer.Universal.dll" target="lib\uap10.0\Orienteer.Universal.dll" />
+        <file src="Orienteer.Universal\Bin\x86\Release\Orienteer.dll" target="lib\uap10.0\Orienteer.dll" />
+        <file src="Orienteer.Universal\Bin\x86\Release\Orienteer.Xaml.dll" target="lib\uap10.0\Orienteer.Xaml.dll" />
+        <file src="Orienteer.Universal\Bin\x86\Release\Orienteer.Universal.dll" target="lib\uap10.0\Orienteer.Universal.dll" />
     </files>
 </package>

@@ -1,6 +1,8 @@
 *.user
 *.suo
 *.g.*
+*.nuget.props
+*.nuget.targets
 *.lock.json
 Debug
 Release

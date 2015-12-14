@@ -79,8 +79,8 @@
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="PresentationBus, Version=2.0.13.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PresentationBus.2.0.13\lib\portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+uap10.0\PresentationBus.dll</HintPath>
+    <Reference Include="PresentationBus, Version=2.0.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PresentationBus.2.0.14\lib\portable-win+net40+wp8+wp81+wpa81+MonoAndroid10+MonoTouch10+dotnet\PresentationBus.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
