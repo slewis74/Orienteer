@@ -13,9 +13,9 @@ namespace WinPhoneSample.Features.Albums
             _presentationBus = presentationBus;
         }
 
-        public override void Execute(TrackViewModel parameter)
+        public override async void Execute(TrackViewModel parameter)
         {
-            _presentationBus.Send(new AddSongToCurrentPlaylistCommand { Song = parameter.GetSong() });
+            await _presentationBus.SendAsync(new AddSongToCurrentPlaylistCommand { Song = parameter.GetSong() });
         }
     }
 }

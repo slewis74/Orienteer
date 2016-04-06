@@ -12,9 +12,9 @@ namespace Orienteer.Xaml.ViewModels
             _presentationBus = presentationBus;
         }
 
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
-            _presentationBus.Send(new T());
+            await _presentationBus.SendAsync(new T());
         }
     }
 }

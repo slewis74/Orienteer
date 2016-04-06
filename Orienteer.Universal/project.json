@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "PresentationBus": "2.0.14"
+    "PresentationBus": "3.0.16"
   },
   "frameworks": {
     "uap10.0": {}

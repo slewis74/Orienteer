@@ -12,9 +12,9 @@ namespace Orienteer.WinStore.Commands
             _presentationBus = presentationBus;
         }
 
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
-            _presentationBus.Send(new Orienteer.Messages.GoHomeCommand());
+            await _presentationBus.SendAsync(new Orienteer.Messages.GoHomeCommand());
         }
     }
 }

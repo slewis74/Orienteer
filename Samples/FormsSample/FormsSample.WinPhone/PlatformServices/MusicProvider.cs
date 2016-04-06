@@ -56,7 +56,7 @@ namespace FormsSample.WinPhone.PlatformServices
             Artists.AddRange(artists);
             Artists.CompleteLargeUpdate();
 
-            await _presentationBus.Publish(new AlbumDataLoaded(Artists));
+            await _presentationBus.PublishAsync(new AlbumDataLoaded(Artists));
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace FormsSample.WinPhone.PlatformServices
                                 };
                                 album.Songs.Add(song);
                                 newData = true;
-                                await _presentationBus.Publish(new SongLoadedEvent(album, song));
+                                await _presentationBus.PublishAsync(new SongLoadedEvent(album, song));
                                 // save new entry to app storage
                             }
                             

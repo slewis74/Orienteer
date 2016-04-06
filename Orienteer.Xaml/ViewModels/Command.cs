@@ -18,9 +18,7 @@ namespace Orienteer.Xaml.ViewModels
 
 		protected void RaiseCanExecuteChanged()
 		{
-			if (CanExecuteChanged == null)
-				return;
-			CanExecuteChanged(this, EventArgs.Empty);
+		    CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 		}
 	}
 

@@ -13,9 +13,9 @@ namespace FormsSample.Features.Albums
             _presentationBus = presentationBus;
         }
 
-        public override void Execute(AlbumViewModel parameter)
+        public override async void Execute(AlbumViewModel parameter)
         {
-            _presentationBus.Send(new AddAlbumToCurrentPlaylistCommand { Album = parameter.GetAlbum() });
+            await _presentationBus.SendAsync(new AddAlbumToCurrentPlaylistCommand { Album = parameter.GetAlbum() });
         }
     }
 }

@@ -27,14 +27,14 @@ namespace Orienteer.Universal.Commands
         private async Task RequestCanGoBackState()
         {
             var request = new CanGoBackRequest();
-            var response = await _presentationBus.Request(request);
+            var response = await _presentationBus.RequestAsync(request);
             _canGoBack = response.CanGoBack;
             RaiseCanExecuteChanged();
         }
 
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
-            _presentationBus.Send(new Orienteer.Messages.GoBackCommand());
+            await _presentationBus.SendAsync(new Orienteer.Messages.GoBackCommand());
         }
 
         public void Handle(CanGoBackChanged presentationEvent)

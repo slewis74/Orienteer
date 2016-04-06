@@ -15,9 +15,9 @@ namespace WinPhoneSample.Features.Artists.Single
             _artist = artist;
         }
 
-        public override void Execute(Album album)
+        public override async void Execute(Album album)
         {
-            Navigator.NavigateAsync<AlbumController>(c => c.ShowAlbum(_artist.Name, album.Title));
+            await Navigator.NavigateAsync<AlbumController>(c => c.ShowAlbum(_artist.Name, album.Title));
         }
     }
 }

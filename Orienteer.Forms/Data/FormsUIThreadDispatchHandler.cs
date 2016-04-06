@@ -7,7 +7,7 @@ namespace Orienteer.Forms.Data
 {
     public class FormsUIThreadDispatchHandler : IUIThreadDispatchHandler
     {
-        private SynchronizationContext _context;
+        private readonly SynchronizationContext _context;
 
         public FormsUIThreadDispatchHandler()
         {

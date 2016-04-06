@@ -24,7 +24,7 @@ namespace Orienteer.Universal.Commands
         public bool IsAlreadyPinned { get { return SecondaryTile.Exists(AppbarTileId); } }
         public bool IsNotAlreadyPinned { get { return !IsAlreadyPinned; } }
 
-        public async override void Execute(FrameworkElement parameter)
+        public override async void Execute(FrameworkElement parameter)
         {
             var parent = (FrameworkElement)parameter.Parent;
             while ((parent is AppBar) == false)

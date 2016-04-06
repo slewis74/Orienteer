@@ -13,9 +13,9 @@ namespace WinPhoneSample.Features.Albums
             _presentationBus = presentationBus;
         }
 
-        public override void Execute(AlbumViewModel parameter)
+        public override async void Execute(AlbumViewModel parameter)
         {
-            _presentationBus.Send(new PlayAlbumNowCommand(parameter.ArtistName, parameter.GetAlbum()));
+            await _presentationBus.SendAsync(new PlayAlbumNowCommand(parameter.ArtistName, parameter.GetAlbum()));
         }
 
     }

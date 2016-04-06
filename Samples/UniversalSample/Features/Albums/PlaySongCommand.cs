@@ -13,9 +13,9 @@ namespace UniversalSample.Features.Albums
             _presentationBus = presentationBus;
         }
 
-        public override void Execute(TrackViewModel parameter)
+        public override async void Execute(TrackViewModel parameter)
         {
-            _presentationBus.Send(new PlaySongNowCommand(parameter.ArtistName, parameter.AlbumTitle, parameter.GetSong()));
+            await _presentationBus.SendAsync(new PlaySongNowCommand(parameter.ArtistName, parameter.AlbumTitle, parameter.GetSong()));
         }
     }
 }

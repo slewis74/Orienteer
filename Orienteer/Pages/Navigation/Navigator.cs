@@ -41,7 +41,7 @@ namespace Orienteer.Pages.Navigation
             DoNavigate(controllerResult, animated);
         }
 
-        protected virtual void DoNavigate(ControllerInvokerResult controllerResult, bool animated)
+        protected virtual async void DoNavigate(ControllerInvokerResult controllerResult, bool animated)
         {
             var route = controllerResult.Route;
             var result = controllerResult.Result;
@@ -49,7 +49,7 @@ namespace Orienteer.Pages.Navigation
             var pageResult = result as IPageActionResult;
             if (pageResult != null)
             {
-                _presentationBus.Send(new PageNavigationCommand(route,
+                await _presentationBus.SendAsync(new PageNavigationCommand(route,
                                                                    new PageNavigationRequestEventArgs(pageResult.PageType,
                                                                                                       pageResult.Parameter)));
                 return;
@@ -58,7 +58,7 @@ namespace Orienteer.Pages.Navigation
             var viewModelResult = result as IViewModelActionResult;
             if (viewModelResult != null)
             {
-                _presentationBus.Send(new ViewModelNavigationCommand(route,
+                await _presentationBus.SendAsync(new ViewModelNavigationCommand(route,
                                                                         new ViewModelNavigationRequestEventArgs(
                                                                             viewModelResult.ViewModelInstance),
                                                                             animated));

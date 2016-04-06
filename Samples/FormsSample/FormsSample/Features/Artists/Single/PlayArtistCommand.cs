@@ -13,10 +13,10 @@ namespace FormsSample.Features.Artists.Single
             _presentationBus = presentationBus;
         }
 
-        public override void Execute(ArtistViewModel parameter)
+        public override async void Execute(ArtistViewModel parameter)
         {
             var artist = parameter.GetArtist();
-            _presentationBus.Send(new PlayArtistNowCommand(artist));
+            await _presentationBus.SendAsync(new PlayArtistNowCommand(artist));
         }
     }
 }

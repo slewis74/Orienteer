@@ -17,9 +17,9 @@ namespace UniversalSample.Features.Artists.All
             _artists = artists;
         }
 
-        public async override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
-            await _presentationBus.Send(new PlayAllNowCommand(_artists));
+            await _presentationBus.SendAsync(new PlayAllNowCommand(_artists));
         }
     }
 }

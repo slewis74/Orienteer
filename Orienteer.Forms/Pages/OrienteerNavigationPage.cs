@@ -47,10 +47,7 @@ namespace Orienteer.Forms.Pages
         private void OnPopped(object sender, NavigationEventArgs navigationEventArgs)
         {
             _navigationStackCache.Pop();
-            if (_navigationStack != null)
-            {
-                _navigationStack.StoreRoutes(_navigationStackCache.Select(i => i.Route).ToArray());
-            }
+            _navigationStack?.StoreRoutes(_navigationStackCache.Select(i => i.Route).ToArray());
         }
 
         public async Task DoStartup()
@@ -120,7 +117,7 @@ namespace Orienteer.Forms.Pages
                 Content = content;
             }
 
-            public string Route { get; private set; }
+            public string Route { get; }
             public Page Content { get; set; }
 
             public override bool Equals(object obj)

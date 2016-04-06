@@ -34,14 +34,14 @@ namespace Orienteer.WinStore.Controls
             SettingsPane.GetForCurrentView().CommandsRequested += HostCommandsRequested;
         }
 
-        void HostCommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        async void HostCommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
             if (Content == null)
                 return;
 
             var viewType = Content.GetType();
             var cmd = new DisplaySettingsCommand(viewType, args.Request);
-            PresentationBus.Send(cmd);
+            await PresentationBus.SendAsync(cmd);
         }
 
         public static readonly DependencyProperty TargetNameProperty =
@@ -171,12 +171,12 @@ namespace Orienteer.WinStore.Controls
             }
         }
 
-        public void Handle(PageNavigationCommand command)
+        public async void Handle(PageNavigationCommand command)
         {
             if (command.Args.Target != TargetName)
                 return;
 
-            NavigateToPage(command.Route, command.Args.ViewType, command.Args.Parameter);
+            await NavigateToPage(command.Route, command.Args.ViewType, command.Args.Parameter);
         }
 
         private async Task NavigateToPage(string route, Type viewType, object parameter)
@@ -281,16 +281,15 @@ namespace Orienteer.WinStore.Controls
         private void DataTransferManagerOnDataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             var currentPage = Content as FrameworkElement;
-            if (currentPage == null) return;
 
-            var viewModel = currentPage.DataContext as IShare;
+            var viewModel = currentPage?.DataContext as IShare;
             if (viewModel == null) return;
 
             if (viewModel.GetShareContent(args.Request))
             {
                 // Out of the datapackage properties, the title is required. If the scenario completed successfully, we need
                 // to make sure the title is valid since the sample scenario gets the title from the user.
-                if (String.IsNullOrEmpty(args.Request.Data.Properties.Title))
+                if (string.IsNullOrEmpty(args.Request.Data.Properties.Title))
                 {
                     args.Request.FailWithDisplayText("Title is required, share cannot continue.");
                 }
@@ -300,7 +299,7 @@ namespace Orienteer.WinStore.Controls
         private async Task SetCanGoBack()
         {
             CanGoBack = _navigationStack.Count() > 1;
-            await PresentationBus.Publish(new CanGoBackChanged(CanGoBack));
+            await PresentationBus.PublishAsync(new CanGoBackChanged(CanGoBack));
         }
 
         private void UpdateCurrentPageTitle(FrameworkElement newContent)
