@@ -29,9 +29,9 @@
         <file src="Orienteer.WinStore\Bin\x86\Release\Orienteer.Xaml.dll" target="lib\win8\Orienteer.Xaml.dll" />
         <file src="Orienteer.WinStore\Bin\x86\Release\Orienteer.WinStore.dll" target="lib\win8\Orienteer.WinStore.dll" />
         
-        <file src="Orienteer.WinPhone\Bin\Release\Orienteer.dll" target="lib\wp8\Orienteer.dll" />
-        <file src="Orienteer.WinPhone\Bin\Release\Orienteer.Xaml.dll" target="lib\wp8\Orienteer.Xaml.dll" />
-        <file src="Orienteer.WinPhone\Bin\Release\Orienteer.WinPhone.dll" target="lib\wp8\Orienteer.WinPhone.dll" />
+        <file src="Orienteer.WinPhone\Bin\x86\Release\Orienteer.dll" target="lib\wp8\Orienteer.dll" />
+        <file src="Orienteer.WinPhone\Bin\x86\Release\Orienteer.Xaml.dll" target="lib\wp8\Orienteer.Xaml.dll" />
+        <file src="Orienteer.WinPhone\Bin\x86\Release\Orienteer.WinPhone.dll" target="lib\wp8\Orienteer.WinPhone.dll" />
 
         <file src="Orienteer.iOS\Bin\iPhone\Release\Orienteer.dll" target="lib\xamarinios10\Orienteer.dll" />
         <file src="Orienteer.iOS\Bin\iPhone\Release\Orienteer.iOS.dll" target="lib\xamarinios10\Orienteer.iOS.dll" />
