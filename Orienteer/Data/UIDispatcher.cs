@@ -12,7 +12,7 @@ namespace Orienteer.Data
             _handler = handler;
         }
 
-        public async static Task Execute(Action action)
+        public static async Task Execute(Action action)
         {
             if (_handler == null)
                 throw new InvalidOperationException("UIDispatcher.Initialize must be called before calling Execute");

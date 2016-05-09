@@ -20,7 +20,7 @@ namespace Orienteer.Universal.Commands
         public override bool CanExecute(object parameter)
         {
             if (_canGoBack.HasValue == false)
-                RequestCanGoBackState();
+                Task.Run(async () => await RequestCanGoBackState());
             return _canGoBack.GetValueOrDefault();
         }
 

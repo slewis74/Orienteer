@@ -12,7 +12,6 @@ namespace Orienteer.Universal.Commands
         public abstract string TileTitle { get; }
 
         public abstract Uri TileMediumImageUri { get; }
-        public virtual Uri TileSmallImageUri { get { return null; } }
         public virtual Uri TileWideImageUri { get { return null; } }
         public virtual Uri TileLargeImageUri { get { return null; } }
 
@@ -52,8 +51,6 @@ namespace Orienteer.Universal.Commands
                     TileSize.Default);
                 secondaryTile.VisualElements.ShowNameOnSquare150x150Logo = true;
 
-                if (TileSmallImageUri != null)
-                    secondaryTile.VisualElements.Square30x30Logo = TileSmallImageUri;
                 if (TileWideImageUri != null)
                 {
                     secondaryTile.VisualElements.Wide310x150Logo = TileWideImageUri;
@@ -74,7 +71,7 @@ namespace Orienteer.Universal.Commands
                     secondaryTile.LockScreenDisplayBadgeAndTileText = LockScreenDisplayBadgeAndTileText;
                 }
 
-                bool isPinned = await secondaryTile.RequestCreateAsync();
+                var isPinned = await secondaryTile.RequestCreateAsync();
 
                 NotifyChanged(() => IsAlreadyPinned);
                 NotifyChanged(() => IsNotAlreadyPinned);

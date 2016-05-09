@@ -40,7 +40,7 @@ namespace Orienteer.Forms.Pages
 
             if (_hasStarted == false)
             {
-                DoStartup();
+                Task.Run(async () => await DoStartup());
             }
         }
 

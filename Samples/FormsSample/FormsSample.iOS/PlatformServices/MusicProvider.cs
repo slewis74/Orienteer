@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading.Tasks;
-using Foundation;
-using MediaPlayer;
 using Newtonsoft.Json;
 using Orienteer;
 using Orienteer.Data;
@@ -24,7 +21,7 @@ namespace FormsSample.iOS.PlatformServices
             Artists = new DistinctAsyncObservableCollection<Artist>();
         }
 
-        private DistinctAsyncObservableCollection<Artist> Artists { get; set; }
+        private DistinctAsyncObservableCollection<Artist> Artists { get; }
 
         private readonly AsyncLock _asyncLock = new AsyncLock();
         public async Task<DistinctAsyncObservableCollection<Artist>> GetArtists()
@@ -33,7 +30,7 @@ namespace FormsSample.iOS.PlatformServices
             {
                 if (_hasLoaded == false)
                 {
-                    await LoadContent();
+                    LoadContent();
                     _hasLoaded = true;
                 }
             }
@@ -41,10 +38,10 @@ namespace FormsSample.iOS.PlatformServices
             return Artists;
         }
 
-        private async Task LoadContent()
+        private void LoadContent()
         {
             var artists = new List<Artist>();
-            await LoadData(artists);
+            LoadData(artists);
 
             Artists.StartLargeUpdate();
             Artists.AddRange(artists);
@@ -54,12 +51,12 @@ namespace FormsSample.iOS.PlatformServices
         /// <summary>
         /// Loads the existing content from the application data
         /// </summary>
-        private async Task<bool> LoadData(List<Artist> artists)
+        private void LoadData(List<Artist> artists)
         {
             var storageFile = IsolatedStorageFile.GetUserStoreForApplication();
             if (storageFile.FileExists("Artists") == false)
             {
-                return false;
+                return;
             }
 
             try
@@ -81,11 +78,11 @@ namespace FormsSample.iOS.PlatformServices
                     artists.Add(artist);
                 }
 
-                return true;
+                return;
             }
             catch (FileNotFoundException)
             {
-                return false;
+                return;
             }
         }
 
@@ -93,7 +90,7 @@ namespace FormsSample.iOS.PlatformServices
         {
             // copy to a separate list while loaded, to stop the UI flickering when reading lots of new data
             var artists = (await GetArtists()).ToList();
-            var newTracks = await ScanMusicLibraryFolder(artists);
+            var newTracks = ScanMusicLibraryFolder(artists);
 
             if (newTracks)
             {
@@ -104,7 +101,7 @@ namespace FormsSample.iOS.PlatformServices
             return true;
         }
 
-        private async Task<bool> ScanMusicLibraryFolder(IList<Artist> artists)
+        private bool ScanMusicLibraryFolder(IList<Artist> artists)
         {
             if (artists.Any())
                 return false;
@@ -134,52 +131,52 @@ namespace FormsSample.iOS.PlatformServices
 
             return true;
 
-            var foundNewItems = false;
-            var mq = new MPMediaQuery();
-            var value = NSNumber.FromInt32((int)MPMediaType.Music);
-            var type = MPMediaItem.MediaTypeProperty;
-            var predicate = MPMediaPropertyPredicate.PredicateWithValue(value, type);
-            mq.AddFilterPredicate(predicate);
+            //var foundNewItems = false;
+            //var mq = new MPMediaQuery();
+            //var value = NSNumber.FromInt32((int)MPMediaType.Music);
+            //var type = MPMediaItem.MediaTypeProperty;
+            //var predicate = MPMediaPropertyPredicate.PredicateWithValue(value, type);
+            //mq.AddFilterPredicate(predicate);
 
-            foreach (var item in mq.Items)
-            {
-                var artist = artists.FirstOrDefault(a => a.Name == item.Artist);
-                if (artist == null)
-                {
-                    artist = new Artist
-                    {
-                        Name = item.Artist
-                    };
-                    artists.Add(artist);
-                    foundNewItems = true;
-                }
+            //foreach (var item in mq.Items)
+            //{
+            //    var artist = artists.FirstOrDefault(a => a.Name == item.Artist);
+            //    if (artist == null)
+            //    {
+            //        artist = new Artist
+            //        {
+            //            Name = item.Artist
+            //        };
+            //        artists.Add(artist);
+            //        foundNewItems = true;
+            //    }
 
-                var album = artist.Albums.FirstOrDefault(a => a.Title == item.AlbumTitle);
-                if (album == null)
-                {
-                    album = new Album
-                    {
-                        Title = item.AlbumTitle
-                    };
-                    artist.Albums.Add(album);
-                    foundNewItems = true;
-                }
+            //    var album = artist.Albums.FirstOrDefault(a => a.Title == item.AlbumTitle);
+            //    if (album == null)
+            //    {
+            //        album = new Album
+            //        {
+            //            Title = item.AlbumTitle
+            //        };
+            //        artist.Albums.Add(album);
+            //        foundNewItems = true;
+            //    }
 
-                var song = album.Songs.FirstOrDefault(s => s.Title == item.Title);
-                if (song == null)
-                {
-                    song = new Song
-                    {
-                        Title = item.Title,
-                        DiscNumber = (uint)item.DiscNumber,
-                        Duration = TimeSpan.FromSeconds(item.PlaybackDuration)
-                    };
-                    album.Songs.Add(song);
-                    foundNewItems = true;
-                }
-            }
+            //    var song = album.Songs.FirstOrDefault(s => s.Title == item.Title);
+            //    if (song == null)
+            //    {
+            //        song = new Song
+            //        {
+            //            Title = item.Title,
+            //            DiscNumber = (uint)item.DiscNumber,
+            //            Duration = TimeSpan.FromSeconds(item.PlaybackDuration)
+            //        };
+            //        album.Songs.Add(song);
+            //        foundNewItems = true;
+            //    }
+            //}
 
-            return foundNewItems;
+            //return foundNewItems;
         }
 
         private async Task SaveData(IEnumerable<Artist> artists)

@@ -9,3 +9,4 @@ Release
 AppPackages
 */TestResults/*
 NuGetOutput/
+.vs

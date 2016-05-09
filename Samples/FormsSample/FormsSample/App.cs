@@ -52,14 +52,11 @@ namespace FormsSample
         }
 
         // ReSharper disable once UnusedMethodReturnValue.Local
-        private async Task DoRescan()
+        private void DoRescan()
         {
             var musicProvider = _container.Resolve<IMusicProvider>();
-            // ReSharper disable once CSharpWarnings::CS4014
-            Task.Run(async () =>
-            {
-                await musicProvider.ReScanMusicLibrary();
-            });
+
+            Task.Run(async () => await musicProvider.ReScanMusicLibrary());
         }
 
         protected override void OnStart()

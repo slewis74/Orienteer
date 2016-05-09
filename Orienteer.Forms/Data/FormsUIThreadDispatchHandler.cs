@@ -14,9 +14,10 @@ namespace Orienteer.Forms.Data
             _context = SynchronizationContext.Current;
         }
 
-        public async Task ExecuteOnUIThread(Action action)
+        public Task ExecuteOnUIThread(Action action)
         {
             _context.Send(_ => action(), null);
+            return new Task(() => {});
         }
     }
 }

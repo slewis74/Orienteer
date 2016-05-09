@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Reflection;
-using System.Resources;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
@@ -17,7 +16,7 @@ using WinPhoneSample.Resources;
 
 namespace WinPhoneSample
 {
-    public partial class App : Application
+    public partial class App
     {
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
@@ -46,7 +45,7 @@ namespace WinPhoneSample
             if (Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -111,12 +110,12 @@ namespace WinPhoneSample
         #region Phone application initialization
 
         // Avoid double-initialization
-        private bool phoneApplicationInitialized = false;
+        private bool _phoneApplicationInitialized;
         private IContainer _container;
 
         private void InitializePhoneApplication()
         {
-            if (phoneApplicationInitialized)
+            if (_phoneApplicationInitialized)
                 return;
 
             UIDispatcher.Initialize(new WinPhoneUIThreadDispatchHandler());
@@ -132,10 +131,10 @@ namespace WinPhoneSample
 
             DoRescan();
 
-            phoneApplicationInitialized = true;
+            _phoneApplicationInitialized = true;
         }
 
-        private async Task InitFrameAdapter()
+        private void InitFrameAdapter()
         {
             var adapter = _container.Resolve<IPhoneApplicationFrameAdapter>();
             adapter.PhoneApplicationFrame = RootFrame;
@@ -153,14 +152,11 @@ namespace WinPhoneSample
         }
 
         // ReSharper disable once UnusedMethodReturnValue.Local
-        private async Task DoRescan()
+        private void DoRescan()
         {
             var musicProvider = _container.Resolve<IMusicProvider>();
-            // ReSharper disable once CSharpWarnings::CS4014
-            Task.Run(async () =>
-            {
-                await musicProvider.ReScanMusicLibrary();
-            });
+
+            Task.Run(async () => await musicProvider.ReScanMusicLibrary());
         }
 
         // Do not add any additional code to this method

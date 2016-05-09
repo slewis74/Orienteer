@@ -17,7 +17,7 @@ namespace Orienteer.Universal
         IUniversalFrameAdapter,
         IHandlePresentationCommand<ViewModelNavigationCommand>,
         IHandlePresentationCommand<GoBackCommand>,
-        IHandlePresentationRequest<CanGoBackRequest, CanGoBackResponse>
+        IHandlePresentationRequestAsync<CanGoBackRequest, CanGoBackResponse>
     {
         private readonly IViewLocator _viewLocator;
         private readonly INavigator _navigator;
@@ -112,9 +112,11 @@ namespace Orienteer.Universal
             _navigationStack.StoreRoutes(_navigationStackCache.ToArray());
         }
 
-        public CanGoBackResponse Handle(CanGoBackRequest request)
+        public async Task<CanGoBackResponse> HandleAsync(CanGoBackRequest request)
         {
-            return new CanGoBackResponse { CanGoBack = ApplicationFrame.CanGoBack };
+            CanGoBackResponse response = null;
+            await UIDispatcher.Execute(() => { response = new CanGoBackResponse {CanGoBack = ApplicationFrame.CanGoBack}; });
+            return response;
         }
     }
 
